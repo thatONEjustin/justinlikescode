@@ -6,7 +6,7 @@ import BaseLayout from "@layouts/base.astro";
 import PillButton from "@components/PillButton.astro";
 import NerdFontIcon from "@components/NerdFontIcon.astro";
 
-// import resume from "/resume.pdf"
+import resume from "/justin-paelmo-resume.pdf"
 import me from "@images/me.jpeg"
 
 import BlogPosts from "@components/blog/BlogPosts.astro";
@@ -18,7 +18,7 @@ import BlogPosts from "@components/blog/BlogPosts.astro";
                 <h2 class="text-green border-b border-green lg:mb-2">About Me</h2>
                 <p class="text-dark-600 text-3xl leading-relaxed">I am a huge nerd about <NerdFontIcon class="text-cyan" icon="nf-md-web" /><span class="text-cyan">web development,</span> <NerdFontIcon class="text-cyan" icon="nf-dev-terminal"/><span class="text-cyan">tooling,</span> <NerdFontIcon class="text-cyan" icon="nf-md-git"/> <span class="text-cyan">CI/CD,</span> and <NerdFontIcon class="text-cyan" icon="nf-md-remote_desktop" /> <span class="text-cyan">server administration</span>.</p>
                 <p class="text-dark-600 text-3xl leading-relaxed"><span class="font-semibold fancy-border fancy-text">I do my best when working with tight knit teams</span> on finding elegant solutions for any full stack deployment.</p>
-                <PillButton class="flex flex-row text-3xl justify-center items-center green mt-8 mx-auto lg:mx-unset" url="/resume.pdf" target="_blank">
+                <PillButton class="flex flex-row text-3xl justify-center items-center green mt-8 mx-auto lg:mx-unset" url={resume} target="_blank">
                    <NerdFontIcon icon="nf-md-file_document max-h-7.5" />&nbsp;Resume
                 </PillButton>
 

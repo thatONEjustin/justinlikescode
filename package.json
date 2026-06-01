@@ -18,6 +18,7 @@
         "@astrojs/svelte": "^8.1.0",
         "@shahid19/stringjs": "^1.0.0",
         "@tailwindcss/vite": "^4.2.4",
+        "@thatonejustin/alpine-breakpoint": "^1.0.1",
         "@thatonejustin/alpine-swiper": "^1.2.7",
         "@types/alpinejs": "^3.13.11",
         "alpinejs": "^3.15.12",
