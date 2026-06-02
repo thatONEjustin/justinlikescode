@@ -4,12 +4,22 @@ import { getCollection } from 'astro:content'
 
 import BlogCard from './BlogCard.astro'
 
-const blog_posts = (await getCollection('blog')).slice(0,3)
+const blog_posts = (await getCollection('blog'))
+
+const sorted = blog_posts.sort((a, b) => {
+    // console.log(`a: ${a.data.publishedAt}`, `b: ${b.data.publishedAt}`)
+    // return 0
+    if(a.data.publishedAt < b.data.publishedAt) {
+        return 1
+    }
+
+    return -1
+}).slice(0,3)
 ---
 
 <section class="blog-posts">
     <div class="blog-posts-container">
-        {blog_posts.map((post: any) =>
+        {sorted.map((post: any) =>
             <BlogCard data={post.data} />
         )}
     </div>
