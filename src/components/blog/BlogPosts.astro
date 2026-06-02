@@ -44,9 +44,9 @@ const blog_posts = (await getCollection('blog')).slice(0,3)
         @apply z-10;
     }
 
-    &:after {
+    /* &:after {
         @apply absolute w-full h-full top-0 left-0 transition-all ease-linear;
-        /* @apply opacity-15; */
+        @apply opacity-15;
         @apply hidden;
         content: ' ';
 
@@ -54,6 +54,6 @@ const blog_posts = (await getCollection('blog')).slice(0,3)
 
         background-size: cover;
         background-image: url('../img/cosmic.jpg');
-    }
+} */
 }
 </style>
