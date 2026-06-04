@@ -44,9 +44,10 @@ const projects = defineCollection({
 
         const projects = data.data
 
+
         return projects.map(({ ...project }: any) => {
             // NOTE: this will probably return weird data for now
-            const { slug, description, external_url, Title, } = project
+            const { slug, description, external_url, Title, updatedAt } = project
 
             let screenshots = (project.screenshots != null) ? project.screenshots : [];
 
@@ -57,7 +58,8 @@ const projects = defineCollection({
                 url: external_url,
                 preview: preview(description, 15),
                 description: description,
-                screenshots: screenshots
+                screenshots: screenshots,
+                updatedAt: updatedAt
             }
         })
     },

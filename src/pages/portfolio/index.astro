@@ -6,6 +6,14 @@ import ProjectCard from "@components/projects/ProjectCard.astro";
 import { getCollection } from 'astro:content';
 
 const projects = await getCollection('projects');
+
+const sorted = projects.sort((a, b) => {
+    if(a.data.updatedAt < b.data.updatedAt) {
+        return 1
+    }
+
+    return -1
+})
 ---
 
 <BaseLayout>
