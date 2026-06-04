@@ -7,8 +7,6 @@ import BlogCard from './BlogCard.astro'
 const blog_posts = (await getCollection('blog'))
 
 const sorted = blog_posts.sort((a, b) => {
-    // console.log(`a: ${a.data.publishedAt}`, `b: ${b.data.publishedAt}`)
-    // return 0
     if(a.data.publishedAt < b.data.publishedAt) {
         return 1
     }
@@ -53,17 +51,5 @@ const sorted = blog_posts.sort((a, b) => {
 
         @apply z-10;
     }
-
-    /* &:after {
-        @apply absolute w-full h-full top-0 left-0 transition-all ease-linear;
-        @apply opacity-15;
-        @apply hidden;
-        content: ' ';
-
-        @apply z-20;
-
-        background-size: cover;
-        background-image: url('../img/cosmic.jpg');
-} */
 }
 </style>
