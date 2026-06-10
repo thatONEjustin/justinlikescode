@@ -1,0 +1,23 @@
+---
+const {name, placeholder = "Your Name", required = false, class:className } = Astro.props
+---
+<div class={`form-input ${className}`}>
+    <input name={name} class="peer" type="text" id={name} placeholder={placeholder} required={required} />
+    <label for={name}>
+        <slot name="label">Name</slot>
+    </label>
+</div>
+
+<style>
+@reference '@css/main.css';
+
+label {
+    @apply text-lg font-bold;
+    @apply text-darker-300;
+}
+
+input {
+    @apply text-cyan;
+    @apply mt-1 mb-2;
+}
+</style>

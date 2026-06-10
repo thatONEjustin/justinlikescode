@@ -2,8 +2,8 @@
     @apply relative;
 
     &:after {
-      @apply absolute h-0.5 w-full bg-linear-to-r from-pink to-cyan bottom-0 left-0;
-      content: ' ';
+        @apply absolute h-0.5 w-full bg-linear-to-r from-pink to-cyan bottom-0 left-0;
+        content: ' ';
     }
 }
 
@@ -66,10 +66,9 @@
 
         content: ' ';
         /* background: var(--color-darker-800); */
-        background: radial-gradient(circle,var(--color-darker-900),var(--color-black));
+        background: radial-gradient(circle, var(--color-darker-900), var(--color-black));
     }
 }
-
 
 @utility markdown-content {
     h2 {
@@ -92,14 +91,25 @@
         @apply text-orange;
     }
 
-    h1, h2, h3, h4, h5, h6 {
-        + p {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        +p {
             @apply mt-4;
         }
     }
 
     p {
-        + h1, + h2, + h3, + h4, + h5, + h6 {
+
+        +h1,
+        +h2,
+        +h3,
+        +h4,
+        +h5,
+        +h6 {
             @apply my-4;
         }
     }
@@ -108,7 +118,9 @@
         @apply text-orange;
     }
 
-    &.italic, em, strong > em {
+    &.italic,
+    em,
+    strong>em {
         @apply text-yellow;
     }
 
@@ -130,7 +142,7 @@
         @apply py-2;
 
         li {
-            > ul {
+            >ul {
                 @apply list-[circle];
                 @apply ml-4;
                 @apply mb-2;
@@ -141,5 +153,156 @@
 
     img {
         @apply my-8;
+    }
+}
+
+@utility input-has-value {
+    @apply text-xs;
+    @apply top-0;
+    @apply bg-black;
+    @apply px-3;
+}
+
+@utility form-input {
+    @apply bg-transparent rounded-md border border-blue-500 relative;
+    @apply mb-3;
+
+    input,
+    textarea {
+        @apply py-2 px-3;
+        @apply h-full w-full rounded-md;
+        @apply placeholder-transparent;
+        @apply text-cyan;
+    }
+
+    label {
+        @apply absolute transition-all;
+        @apply left-2.5 top-1/2;
+        @apply -translate-y-1/2;
+        @apply cursor-text;
+        @apply text-lg font-bold;
+        @apply text-darker-300;
+
+        @variant peer-not-placeholder-shown {
+            @apply input-has-value;
+        }
+
+        @variant peer-focus {
+            @apply input-has-value;
+        }
+    }
+
+    input {
+        @apply mt-1 mb-2;
+    }
+
+    textarea {
+        @apply pt-4;
+        @apply text-lg;
+    }
+}
+
+@custom-variant green-btn {
+    @apply text-green;
+
+    &:after {
+        @apply bg-green;
+    }
+
+    &:hover {
+        @apply text-darker;
+    }
+}
+
+@utility pill-button {
+    @apply relative flex flex-row items-center flex-0;
+    @apply px-8 py-4 text-center text-darker font-bold transition-all;
+    @apply border-2 rounded-md;
+    @apply max-w-fit;
+    @apply no-underline;
+    @apply overflow-hidden;
+    @apply cursor-pointer;
+
+    &:after {
+        @apply absolute bottom-0 left-0 w-full h-full transition-all translate-y-full;
+        @apply -z-20;
+        transform-origin: bottom center;
+        content: ' ';
+    }
+
+    &:hover {
+        @apply rounded-lg;
+
+        &:after {
+            @apply translate-y-0;
+        }
+    }
+
+    &.default {
+        @apply text-darker;
+
+        &:hover {
+            @apply border-transparent text-light bg-darker;
+        }
+    }
+
+    &.green {
+        @apply text-green;
+
+        &:after {
+            @apply bg-green;
+        }
+
+        &:hover {
+            @apply text-darker;
+        }
+    }
+
+    &.cyan {
+        @apply text-cyan;
+
+        &:after {
+            @apply bg-cyan;
+        }
+
+        &:hover {
+            @apply text-darker bg-cyan;
+        }
+    }
+
+    &.pink {
+        @apply text-pink;
+
+        &:after {
+            @apply bg-pink;
+        }
+
+        &:hover {
+            @apply text-darker bg-pink;
+        }
+    }
+
+    &.purple {
+        @apply text-purple;
+
+        &:after {
+            @apply bg-purple;
+        }
+
+        &:hover {
+            @apply text-darker bg-purple;
+        }
+    }
+
+    &.yellow {
+        @apply text-yellow;
+
+        &:after {
+            @apply bg-yellow;
+        }
+
+        &:hover {
+            @apply text-darker bg-yellow;
+        }
     }
 }
