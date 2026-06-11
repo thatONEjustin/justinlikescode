@@ -165,7 +165,7 @@
 
 @utility form-input {
     @apply bg-transparent rounded-md border border-blue-500 relative;
-    @apply mb-3;
+    @apply mb-6;
 
     input,
     textarea {
@@ -267,6 +267,18 @@
 
         &:hover {
             @apply text-darker bg-cyan;
+        }
+    }
+
+    &.red {
+        @apply text-red-600;
+
+        &:after {
+            @apply bg-red-600;
+        }
+
+        &:hover {
+            @apply text-darker bg-red-600;
         }
     }
 

@@ -30,9 +30,11 @@
         "marked": "^11.2.0",
         "moment": "^2.30.1",
         "momentjs": "^2.0.0",
+        "motion": "^12.40.0",
         "node-gyp": "^12.3.0",
         "react": "^19.2.7",
         "react-dom": "^19.2.7",
+        "react-google-recaptcha": "^3.1.0",
         "sharp": "^0.34.5",
         "svelte": "^5.43.6",
         "swiper": "^11.2.10",
@@ -40,6 +42,7 @@
         "tailwindcss": "^4.2.4"
     },
     "devDependencies": {
-        "@types/alpinejs__intersect": "^3.13.4"
+        "@types/alpinejs__intersect": "^3.13.4",
+        "@types/react-google-recaptcha": "^2.1.9"
     }
 }

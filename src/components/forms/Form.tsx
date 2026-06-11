@@ -1,20 +1,24 @@
 "use client"
 
-import React from "react";
+import { useState, useRef } from "react";
+import { motion, AnimatePresence, LayoutGroup } from "motion/react"
+import ReCAPTCHA from "react-google-recaptcha"
 
-import InputField from "./InputField.tsx";
-import TextareaField from "./TextareaField.jsx";
+import InputField from "./InputField.tsx"
+import TextareaField from "./TextareaField.jsx"
 
 export default function FormGridForm() {
-    const FORM_SUBMIT_URL = '';
+    const FORM_SUBMIT_URL: string = ""
+    const RECAPTCHA_SITE_KEY: string = ""
 
-    const [success, setSuccess] = React.useState(false);
-    const [fail, setFail] = React.useState(false);
+    const [captchaValue, setCaptchaValue] = useState(null)
+    const [success, setSuccess] = useState(false)
+    const [fail, setFail] = useState(false)
 
-    const [submitted, setSubmitted] = React.useState(false)
+    const contactForm = useRef<HTMLFormElement>(null)
 
-    const submit = async (formData: FormData): Promise<void> => {
-        setSubmitted(true)
+    async function submit(formData: FormData): Promise<void> {
+        if (!captchaValue) return
 
         try {
             const response = await fetch(FORM_SUBMIT_URL, {
@@ -23,41 +27,87 @@ export default function FormGridForm() {
             });
 
             if (response.ok) {
-                setSuccess(true);
+                setSuccess(true)
             }
 
         } catch (error) {
-            console.log('Error submitting form');
-            setFail(true);
-            setSubmitted(false);
+            console.log('Error submitting form')
+            setFail(true)
         }
     }
 
+    function handleCaptchaChange(value: any) {
+        setCaptchaValue(value)
+    }
+
+    function resetForm() {
+        contactForm.current?.reset()
+        setFail(false)
+    }
+
     return (
-        <>
-            {success && submitted && <div className="alert alert-success">Thank you for contacting me! I will get back to you as soon as possible.</div>}
+        <LayoutGroup>
+            <AnimatePresence>
+                {!success && !fail && (
+                    <motion.form
+                        className="relative"
+                        initial={{ x: "-100%" }}
+                        animate={{ x: 0, opacity: 1 }}
+                        exit={{ x: "100%", opacity: 0 }}
+                        ref={contactForm}
+                        action={submit}
+                    >
+                        <h2 className="text-4xl font-bold">Contact Me</h2>
 
-            {!success && !submitted &&
-                <form id="contact" action={submit}>
-                    <h2 className="text-4xl font-bold">Contact Me</h2>
+                        <fieldset>
+                            <InputField name="name" placeholder="Your Name">
+                                Name
+                            </InputField>
 
-                    <InputField name="name" placeholder="Your Name">
-                        Name
-                    </InputField>
+                            <InputField name="email" placeholder="Your Email">
+                                Email
+                            </InputField>
 
-                    <InputField name="email" placeholder="Your Email">
-                        Email
-                    </InputField>
+                            <TextareaField name="message">
+                                Your Message
+                            </TextareaField>
+                        </fieldset>
 
-                    <TextareaField name="message">
-                        Your Message
-                    </TextareaField>
+                        <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} onChange={handleCaptchaChange} />
 
-                    <button type="submit" className="pill-button green"><i className="nf nf-md-send"></i>&nbsp;Contact Me!</button>
-                </form>
-            }
-            {fail && <div className="alert alert-danger">There was an error submitting your form. Please try again later.</div>}
-        </>
+                        <button type="submit" className="pill-button green mt-4">
+                            <i className="nf nf-md-send"></i>&nbsp;Contact Me!
+                        </button>
+                    </motion.form>
+                )}
+
+                {success && (
+                    <motion.div
+                        className="success relative bg-transparent p-4 text-center flex items-center justify-center"
+                        style={{ height: contactForm.current?.scrollHeight }}
+                        initial={{ x: "-100%" }}
+                        animate={{ x: 0, opacity: 1 }}
+                        exit={{ x: "100%", opacity: 0 }}
+                    >
+                        <h3 className="text-2xl text-green font-bold">Thanks for contacting me!</h3>
+                    </motion.div>
+                )}
+
+                {fail && (
+                    <motion.div
+                        style={{ height: contactForm.current?.scrollHeight }}
+                        initial={{ x: "-100%" }}
+                        animate={{ x: 0, opacity: 1 }}
+                        exit={{ x: "100%", opacity: 0 }}
+                    >
+                        <div className="bg-red-600 px-4 py-2 text-center w-fit mx-auto rounded-md">
+                            There was an error submitting your form. Please try again later.
+                        </div>
+                        <button className="pill-button red mx-auto mt-4" onClick={resetForm}>Try Again</button>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </LayoutGroup>
     )
 }
 

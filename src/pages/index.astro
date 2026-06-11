@@ -1,15 +1,16 @@
 ---
 import { Image } from "astro:assets"
 
+import resume from "/justin-paelmo-resume.pdf"
+import me from "@images/me.jpeg"
+
 import BaseLayout from "@layouts/base.astro";
 
 import PillButton from "@components/PillButton.astro";
 import NerdFontIcon from "@components/NerdFontIcon.astro";
 
-import resume from "/justin-paelmo-resume.pdf"
-import me from "@images/me.jpeg"
-
 import BlogPosts from "@components/blog/BlogPosts.astro";
+import SocialMediaList from "@components/SocialMediaList.astro";
 ---
 <BaseLayout>
     <section class="home-hero">
@@ -39,6 +40,12 @@ import BlogPosts from "@components/blog/BlogPosts.astro";
 
     <BlogPosts />
 
+    <section id="social" class="bg-dark-700 py-8">
+        <div class="justin-container flex flex-col items-center justify-center">
+            <h2 class="text-darker-50">social media</h2>
+            <SocialMediaList />
+        </div>
+    </section>
 </BaseLayout>
 
 <style>
