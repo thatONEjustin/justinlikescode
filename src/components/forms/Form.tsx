@@ -73,7 +73,7 @@ export default function FormGridForm() {
                             </TextareaField>
                         </fieldset>
 
-                        <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} onChange={handleCaptchaChange} />
+                        {/* <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} onChange={handleCaptchaChange} /> */}
 
                         <button type="submit" className="pill-button green mt-4">
                             <i className="nf nf-md-send"></i>&nbsp;Contact Me!
