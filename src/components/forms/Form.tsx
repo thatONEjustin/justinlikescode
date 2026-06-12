@@ -18,8 +18,10 @@ export default function ContactForm() {
 
     const contactForm = useRef<HTMLFormElement>(null)
 
-    async function submit(formData: FormData): Promise<void> {
+    async function submit(): Promise<void> {
         // if (!captchaValue) return
+        const formData = new FormData(contactForm.current as HTMLFormElement)
+        console.log(formData)
 
         try {
             const response = await fetch(FORM_SUBMIT_URL, {
@@ -30,6 +32,8 @@ export default function ContactForm() {
 
             if (response.ok) {
                 setSuccess(true)
+            } else {
+                setFail(true)
             }
 
         } catch (error) {
@@ -41,10 +45,6 @@ export default function ContactForm() {
     function resetForm() {
         contactForm.current?.reset()
         setFail(false)
-    }
-
-    function handleVerificationSuccess(token: string, ekey: string) {
-        console.log(token, ekey)
     }
 
     return (
@@ -60,7 +60,7 @@ export default function ContactForm() {
                             exit={{ x: "100%", opacity: 0 }}
                             ref={contactForm}
                             method="POST"
-                            action={FORM_SUBMIT_URL}
+                            onSubmit={e => e.preventDefault()}
                         >
                             <h2 className="text-4xl font-bold">Contact Me</h2>
 
@@ -78,14 +78,12 @@ export default function ContactForm() {
                                 <TextareaField name="message">
                                     Your Message
                                 </TextareaField>
-                                <HCaptcha
-                                    sitekey={HCAPTCHA_SITE_KEY}
-                                    onVerify={(token, ekey) => handleVerificationSuccess(token, ekey)}
-                                />
+
+                                <div className="h-captcha" data-sitekey={HCAPTCHA_SITE_KEY}></div>
                             </fieldset>
 
 
-                            <button type="submit" className="pill-button green mt-4">
+                            <button type="submit" className="pill-button green mt-4" onClick={submit}>
                                 <i className="nf nf-md-send"></i>&nbsp;Contact Me!
                             </button>
                         </motion.form>
