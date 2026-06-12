@@ -23,7 +23,8 @@ export default function ContactForm() {
         try {
             const response = await fetch(FORM_SUBMIT_URL, {
                 method: 'POST',
-                body: formData
+                headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+                body: JSON.stringify(formData)
             });
 
             if (response.ok) {
