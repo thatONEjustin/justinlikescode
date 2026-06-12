@@ -2,7 +2,8 @@
 
 import { useState, useRef } from "react";
 import { motion, AnimatePresence, LayoutGroup } from "motion/react"
-import ReCAPTCHA from "react-google-recaptcha"
+import HCaptcha from "@hcaptcha/react-hcaptcha";
+// import ReCAPTCHA from "react-google-recaptcha"
 
 import InputField from "./InputField.tsx"
 import TextareaField from "./TextareaField.jsx"
@@ -42,6 +43,10 @@ export default function ContactForm() {
         setFail(false)
     }
 
+    function handleVerificationSuccess(token: string, ekey: string) {
+        console.log(token, ekey)
+    }
+
     return (
         <>
             <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
@@ -54,7 +59,8 @@ export default function ContactForm() {
                             animate={{ x: 0, opacity: 1 }}
                             exit={{ x: "100%", opacity: 0 }}
                             ref={contactForm}
-                            action={submit}
+                            method="POST"
+                            action={FORM_SUBMIT_URL}
                         >
                             <h2 className="text-4xl font-bold">Contact Me</h2>
 
@@ -72,8 +78,10 @@ export default function ContactForm() {
                                 <TextareaField name="message">
                                     Your Message
                                 </TextareaField>
-
-                                <div className="h-captcha" data-sitekey={HCAPTCHA_SITE_KEY}></div>
+                                <HCaptcha
+                                    sitekey={HCAPTCHA_SITE_KEY}
+                                    onVerify={(token, ekey) => handleVerificationSuccess(token, ekey)}
+                                />
                             </fieldset>
 
 
