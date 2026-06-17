@@ -19,14 +19,11 @@ export default function FormGridForm() {
         try {
             const response = await fetch(FORM_SUBMIT_URL, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-                body: JSON.stringify(formData)
+                body: formData
             });
 
             if (response.ok) {
                 setSuccess(true)
-            } else {
-                setFail(true)
             }
 
         } catch (error) {
@@ -109,4 +106,5 @@ export default function FormGridForm() {
         </>
     )
 }
+
 
