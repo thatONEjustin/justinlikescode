@@ -164,12 +164,12 @@
 }
 
 @utility form-input {
-    @apply bg-transparent rounded-md border border-blue-500 relative;
+    @apply bg-transparent rounded-md border border-cyan-500 relative;
     @apply mb-6;
 
     input,
     textarea {
-        @apply py-2 px-3;
+        @apply py-3 px-3;
         @apply h-full w-full rounded-md;
         @apply placeholder-transparent;
         @apply text-cyan;
@@ -190,27 +190,6 @@
         @variant peer-focus {
             @apply input-has-value;
         }
-    }
-
-    input {
-        @apply mt-1 mb-2;
-    }
-
-    textarea {
-        @apply pt-4;
-        @apply text-lg;
-    }
-}
-
-@custom-variant green-btn {
-    @apply text-green;
-
-    &:after {
-        @apply bg-green;
-    }
-
-    &:hover {
-        @apply text-darker;
     }
 }
 

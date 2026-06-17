@@ -6,13 +6,12 @@ const { href } = item;
 ---
 
 <li>
-    <!-- ${active(href) ? 'active' : ''} -->
     <a 
         href={href} 
         class=`menu-item`
         data-scroll={item.scrollTo}
     >
-        <NerdFontIcon class=`text-lg pr-1` icon={item.icon} />
+        <NerdFontIcon class=`text-lg pr-1 hidden lg:inline` icon={item.icon} />
         {item.label}
     </a>
 </li>
@@ -25,7 +24,7 @@ li {
     a {
         @apply relative text-darker-300 transition-all;
         @apply no-underline;
-        
+
         &::after {
             @apply absolute -bottom-3 left-0;
             content: '';

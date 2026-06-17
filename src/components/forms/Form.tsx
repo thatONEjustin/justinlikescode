@@ -2,27 +2,20 @@
 
 import { useState, useRef } from "react";
 import { motion, AnimatePresence, LayoutGroup } from "motion/react"
-import HCaptcha from "@hcaptcha/react-hcaptcha";
-// import ReCAPTCHA from "react-google-recaptcha"
 
 import InputField from "./InputField.tsx"
 import TextareaField from "./TextareaField.jsx"
 
-export default function ContactForm() {
+export default function FormGridForm() {
     const FORM_SUBMIT_URL: string = "https://frmsp.io/f/DvD0eexHR9D0"
-    const HCAPTCHA_SITE_KEY: string = "4a42e16a-60f4-40e4-b02e-529a268cfcbc"
+    const RECAPTCHA_SITE_KEY: string = "4a42e16a-60f4-40e4-b02e-529a268cfcbc"
 
-    const [captchaValue, setCaptchaValue] = useState(null)
     const [success, setSuccess] = useState(false)
     const [fail, setFail] = useState(false)
 
     const contactForm = useRef<HTMLFormElement>(null)
 
-    async function submit(): Promise<void> {
-        // if (!captchaValue) return
-        const formData = new FormData(contactForm.current as HTMLFormElement)
-        console.log(formData)
-
+    async function submit(formData: FormData): Promise<void> {
         try {
             const response = await fetch(FORM_SUBMIT_URL, {
                 method: 'POST',
@@ -59,14 +52,11 @@ export default function ContactForm() {
                             animate={{ x: 0, opacity: 1 }}
                             exit={{ x: "100%", opacity: 0 }}
                             ref={contactForm}
-                            method="POST"
-                            onSubmit={e => e.preventDefault()}
+                            action={submit}
                         >
                             <h2 className="text-4xl font-bold">Contact Me</h2>
 
                             <fieldset>
-                                <input type="text" name="_gotcha" className="hidden aria-hidden" />
-
                                 <InputField name="name" placeholder="Your Name">
                                     Name
                                 </InputField>
@@ -78,12 +68,12 @@ export default function ContactForm() {
                                 <TextareaField name="message">
                                     Your Message
                                 </TextareaField>
-
-                                <div className="h-captcha" data-sitekey={HCAPTCHA_SITE_KEY}></div>
                             </fieldset>
 
+                            <input type="text" name="_gotcha" className="hidden" />
+                            <div className="h-captcha" data-sitekey={RECAPTCHA_SITE_KEY}></div>
 
-                            <button type="submit" className="pill-button green mt-4" onClick={submit}>
+                            <button type="submit" className="pill-button green mt-4">
                                 <i className="nf nf-md-send"></i>&nbsp;Contact Me!
                             </button>
                         </motion.form>
@@ -116,6 +106,7 @@ export default function ContactForm() {
                     )}
                 </AnimatePresence>
             </LayoutGroup>
-        </>)
+        </>
+    )
 }
 

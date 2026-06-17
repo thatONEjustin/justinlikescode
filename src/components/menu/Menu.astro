@@ -24,32 +24,23 @@ const menu: MenuItem[] = [
         href: '/portfolio',
         icon: 'nf-dev-terminal'
     },
+    {
+        label: 'contact',
+        href: '/contact',
+        icon: 'nf-oct-mail',
+    }
 ]
 ---
 
-<!-- <script>
-const header = document.getElementsByClassName('header-menu')[0]
-const menu = header.getElementsByClassName('menu')[0];
-const mobile_hamburger = menu.getElementsByClassName('hamburger')[0];
-const menu_items = menu.getElementsByClassName('menu-items')[0];
-
-mobile_hamburger.addEventListener('click', click => {
-    click.preventDefault();
-    if(click.currentTarget == null) return;
-
-    const button = click.currentTarget as HTMLElement; 
-    button.classList.toggle('active');
-
-    menu_items.classList.toggle('active');
-})
-</script> -->
-
+<!--
+    TODO: convert to React component possibly 
+-->
 <script>
 function init () {
     const items = document.querySelectorAll(".menu-item");
 
     for(var button of items) {
-        const button_path = new URL(button.href).pathname
+        const button_path = new URL(button.href).pathname // BUG: for some reason casting button as HTMLAnchorElement still throws error
         const window_path = window.location.pathname
 
         if(button_path == window_path) {
@@ -63,8 +54,8 @@ function init () {
 }
 
 document.addEventListener("astro:page-load", init);
-
 </script>
+
 <ul class="flex flex-row items-start py-4 md:py-0">
     {menu.map((item: any) => 
         <MenuItem {item} />
