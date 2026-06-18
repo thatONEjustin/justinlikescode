@@ -191,6 +191,10 @@
             @apply input-has-value;
         }
     }
+
+    textarea + label {
+        @apply top-6;
+    }
 }
 
 @utility pill-button {
