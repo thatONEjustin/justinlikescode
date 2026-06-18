@@ -25,12 +25,12 @@
 * on production and it might be a versioning issue.
 *
 * NOTE: this is a temporary fix
-* */
 @utility container {
     @variant lg {
         @apply max-w-7xl;
     }
 }
+* */
 
 @utility justin-container {
     @apply container mx-auto;
