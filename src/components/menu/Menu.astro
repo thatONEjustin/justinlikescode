@@ -33,14 +33,18 @@ const menu: MenuItem[] = [
 ---
 
 <!--
-    TODO: convert to React component possibly 
+    TODO: convert to React component possibly
+    BUG: for some reason casting button as HTMLAnchorElement still throws error
+    BUG: there's a rendering/hydration issue with the spacing
+    on production.
+
 -->
 <script>
 function init () {
     const items = document.querySelectorAll(".menu-item");
 
     for(var button of items) {
-        const button_path = new URL(button.href).pathname // BUG: for some reason casting button as HTMLAnchorElement still throws error
+        const button_path = new URL(button.href).pathname 
         const window_path = window.location.pathname
 
         if(button_path == window_path) {
@@ -52,7 +56,6 @@ function init () {
         }
     }
 }
-
 document.addEventListener("astro:page-load", init);
 </script>
 

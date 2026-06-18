@@ -19,6 +19,19 @@
     @apply bg-clip-text text-transparent bg-linear-to-r from-pink to-cyan;
 }
 
+/*
+* BUG: the container utility class is deprecated in tailwind v4
+* basically for some reason it's rendering with different breakpoints
+* on production and it might be a versioning issue.
+*
+* NOTE: this is a temporary fix
+* */
+@utility container {
+    @variant lg {
+        @apply max-w-7xl;
+    }
+}
+
 @utility justin-container {
     @apply container mx-auto;
     @apply px-7;
