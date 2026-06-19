@@ -7,7 +7,7 @@ import "@css/main.css";
 import Header from "@layouts/header.astro";
 import Footer from "@layouts/footer.astro";
 
-const { title = 'justin, a dev' } = Astro.props
+const { siteTitle = 'justin, a dev' } = Astro.props
 ---
 
 <html lang="en">
@@ -19,7 +19,7 @@ const { title = 'justin, a dev' } = Astro.props
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content={Astro.generator} />
 
-        <title>{title} | astro'd out</title>
+        <title>{siteTitle}</title>
 
         <ClientRouter />
     </head>

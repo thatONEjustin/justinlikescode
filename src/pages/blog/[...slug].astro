@@ -17,11 +17,9 @@ import { blogDate } from '@js/helpers'
 import BaseLayout from "@layouts/base.astro"
 
 export async function getStaticPaths() {
-    const blog_data = await getCollection('blog');
+    const blogPosts = await getCollection('blog');
 
-    // console.log(blog_data)
-    const paths = blog_data.map(({...post}: any) => {
-        // console.log(post.data.slug)
+    const paths = blogPosts.map(({...post}: any) => {
         if (post == null) return {}
         return {
             params: { slug: post.data.slug },

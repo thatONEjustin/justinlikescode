@@ -12,29 +12,21 @@ import Slide from '@components/slider/Slide.astro'
 import { Image } from 'astro:assets'
 
 export async function getStaticPaths() {
-    const data = await getCollection('projects')
+    const portfolioProjects = await getCollection('projects')
 
-    const paths = data.map(({...item}: any) => {
+    const staticPaths = portfolioProjects.map(({...project}: any) => {
         return {
-            params: { slug: item.data.slug },
-            props:{...item.data} 
+            params: { slug: project.data.slug },
+            props:{...project.data}
         }
     })
 
-    return paths
+    return staticPaths
 }
 
 const { title, show_url = true, url, screenshots, description } = Astro.props
 
-const widest = screenshots.sort((a: any, b: any) => {
-    if(a.width < b.width) {
-        return 1
-    }
-
-    return -1
-})
-
-// console.log(widest[0].formats.medium)
+const widestScreenshots = screenshots.sort((a: any, b: any) => (a.width < b.width) ? 1 : -1)
 
 const swiperOptions = { 
     effect: 'cards',
@@ -69,7 +61,7 @@ const swiperOptions = {
                 swiperOptions={swiperOptions}
                 class="md:my-8">
                 <Fragment slot="slides">
-                    {widest.map((screenshot: any) => 
+                    {widestScreenshots.map((screenshot: any) => 
                     <Slide class="">
                         <Image
                             src={screenshot.url}

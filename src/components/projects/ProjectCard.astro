@@ -3,13 +3,10 @@ import { marked } from 'marked'
 import { Image } from "astro:assets"
 
 const { title, slug, preview, screenshots } = Astro.props.data
-const preview_image = screenshots.sort((a: any, b: any) => {
-    if(a.width < b.width) {
-        return 1
-    }
 
-    return -1
-}).slice(0,1)[0]
+const previewImage = screenshots
+    .sort((a: any, b: any) => (a.width < b.width) ? 1 : -1)
+    .slice(0,1)[0]
 ---
 
 <a href={`/portfolio/${slug}`} class="project-card">
@@ -18,9 +15,9 @@ const preview_image = screenshots.sort((a: any, b: any) => {
         <Fragment set:html={await marked.parse(preview)} />
     </div>
 
-    {preview_image &&
+    {previewImage &&
         <Image
-            src={preview_image.url}
+            src={previewImage?.url}
             inferSize={true}
             class="project-banner-image"
             alt={preview} />
@@ -29,6 +26,7 @@ const preview_image = screenshots.sort((a: any, b: any) => {
 
 <style>
 @reference "@css/main.css";
+
 .project-card {
     @apply w-full
         flex 
@@ -47,8 +45,6 @@ const preview_image = screenshots.sort((a: any, b: any) => {
     @variant first-of-type {
         @apply border-t;
     }
-
-
 
     &:after {
         @apply absolute w-64 h-128 top-1/2 -translate-y-1/2 translate-x-[100vw];

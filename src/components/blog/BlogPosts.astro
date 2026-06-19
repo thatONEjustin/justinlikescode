@@ -6,20 +6,14 @@ import BlogCard from './BlogCard.astro'
 
 const blog_posts = (await getCollection('blog'))
 
-const sorted = blog_posts.sort((a, b) => {
-    if(a.data.publishedAt < b.data.publishedAt) {
-        return 1
-    }
-
-    return -1
-}).slice(0,3)
+const latestBlogPosts = blog_posts
+    .sort((a, b) => (a.data.publishedAt < b.data.publishedAt) ? 1 : -1)
+    .slice(0,3)
 ---
 
 <section class="blog-posts">
     <div class="blog-posts-container">
-        {sorted.map((post: any) =>
-            <BlogCard data={post.data} />
-        )}
+        {latestBlogPosts.map((post: any) => <BlogCard data={post.data} />)}
     </div>
 </section>
 
@@ -31,12 +25,15 @@ const sorted = blog_posts.sort((a, b) => {
     @apply relative overflow-hidden;
 
     .blog-posts-container {
-        @apply relative container mx-auto grid grid-cols-1 z-30;
-        @apply px-4;
+        @apply relative mx-auto grid grid-cols-1 z-30;
+        @apply px-8;
 
         @variant lg {
             @apply grid-cols-3 gap-x-8;
-            @apply px-unset;
+        }
+
+        @variant xl {
+            @apply container px-0;
         }
     }
 

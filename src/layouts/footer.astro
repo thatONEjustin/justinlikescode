@@ -2,7 +2,7 @@
 import moment from "moment";
 import NerdFontIcon from '@components/NerdFontIcon.astro'
 
-const tech_stacks = [
+const techStacks = [
     {
         tagline: "built from",
         url: "https://astro.build/",
@@ -31,7 +31,7 @@ const tech_stacks = [
 <footer class="bg-darker-800 mt-8 lg:mt-0 relative lg:fixed lg:top-full lg:-translate-y-full w-full py-2 lg:py-0">
     <div class="relative container w-11/12 lg:w-full mx-auto flex flex-row items-center justify-between">
         <ul class="flex flex-col md:flex-row py-1">
-            {tech_stacks.map((technology, _index) => (
+            {techStacks.map((technology: any) => (
             <li class="mr-2 last:mr-0">
                 {technology.tagline != "" && (
                 <span class="font-normal text-yellow">{technology.tagline}</span>

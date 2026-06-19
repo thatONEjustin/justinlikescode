@@ -1,14 +1,14 @@
 ---
 import MenuItem from "@components/menu/MenuItem.astro";
 
-type MenuItem = {
+type MenuItemType = {
   label: string,
   href: string,
   icon: string,
   scrollTo?: string
 }
 
-const menu: MenuItem[] = [
+const menuItemsJson: MenuItemType[] = [
     {
         label: 'home',
         href: '/',
@@ -33,38 +33,39 @@ const menu: MenuItem[] = [
 ---
 
 <!--
-    TODO: convert to React component possibly
-    BUG: for some reason casting button as HTMLAnchorElement still throws error
-    BUG: there's a rendering/hydration issue with the spacing
-    on production.
-
+    TODO: convert to React component possibly hydration with script
+    tag is causing the menu to double render the animation. it makes 
+    sense considering that this script has to rerun on page load
 -->
 <script>
 function init () {
-    const items = document.querySelectorAll(".menu-item");
+    const menuItems = document.querySelectorAll(".menu-item") as NodeListOf<HTMLAnchorElement>
 
-    for(var button of items) {
-        const button_path = new URL(button.href).pathname 
-        const window_path = window.location.pathname
+    for(var button of menuItems) {
+        const buttonHref = new URL(button.href).pathname 
+        const currentUrl = window.location.pathname
 
-        if(button_path == window_path) {
+        if(buttonHref == currentUrl) {
             button.classList.add('active')
-        } else if(button_path != '/' && window_path != '/' && window_path.includes(button_path)) {
+        } else if(buttonHref != '/' && currentUrl != '/' && currentUrl.includes(buttonHref)) {
             button.classList.add('active')
         } else {
             button.classList.remove('active')
         }
+
     }
 }
 document.addEventListener("astro:page-load", init);
 </script>
 
 <ul class="flex flex-row items-start py-4 md:py-0">
-    {menu.map((item: any) => 
-        <MenuItem {item} />
+    {menuItemsJson.map((menuItem: any) =>
+        <MenuItem item={menuItem} />
     )}
   
-    <!-- <li>
+    <!--
+    <li>
         <ToggleMode />
-    </li> -->
+    </li>
+    -->
 </ul>

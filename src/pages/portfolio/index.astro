@@ -6,27 +6,19 @@ import ProjectCard from "@components/projects/ProjectCard.astro";
 import { getCollection } from 'astro:content';
 
 const projects = await getCollection('projects');
-
-const sorted = projects.sort((a, b) => {
-    if(a.data.updatedAt < b.data.updatedAt) {
-        return 1
-    }
-
-    return -1
-})
+const newestProjectsFirst = projects.sort((a, b) => (a.data.updatedAt < b.data.updatedAt) ? 1 : -1)
 ---
 
 <BaseLayout>
     <h2 class="px-16 py-6 text-cyan">Previous Work</h2>
     <section class="project-cards">
-        {projects.map((post: any) =>
-            <ProjectCard data={post.data} />
-        )}
+        {newestProjectsFirst.map((project: any) => <ProjectCard data={project.data} />)}
     </section>
 </BaseLayout>
 
 <style>
 @reference "@css/main.css";
+
 .project-cards {
     @apply mx-auto grid grid-cols-1 auto-rows-auto;
 
