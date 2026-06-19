@@ -1,4 +1,6 @@
 ---
+import NerdFontIcon from '@components/NerdFontIcon.astro'
+
 export type SocialMedia = {
     label: string,
     url: string,
@@ -17,7 +19,7 @@ export const socialMedia: SocialMedia[] = [
         label: 'linkedin',
         url: 'https://www.linkedin.com/in/justinlikescode/',
         icon: 'nf-md-linkedin',
-        classes: 'text-cyan'
+        classes: 'text-linkedin'
     },
 ]
 ---
@@ -26,7 +28,7 @@ export const socialMedia: SocialMedia[] = [
     {socialMedia.map(({ url, classes, icon, label }: SocialMedia) =>
     <li class="mr-4 last:mr-0 text-4xl transition-transform hover:scale-125">
         <a href={url} target="_blank" class="no-underline">
-            <i class=`nf ${icon} ${classes}`></i>
+            <NerdFontIcon icon={icon} class={classes} />
             <span class="sr-only">{label}</span>
         </a>
     </li>
