@@ -19,6 +19,24 @@
     @apply bg-clip-text text-transparent bg-linear-to-r from-pink to-cyan;
 }
 
+@utility container {
+    @variant sm {
+        @apply max-w-sm;
+    }
+
+    @variant md {
+        @apply max-w-md;
+    }
+
+    @variant lg {
+        @apply max-w-lg;
+    }
+
+    @variant xl {
+        @apply max-w-xl;
+    }
+}
+
 @utility justin-container {
     @apply container mx-auto;
     @apply px-7;

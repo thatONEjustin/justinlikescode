@@ -256,12 +256,25 @@
     *  it seems like there is a render issue when building 
     *  for production. since .container is deprecated, i'm trying
     *  to use the old breakpoints with the new theme variables
-    * */
+    *
+    *  BUG: this also doesnt work
+    *
     --breakpoint-sm: 40rem;
     --breakpoint-md: 48rem;
     --breakpoint-lg: 62rem;
     --breakpoint-xl: 80rem;
     --breakpoint-2xl: 96rem;
+    * */
+
+    /* FIX: this is very hacky it works locally but that
+    *  was the problem to begin with anyway
+    * */
+    --container-xs: 30rem;
+    --container-sm: 40rem;
+    --container-md: 48rem;
+    --container-lg: 62rem;
+    --container-xl: 80rem;
+    --container-2xl: 96rem;
 }
 
 @import './base.css';
