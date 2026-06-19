@@ -251,6 +251,17 @@
     --color-lincoln: #f1fa8c;
 
     --spacing-unset: "unset";
+
+    /* NOTE: these are the same as the tailwind breakpoints 
+    *  it seems like there is a render issue when building 
+    *  for production. since .container is deprecated, i'm trying
+    *  to use the old breakpoints with the new theme variables
+    * */
+    --breakpoint-sm: 40rem;
+    --breakpoint-md: 48rem;
+    --breakpoint-lg: 62rem;
+    --breakpoint-xl: 80rem;
+    --breakpoint-2xl: 96rem;
 }
 
 @import './base.css';
