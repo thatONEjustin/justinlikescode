@@ -37,7 +37,7 @@ const { title, publishedAt, content } = Astro.props
 <BaseLayout>
     <article class="min-h-screen relative" itemscope itemtype="https://schema.org/BlogPosting">
         <section class="blog-post-title">
-            <div class="viewport-container mx-auto relative z-50">
+            <div class="container mx-auto relative z-50">
                 <h2 class="text-7xl text-purple text-left" itemprop="headline">{title}</h2>
                 <div class="flex mx-auto w-fit text-left">
                     <h6 itemprop="author" itemscope itemtype="https://schema.org/Person" class="text-purple-300 mr-2"><em>written by</em> <span class="text-cyan" itemprop="givenName">Justin</span> <span class="text-cyan" itemprop="familyName">Paelmo</span></h6>

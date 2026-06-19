@@ -56,19 +56,22 @@ import SocialMediaList from "@components/SocialMediaList.astro";
 }
 
 .home-hero-container {
-    @apply w-11/12
-        container
+    @apply w-full
         relative
         flex
         flex-col
         z-50
-        py-8
+        p-8
         items-center
         mx-auto;
 
     @variant lg {
         @apply w-full
             flex-row;
+    }
+
+    @variant xl {
+        @apply container px-0;
     }
 }
 
