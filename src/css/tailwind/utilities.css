@@ -19,7 +19,9 @@
     @apply bg-clip-text text-transparent bg-linear-to-r from-pink to-cyan;
 }
 
-@utility container {
+@utility viewport-container {
+    @apply w-full;
+
     @variant sm {
         @apply max-w-sm;
     }
@@ -38,7 +40,7 @@
 }
 
 @utility justin-container {
-    @apply container mx-auto;
+    @apply viewport-container mx-auto;
     @apply px-7;
     @apply w-full;
     @apply relative;
