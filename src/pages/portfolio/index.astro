@@ -20,7 +20,7 @@ const newestProjectsFirst = projects.sort((a, b) => (a.data.updatedAt < b.data.u
 @reference "@css/main.css";
 
 .project-cards {
-    @apply mx-auto grid grid-cols-1 auto-rows-auto;
+    @apply mx-auto grid grid-cols-1 auto-rows-auto overflow-hidden relative;
 
     &:before {
         @apply absolute w-full h-screen top-0 left-0 transition-all ease-linear;
