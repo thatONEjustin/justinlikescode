@@ -37,9 +37,9 @@ const { title, publishedAt, content } = Astro.props
         <section class="blog-post-title">
             <div class="container mx-auto relative z-50">
                 <h2 class="text-7xl text-purple text-left" itemprop="headline">{title}</h2>
-                <div class="flex mx-auto w-fit text-left">
-                    <h6 itemprop="author" itemscope itemtype="https://schema.org/Person" class="text-purple-300 mr-2"><em>written by</em> <span class="text-cyan" itemprop="givenName">Justin</span> <span class="text-cyan" itemprop="familyName">Paelmo</span></h6>
-                    <h6 class="text-purple-300/50" itemprop="datePublished"><em>published {blogDate(publishedAt)}</em></h6>
+                <div class="author-and-date">
+                    <p itemprop="author" itemscope itemtype="https://schema.org/Person" class="text-purple-300 mr-2"><em>written by</em> <span class="text-cyan" itemprop="givenName">Justin</span> <span class="text-cyan" itemprop="familyName">Paelmo</span></p>
+                    <p class="text-purple-300">published <em itemprop="datePublished" class="text-cyan">{blogDate(publishedAt)}</em></p>
                 </div>
             </div>
         </section>
@@ -64,5 +64,14 @@ const { title, publishedAt, content } = Astro.props
     @variant lg {
         @apply top-0;
     }
+
+    .author-and-date {
+        @apply flex justify-between items-center mx-auto w-fit text-left;
+
+        p + p {
+            @apply py-0 my-0;
+        }
+    }
 }
+
 </style>
