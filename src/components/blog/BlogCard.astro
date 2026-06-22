@@ -11,7 +11,7 @@ const { slug, publishedAt, title, preview } = data
 <article class="blog-post-card">
     <a href=`/blog/${slug}` class="no-underline">
         <h3 class="title" set:html={truncateWords(title, 7)}></h3>
-        <h6 class="date"><em>published: {blogDate(publishedAt)}</em></h6>
+        <h4 class="date"><em>published: {blogDate(publishedAt)}</em></h4>
 
         <p class="preview" set:html={preview}></p>
         <span class="read-more">read more</span>
