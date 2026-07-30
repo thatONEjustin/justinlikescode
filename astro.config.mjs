@@ -12,7 +12,7 @@ import react from '@astrojs/react';
 export default defineConfig({
     output: 'static',
     prefetch: true,
-    site: 'https://justinlikescode.netlify.app',
+    site: 'https://justinlikescode.com',
     trailingSlash: 'never',
     integrations: [mdx(), alpinejs({ entrypoint: './src/alpine-entry' }), react()],
     image: {
