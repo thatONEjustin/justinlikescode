@@ -18,7 +18,7 @@ export default defineConfig({
     image: {
         remotePatterns: [{
             protocol: 'https',
-            hostname: '**.media.strapiapp.com',
+            hostname: '**.justinlikescode.com',
         }]
     },
     adapter: netlify(),
