@@ -35,6 +35,8 @@ const swiperOptions = {
     },
     autoHeight: false,
 }
+
+const API_URL = import.meta.env.SECRET_API_URL;
 ---
 
 <BaseLayout>
@@ -64,7 +66,7 @@ const swiperOptions = {
                     {widestScreenshots.map((screenshot: any) => 
                     <Slide class="">
                         <Image
-                            src={screenshot.url}
+                            src={API_URL + screenshot.url}
                             inferSize={true}
                             alt={screenshot.alternativeText ? screenshot.alternativeText : title}
                             class="mx-auto object-contain rounded-lg"

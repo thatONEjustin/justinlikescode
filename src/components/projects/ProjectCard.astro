@@ -9,9 +9,8 @@ const previewImage = screenshots
     .slice(0,1)[0]
 
 
-const src = "https://content.justinlikescode.com" + previewImage.url
-
-console.log(src)
+const API_URL = import.meta.env.SECRET_API_URL;
+const src = API_URL + previewImage.url
 ---
 
 <a href={`/portfolio/${slug}`} class="project-card">
