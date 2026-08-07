@@ -21,6 +21,7 @@ export default defineConfig({
             hostname: '**.justinlikescode.com',
         }]
     },
+    adapter: netlify(),
     vite: {
         plugins: [
             tailwindcss(),
