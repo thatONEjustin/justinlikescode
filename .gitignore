@@ -1,5 +1,6 @@
 # old site
 _site/
+src.backup/
 
 # can someone tell me why this never works
 ./package-lock.json
