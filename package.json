@@ -45,5 +45,8 @@
     "devDependencies": {
         "@types/alpinejs__intersect": "^3.13.4",
         "@types/react-google-recaptcha": "^2.1.9"
+    },
+    "imports": {
+        "#main.css": "./src/css/main.css"
     }
 }
