@@ -11,7 +11,7 @@ import react from '@astrojs/react';
 // https://astro.build/config
 export default defineConfig({
     output: 'static',
-    prefetch: true,
+    prefetch: false,
     site: 'https://staging-justinlikescode.netlify.app',
     trailingSlash: 'never',
     integrations: [mdx(), alpinejs({ entrypoint: './src/alpine-entry' }), react()],
