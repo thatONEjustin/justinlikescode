@@ -8,3 +8,5 @@
  * NOTE: tailwind orgainzation!
  */ 
 @import './tailwind/tailwind.css';
+
+@import './menu.css';

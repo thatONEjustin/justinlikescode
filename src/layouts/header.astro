@@ -1,6 +1,8 @@
 ---
-import Menu from "@components/menu/Menu.astro";
+// import Menu from "@components/menu/Menu.astro";
 import NerdFontIcon from '@components/NerdFontIcon.astro'
+
+import MainMenu from "@components/menu/MainMenu.tsx";
 ---
 
 <header>
@@ -11,7 +13,7 @@ import NerdFontIcon from '@components/NerdFontIcon.astro'
                 <h1 class="text-cyan">I'm Justin, a <span class="text-green">full stack <NerdFontIcon icon="nf-oct-stack" class="inline" />developer</span></h1>
                 <span class="sr-only">I'm Justin Paelmo, a full stack developer</span>
             </a>
-            <Menu transition:persist />
+            <MainMenu client:only />
         </div>
     </div>
 </header>

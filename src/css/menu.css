@@ -1,0 +1,35 @@
+.main-menu {
+    @apply flex flex-row items-start py-4 md:py-0;
+
+    li {
+        @apply border-r border-darker pr-3 mr-3 last:mr-0;
+
+        a.menu-item {
+            @apply relative text-darker-300 transition-all;
+            @apply no-underline;
+
+            &::after {
+                @apply absolute -bottom-3 left-0;
+                content: '';
+                @apply h-0.5 w-0 bg-cyan origin-center transition-all;
+            }
+
+            &:hover {
+                @apply text-cyan;
+
+                &::after {
+                    @apply w-full;
+                }
+            }
+
+            &.active {
+                @apply text-pink;
+
+                &::after {
+                    @apply bg-pink w-full;
+                }
+            }
+        }
+    }
+}
+
