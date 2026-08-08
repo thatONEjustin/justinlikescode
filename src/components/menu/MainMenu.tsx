@@ -39,8 +39,7 @@ export default function MainMenu(): any {
     ]
 
     function isActive(href: string) {
-        console.log(href, window.location.pathname)
-        return window.location.pathname == href
+        return window.location.pathname.includes(href)
     }
 
     return (
