@@ -17,16 +17,15 @@ export default function ToggleVisualTheme(): any {
     }
 
     return (
-        <div className={`flex items-center justify-center ${theme}`}>
+        <div className={`flex items-center justify-center ${theme == 'dark' ? 'dark' : ''}`}>
             <input type="hidden" name="current_theme" value={theme} />
             <label>
                 <span className="sr-only">Light/Dark Mode</span>
             </label>
 
-            <button className="relative inline-flex w-12 max-w-12 rounded-full py-1 transition-all cursor-pointer" onClick={() => toggleTheme()}>
-                <span className={`bg-darker-900 h-6 w-6 rounded-full transition-all relative ${theme == 'light' ? 'translate-x-full' : 'translate-x-0'}`} aria-hidden="true">
-                    <i className={`nf ${theme == 'light' ? 'nf-fa-sun text-light-50' : 'nf-fa-cloud_moon text-dark-700'}`}></i>
-                    {/* <i className="nf nf-fa-sun text-light-50 dark:nf-fa-cloud_moon dark:text-dark-700"></i> */}
+            <button className="relative inline-flex w-14 max-w-14 rounded-full p-1 bg-cyan-800 dark:bg-darker-700 transition-all cursor-pointer" onClick={() => toggleTheme()}>
+                <span className={`bg-primary dark:bg-darker-900 h-6 w-6 rounded-full transition-all relative ${theme == 'light' ? 'translate-x-full' : 'translate-x-0'}`} aria-hidden="true">
+                    <i className={`nf ${theme == 'light' ? 'nf-fa-sun text-white' : 'nf-fa-cloud_moon text-dark-700'}`}></i>
                 </span>
             </button>
         </div>

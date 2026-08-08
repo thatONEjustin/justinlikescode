@@ -1,13 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import MenuItem from "./MenuItem.tsx";
 import ToggleMode from "@components/ToggleVisualTheme.tsx";
 
 export default function MainMenu(): any {
-
-    const [active, setActive] = useState('home');
-
     type MenuItemType = {
         label: string,
         href: string,
@@ -48,7 +44,7 @@ export default function MainMenu(): any {
                 <MenuItem key={index} active={isActive(href)} label={label} href={href} icon={icon} scrollTo={scrollTo} />
             )}
 
-            <li>
+            <li className="border-0!">
                 <ToggleMode />
             </li>
         </ul>
