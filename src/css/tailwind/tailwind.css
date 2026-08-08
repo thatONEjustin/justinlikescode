@@ -1,10 +1,12 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
     --font-nf-symbols: Symbols Nerd Font;
 
     --color-transparent: transparent;
-    --color-black: #0e0d11;
+    /* --color-black: #0e0d11; */
     --color-archlinux: oklch(63.30% 0.134 237.74);
     --color-linkedin: oklch(0.545803 0.130182 242.2738);
 
@@ -252,6 +254,13 @@
     --color-lincoln: #f1fa8c;
 
     --spacing-unset: "unset";
+
+    --color-primary: #0C819A;
+    --color-secondary: #D90880;
+    --color-white: #FFFBEB;
+    --color-offWhite: #F8F8F2;
+    --color-black: #282A36;
+
 
     /*
     *  HACK: this works its that I was zoomed in
