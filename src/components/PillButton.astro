@@ -2,11 +2,11 @@
 const { url:href = "#", target, class:className  } = Astro.props
 ---
 
-<a class=`${className}` {href} {target}>
+<a class=`pill-button ${className}` {href} {target}>
     <slot>Button Text</slot>
 </a>
 
-<style>
+<!-- <style> 
 @reference "#main.css";
 
 a {
@@ -101,4 +101,4 @@ a {
         }
     }
 }
-</style>
+</style> -->

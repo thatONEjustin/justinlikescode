@@ -1,6 +1,10 @@
 @layer base {
     body {
-        @apply bg-black;
+        @apply bg-white;
+
+        @variant dark {
+            @apply bg-darker-900;
+        }
     }
 
     h1,

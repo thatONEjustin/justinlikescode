@@ -62,8 +62,7 @@
 
 @utility grid-bg {
     @apply relative;
-    @apply border-b-2 border-lincoln-300/35;
-
+    @apply border-b-2;
 
     &:before {
         --square-size: 16px;
@@ -75,19 +74,26 @@
 
         background-size: var(--square-size) var(--square-size);
         background-image:
-            linear-gradient(to right, --alpha(var(--color-light-50) / 5%) 1px, transparent 1px),
-            linear-gradient(to bottom, --alpha(var(--color-light-50) / 5%) 1px, transparent 1px);
+            linear-gradient(to right, --alpha(var(--color-darkGray) / 5%) 1px, transparent 1px),
+            linear-gradient(to bottom, --alpha(var(--color-darkGray) / 5%) 1px, transparent 1px);
     }
 
-    &:after {
+    @variant dark {
+        &:before {
+            background-image:
+                linear-gradient(to right, --alpha(var(--color-darker-50) / 5%) 1px, transparent 1px),
+                linear-gradient(to bottom, --alpha(var(--color-darker-50) / 5%) 1px, transparent 1px);
+        }
+    }
+
+    /* &:after {
         @apply absolute w-full h-full top-0 left-0;
         @apply z-10;
         @apply pointer-events-none;
 
         content: ' ';
-        /* background: var(--color-darker-800); */
         background: radial-gradient(circle, var(--color-darker-900), var(--color-black));
-    }
+    } */
 }
 
 @utility markdown-content {
@@ -219,15 +225,16 @@
 
 @utility pill-button {
     @apply relative flex flex-row items-center flex-0;
-    @apply px-8 py-4 text-center text-darker font-bold transition-all;
-    @apply border-2 rounded-md;
+    @apply px-8 py-4 text-center font-bold transition-all;
+    @apply border-2 border-secondary rounded-lg;
     @apply max-w-fit;
     @apply no-underline;
     @apply overflow-hidden;
     @apply cursor-pointer;
+    @apply text-white;
 
     &:after {
-        @apply absolute bottom-0 left-0 w-full h-full transition-all translate-y-full;
+        @apply bg-secondary absolute bottom-0 left-0 w-full h-full transition-all translate-y-0;
         @apply -z-20;
         transform-origin: bottom center;
         content: ' ';
@@ -235,13 +242,15 @@
 
     &:hover {
         @apply rounded-lg;
+        @apply text-secondary;
 
         &:after {
-            @apply translate-y-0;
+            @apply translate-y-full;
+            @apply border-transparent text-secondary bg-secondary;
         }
     }
 
-    &.default {
+    /* &.default {
         @apply text-darker;
 
         &:hover {
@@ -320,4 +329,5 @@
             @apply text-darker bg-yellow;
         }
     }
+    */
 }
