@@ -258,8 +258,11 @@
 
     --color-primary: #0C819A;
     --color-secondary: #D90880;
-    --color-white: #FFFBEB;
-    --color-offWhite: #F8F8F2;
+    /* --color-white: #FFFBEB; */
+    /* --color-offWhite: #F8F8F2; */
+    
+    --color-white: var(--color-light-50);
+    --color-offWhite: var(--color-aro-100);
     --color-black: #282A36;
     --color-lightGray: #D9D9D9;
     --color-darkGray: #4D4D4D;
