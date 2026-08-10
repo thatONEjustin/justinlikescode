@@ -21,6 +21,13 @@ export default defineConfig({
             hostname: '**.justinlikescode.com',
         }]
     },
+    fonts: [
+        {
+            provider: fontProviders.google(),
+            name: "Roboto Slab",
+            cssVariable: "--font-roboto",
+        }
+    ],
     adapter: netlify(),
     vite: {
         plugins: [
