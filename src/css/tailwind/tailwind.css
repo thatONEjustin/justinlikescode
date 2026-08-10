@@ -3,9 +3,11 @@
 /* @custom-variant dark (&:where(.dark, .dark *)); */
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
-@theme {
-    --font-roboto-slab: var(--font-roboto);
+@theme inline {
+    --font-roboto-slab: var(--font-roboto-slab);
+}
 
+@theme {
     --color-transparent: transparent;
     /* --color-black: #0e0d11; */
     --color-archlinux: oklch(63.30% 0.134 237.74);

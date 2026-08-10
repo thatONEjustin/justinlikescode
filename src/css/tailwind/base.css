@@ -22,18 +22,21 @@
     }
 
     h1 {
-        /* @apply text-6xl; */
-        font-size: var(--text-6xl);
+        @variant xl  {
+            @apply text-7xl;
+        }
     }
 
     h2 {
-        @apply pb-4 text-primary dark:text-secondary;
-        font-size: var(--text-4xl);
+        @apply pb-4 text-primary dark:text-secondary text-5xl;
+
+        @variant xl {
+            @apply text-6xl;
+        }
     }
 
     h3 {
         @apply text-2xl text-darker-500;
-        font-size: var(--text-2xl);
     }
 
     p {

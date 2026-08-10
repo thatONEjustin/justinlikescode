@@ -13,6 +13,7 @@ import SectionHeader from "@components/SectionHeader.astro";
 import BlogPosts from "@components/blog/BlogPosts.astro";
 import SocialMediaList from "@components/SocialMediaList.astro";
 ---
+
 <BaseLayout>
     <section class="home-hero">
         <div class="home-hero-container">
@@ -84,10 +85,6 @@ import SocialMediaList from "@components/SocialMediaList.astro";
         @apply w-full
             flex-row;
     }
-
-    @variant xl {
-        @apply container px-0;
-    }
 }
 
 .intro {
@@ -97,27 +94,15 @@ import SocialMediaList from "@components/SocialMediaList.astro";
         @apply w-1/2;
     }
 
-    > h2 {
-        @apply text-black text-[48px];
-
-        @variant dark {
-            @apply text-secondary;
-        }
-
-        @variant xl {
-            @apply text-[80px];
-        }
-    }
-
     > p {
-        @apply text-black text-[20px] leading-relaxed;
+        @apply text-black text-xl leading-relaxed;
 
         @variant dark {
             @apply text-darker-300;
         }
 
         @variant xl {
-            @apply text-[40px];
+            @apply text-3xl;
         }
     }
 }

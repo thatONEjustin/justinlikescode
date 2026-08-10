@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from 'astro:transitions';
+import { Font } from "astro:assets";
 import favicon from '@images/favicon.ico';
 
 import "@css/main.css";
@@ -21,7 +22,11 @@ const { siteTitle = 'justin, a dev' } = Astro.props
     });
 
     document.addEventListener("astro:before-swap", (event) => {
-        // console.log('astro:before-swap', localStorage.getItem("theme"))
+        // NOTE: needed to add the ts-ignore because localstorage 
+        // can't return null here. Since on page-load I always ensure 
+        // a value is set.
+
+        // @ts-ignore
         event.newDocument.documentElement.dataset.theme = localStorage.getItem("theme")
     });
 </script>
@@ -36,6 +41,8 @@ const { siteTitle = 'justin, a dev' } = Astro.props
         <meta name="generator" content={Astro.generator} />
 
         <title>{siteTitle}</title>
+
+        <Font cssVariable="--font-roboto-slab" />
 
         <ClientRouter />
     </head>

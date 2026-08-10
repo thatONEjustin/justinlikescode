@@ -23,9 +23,9 @@ export default defineConfig({
     },
     fonts: [
         {
-            provider: fontProviders.google(),
+            provider: fontProviders.fontsource(),
             name: "Roboto Slab",
-            cssVariable: "--font-roboto",
+            cssVariable: "--font-roboto-slab",
         }
     ],
     adapter: netlify(),

@@ -4,7 +4,10 @@ const { class:classes } = Astro.props
 
 <header class={`section-header container mx-auto ${classes}`}>
     <slot name="title"/>
-    <slot name="description"/>
+    {Astro.slots.has('description') &&
+    <div class="description">
+        <slot name="description"/>
+    </div>}
 </header>
 
 <style>
@@ -14,12 +17,17 @@ const { class:classes } = Astro.props
     @apply flex flex-col items-center;
 
     h2 {
-        @apply text-[64px] text-center;
+        @apply text-center;
         @apply my-0 py-0;
     }
 
-    p {
-        @apply text-2xl text-center py-6;
+    .description {
+        @apply max-w-4xl mx-auto text-center ;
+
+        p {
+            @apply text-xl py-6;
+            @apply leading-[175%];
+        }
     }
 
     &:after {
