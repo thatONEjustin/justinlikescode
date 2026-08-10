@@ -1,8 +1,8 @@
 @import "https://www.nerdfonts.com/assets/css/webfont.css";
 /*
- * NOTE: local fonts
+ * TODO: move fonts to astro config
+    @import './fonts/fonts.css';
  */
-@import './fonts/fonts.css';
 
 /*
  * NOTE: tailwind orgainzation!

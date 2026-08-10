@@ -18,13 +18,13 @@ const src = API_URL + previewImage.url
         <Fragment set:html={await marked.parse(preview)} />
     </div>
 
-    {previewImage &&
+    <!-- {previewImage &&
         <Image
             {src}
             inferSize={true}
             class="project-banner-image"
             alt={preview} />
-    }
+    } -->
 </a>
 
 <style>

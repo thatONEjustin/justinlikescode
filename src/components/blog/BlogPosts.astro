@@ -2,7 +2,8 @@
 export const prerender = true
 import { getCollection } from 'astro:content'
 
-import BlogCard from './BlogCard.astro'
+// import BlogCard from './BlogCard.astro'
+import RecentBlogPost from './RecentBlogPost.astro'
 
 const blog_posts = (await getCollection('blog'))
 
@@ -13,7 +14,7 @@ const latestBlogPosts = blog_posts
 
 <section class="blog-posts">
     <div class="blog-posts-container">
-        {latestBlogPosts.map((post: any) => <BlogCard data={post.data} />)}
+        {latestBlogPosts.map((post: any) => <RecentBlogPost data={post.data} />)}
     </div>
 </section>
 
@@ -22,31 +23,15 @@ const latestBlogPosts = blog_posts
 
 .blog-posts {
     @apply py-10;
-    @apply relative overflow-hidden;
+    @apply relative;
 
     .blog-posts-container {
-        @apply relative mx-auto grid grid-cols-1 z-30;
+        @apply relative mx-auto z-30;
         @apply px-8;
-
-        @variant lg {
-            @apply grid-cols-3 gap-x-8;
-        }
 
         @variant xl {
             @apply container px-0;
         }
-    }
-
-    &:before {
-        @apply absolute w-full h-full top-0 left-0 transition-all ease-linear;
-        @apply pointer-events-none;
-        @apply opacity-30;
-
-        content: ' ';
-        background: var(--color-black);
-        background: radial-gradient(circle,var(--color-darker-600),var(--color-black));
-
-        @apply z-10;
     }
 }
 </style>

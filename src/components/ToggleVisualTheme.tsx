@@ -29,8 +29,8 @@ export default function ToggleVisualTheme(): any {
             </label>
 
             <button className="relative inline-flex w-14 max-w-14 rounded-full p-1 bg-primary dark:bg-darker-700 transition-all cursor-pointer" onClick={() => toggleTheme()}>
-                <span className={`bg-white dark:bg-darker-900 h-6 w-6 rounded-full transition-all relative ${theme == 'light' ? 'translate-x-full' : 'translate-x-0'}`} aria-hidden="true">
-                    <i className={`nf ${theme == 'light' ? 'nf-fa-cloud_sun text-primary' : 'nf-fa-cloud_moon text-dark-700'}`}></i>
+                <span className={`bg-white dark:bg-secondary h-6 w-6 rounded-full transition-all relative ${theme == 'light' ? 'translate-x-full' : 'translate-x-0'}`} aria-hidden="true">
+                    <i className={`nf ${theme == 'light' ? 'nf-fa-cloud_sun text-primary' : 'nf-fa-cloud_moon text-darker-900'}`}></i>
                 </span>
             </button>
         </div>

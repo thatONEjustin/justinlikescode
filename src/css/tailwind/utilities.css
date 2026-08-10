@@ -51,9 +51,9 @@
 }
 
 @utility read-more {
-    @apply text-purple underline underline-offset-6;
+    @apply text-secondary underline underline-offset-6 font-bold;
     @apply underline underline-offset-6;
-    @apply decoration-wavy;
+    /* @apply decoration-wavy; */
 }
 
 @utility fancy-link {
@@ -185,12 +185,12 @@
 @utility input-has-value {
     @apply text-xs;
     @apply top-0;
-    @apply bg-black;
+    @apply bg-white dark:bg-darker-900;
     @apply px-3;
 }
 
 @utility form-input {
-    @apply bg-transparent rounded-md border border-cyan-500 relative;
+    @apply bg-transparent rounded-md border border-primary dark:border-secondary relative;
     @apply mb-6;
 
     input,
@@ -198,7 +198,7 @@
         @apply py-3 px-3;
         @apply h-full w-full rounded-md;
         @apply placeholder-transparent;
-        @apply text-cyan;
+        @apply text-black dark:text-cyan;
     }
 
     label {
@@ -207,7 +207,7 @@
         @apply -translate-y-1/2;
         @apply cursor-text;
         @apply text-lg font-bold;
-        @apply text-darker-300;
+        @apply text-primary dark:text-cyan;
 
         @variant peer-not-placeholder-shown {
             @apply input-has-value;
@@ -233,9 +233,13 @@
     @apply cursor-pointer;
     @apply text-white;
 
+    .pill-button-text {
+        @apply z-20;
+    }
+
     &:after {
         @apply bg-secondary absolute bottom-0 left-0 w-full h-full transition-all translate-y-0;
-        @apply -z-20;
+        @apply z-10;
         transform-origin: bottom center;
         content: ' ';
     }
@@ -247,6 +251,18 @@
         &:after {
             @apply translate-y-full;
             @apply border-transparent text-secondary bg-secondary;
+        }
+    }
+
+    &.inverse {
+        &:after {
+            @apply translate-y-full w-[200%];
+        }
+
+        &:hover {
+            &:after {
+                @apply translate-y-0;
+            }
         }
     }
 

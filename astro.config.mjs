@@ -1,4 +1,4 @@
-import { defineConfig, passthroughImageService } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 
 import mdx from "@astrojs/mdx";
 import netlify from '@astrojs/netlify';
@@ -21,6 +21,13 @@ export default defineConfig({
             hostname: '**.justinlikescode.com',
         }]
     },
+    fonts: [
+        {
+            provider: fontProviders.google(),
+            name: "Roboto Slab",
+            cssVariable: "--font-roboto",
+        }
+    ],
     adapter: netlify(),
     vite: {
         plugins: [

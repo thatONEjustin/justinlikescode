@@ -71,8 +71,11 @@ export default function FormGridForm() {
                             <input type="text" name="_gotcha" className="hidden" />
                             <div className="h-captcha" data-sitekey={RECAPTCHA_SITE_KEY}></div>
 
-                            <button type="submit" className="pill-button green mt-4">
-                                <i className="nf nf-md-send"></i>&nbsp;Contact Me!
+                            <button type="submit" className="pill-button text-white mt-4">
+                                <span className="pill-button-text">
+                                    <i className="nf nf-md-send"></i>&nbsp;Contact Me!
+                                </span>
+
                             </button>
                         </motion.form>
                     )}

@@ -20,7 +20,10 @@
                 "./src/js/*"
             ],
             "@images/*": [
-                "./src/img/*"
+                "./src/assets/img/*"
+            ],
+            "@fonts/*": [
+                "./src/assets/fonts/*"
             ],
             "@node/*": [
                 "./node_modules/*"

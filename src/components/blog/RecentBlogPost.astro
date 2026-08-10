@@ -1,0 +1,59 @@
+---
+import { blogDate } from '@js/helpers'
+import { truncateWords } from '@shahid19/stringjs'
+const { data } = Astro.props
+
+const { slug, publishedAt, title, preview } = data
+---
+<article class="w-full recent-blog-post cursor-pointer">
+    <div class="mb-5">
+        <h3 class="title" set:html={truncateWords(title, 20)}></h3>
+        <h5 class="date"><em>{blogDate(publishedAt)}</em></h5>
+        <p class="preview" set:html={preview}></p>
+    </div>
+
+    <a href={`/blog/${slug}`} class="read-more">Read More</a>
+</article>
+
+<style>
+@reference "#main.css";
+
+.recent-blog-post {
+    @apply relative border-l-4 border-primary dark:border-secondary p-5 mb-10 last-of-type:mb-0 transition-all;
+
+    @variant hover {
+        @apply scale-105;
+    }
+
+    /* &:after {
+        @apply absolute w-64 h-128 top-1/2 -translate-y-1/2 translate-x-[100vw];
+        @apply transition-all ease-in-out duration-500;
+        @apply bg-linear-to-r from-transparent via-white/10 to-transparent;
+        @apply blur-lg;
+        @apply rotate-33;
+        content: ' ';
+    }
+
+    @variant hover {
+        @apply scale-105;
+
+        &:after {
+            @apply -translate-x-[400%];
+        }
+    } */
+
+    .title {
+        @apply w-full pb-0 mb-0;
+        @apply text-3xl text-black dark:text-cyan;
+    }
+
+    .date {
+        @apply text-black dark:text-cyan py-3 font-light;
+    }
+
+    .preview {
+        @apply text-black dark:text-darker-300 font-light;
+    }
+}
+</style>
+

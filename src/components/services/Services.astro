@@ -1,0 +1,45 @@
+---
+import SectionHeader from "@components/SectionHeader.astro";
+import ServiceCard from "./ServiceCard.astro";
+
+const services = [
+    {
+        title: "Web Development",
+        description: "I’ve built websites for over 17 years! I’ve handled everything from eCommerce to blogging to credit unions and more. I have experience in a wide array of web technologies as a full stack developer.",
+        href: "/pricing",
+        icon: "nf-md-web_check"
+    },
+    {
+        title: "IT/Networking",
+        description: "Need help managing your local network? Having trouble understanding what hardware to purchase and why? I regularly keep my finger on the pulse on the latest technology trends and am here to help!",
+        href: "/pricing",
+        icon: "nf-fa-network_wired"
+    },
+    {
+        title: "Custom Solutions",
+        description: "Need something tech related that does not fall under the other two categories? Maybe you’re looking to learn more about the industries I’ve worked with/in. Let’s have a discussion I’m always glad to help people get the most out of technology!",
+        href: "/pricing",
+        icon: "nf-md-folder_question"
+    },
+]
+---
+
+<section id="services" class="flex flex-col items-center">
+    <SectionHeader>
+        <h2 slot="title">Services</h2>
+        <p slot="description">I'm a big enthusiast (aka a big nerd) about web development, productive tooling, Continuous Integration/Development, and server administration.</p>
+    </SectionHeader>
+
+    <div class="service-cards container mx-auto">
+        {services.map((service: any) =>  <ServiceCard data={service} />)}
+    <div>
+<section>
+
+<style>
+    @reference "#main.css";
+
+    .service-cards {
+        @apply py-10;
+        @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-x-10 xl:gap-x-30;
+    }
+</style>

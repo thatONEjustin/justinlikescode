@@ -4,7 +4,8 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @theme {
-    --font-nf-symbols: Symbols Nerd Font;
+
+    --font-roboto-slab: var(--font-roboto);
 
     --color-transparent: transparent;
     /* --color-black: #0e0d11; */

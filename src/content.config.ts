@@ -30,7 +30,7 @@ const blog_posts = defineCollection({
                 slug: slug,
                 content: Content,
                 publishedAt: publishedAt,
-                preview: preview(Content, 15),
+                preview: preview(Content, 60),
                 title: Title
             }
         })
