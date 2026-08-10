@@ -2,7 +2,7 @@
 import SectionHeader from "../SectionHeader.astro";
 import ServiceCard from "./ServiceCard.astro";
 
-const services = [
+const servicesData = [
     {
         title: "Web Development",
         description: "I’ve built websites for over 17 years! I’ve handled everything from eCommerce to blogging to credit unions and more. I have experience in a wide array of web technologies as a full stack developer.",
@@ -31,6 +31,6 @@ const services = [
     </SectionHeader>
 
     <div class="service-cards container mx-auto py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-x-10 xl:gap-x-30">
-        {services.map((serviceData: any) => <ServiceCard data={serviceData} />)}
+        {servicesData.map((serviceData: any) => <ServiceCard data={serviceData} />)}
     <div>
 <section>
