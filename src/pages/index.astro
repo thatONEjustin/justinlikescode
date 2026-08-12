@@ -34,25 +34,31 @@ import SocialMediaList from "@components/SocialMediaList.astro";
         </div>
     </section>
 
-    <section id="resume" class="bg-primary dark:bg-cyan-900 py-14">
-        <SectionHeader class="mb-9">
-            <h2 class="text-white dark:text-cyan pb-4!" slot="title">Need My Resume?</h2>
-        </SectionHeader>
-        <PillButton href={resume} class="inverse text-3xl mx-auto border-white after:bg-white! hover:text-primary dark:hover:text-cyan-900" target="_blank">
-            Here It Is!
-        </PillButton>
-    </section>
-
     <Services />
 
-    <section id="social" class="bg-primary dark:bg-darker-900 py-8">
+    <section id="resume" class="bg-primary dark:bg-cyan-900 py-14">
+        <SectionHeader class="mb-9">
+            <h2 class="text-white dark:text-cyan pb-4!" slot="title">See My Work</h2>
+        </SectionHeader>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-5 max-w-fit mx-auto">
+            <PillButton href={`/portfolio`} class="inverse text-3xl border-white after:bg-white! hover:text-primary dark:hover:text-cyan-900" target="_blank">
+                Online Portfolio
+            </PillButton>
+            <PillButton href={`/portfolio`} class="inverse text-3xl border-white after:bg-white! hover:text-primary dark:hover:text-cyan-900" target="_blank">
+                Download a PDF
+            </PillButton>
+        </div>
+    </section>
+
+
+    <!-- <section id="social" class="bg-primary dark:bg-darker-900 py-8"> 
         <SectionHeader class="mb-9">
             <h2 class="text-white dark:text-cyan pb-4!" slot="title">Social Media</h2>
         </SectionHeader>
         <div class="justin-container flex flex-col items-center justify-center">
             <SocialMediaList />
         </div>
-    </section>
+    </section>-->
 
     <BlogPosts />
 

@@ -47,6 +47,7 @@
         "@types/react-google-recaptcha": "^2.1.9"
     },
     "imports": {
-        "#main.css": "./src/css/main.css"
+        "#main.css": "./src/css/main.css",
+        "#components/*.tsx": "./src/components/*.tsx"
     }
 }

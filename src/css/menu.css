@@ -1,6 +1,52 @@
-.main-menu {
-    @apply flex flex-row items-center py-4 md:py-0;
+.hamburger {
+    @apply block relative;
+    @apply w-16 h-10;
+    @apply cursor-pointer;
 
+    .hamburger-bar {
+        @apply block 
+            relative
+            w-full
+            h-2
+            bg-primary
+            dark:bg-secondary
+            rounded-md;
+
+        @apply origin-center transition-[rotate];
+        @apply mb-2;
+
+        content: ' ';
+
+        :last-of-type {
+            @apply mb-0;
+        }
+    }
+
+    &.active {
+        .hamburger-bar {
+            @apply absolute;
+            @apply top-1/2;
+
+            &:first-child {
+                @apply rotate-45;
+            }
+
+            &:last-child {
+                @apply rotate-135;
+            }
+
+            &:nth-child(2) {
+                @apply opacity-0;
+            }
+        }
+    }
+
+    @variant md {
+        @apply hidden;
+    }
+}
+
+.main-menu {
     li {
         @apply border-r border-darker pr-3 mr-3 last:mr-0;
 
@@ -34,6 +80,11 @@
         &:nth-last-child(2) {
             @apply border-r-0!;
         }
+    }
+
+    @apply hidden;
+    @variant md {
+        @apply flex flex-row items-center py-4 md:py-0;
     }
 }
 
