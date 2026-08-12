@@ -1,14 +1,6 @@
 @import "https://www.nerdfonts.com/assets/css/webfont.css";
-
-/*
- * TODO: move fonts to astro config
-   @import './fonts/fonts.css';
- */
-
-/*
- * NOTE: tailwind orgainzation!
- */ 
 @import './tailwind/tailwind.css';
+
 @import './menu.css';
 
 

@@ -1,8 +1,29 @@
 ---
+import { getCollection } from 'astro:content';
 // import Menu from "@components/menu/Menu.astro";
 import NerdFontIcon from '@components/NerdFontIcon.astro'
 
 import MainMenu from "@components/menu/MainMenu.tsx";
+
+const menuItems = await getCollection('menuItems')
+
+
+const menu_items = menuItems.map(({ data }: any) => {
+    return {
+        ...data
+    }
+})
+
+// console.log(menu_items)
+// const menu_items = menuItems.map(({ data }: any) => {
+//     return {
+//         href: data.href,
+//         label: data.label,
+//         icon: data.icon,
+//         scrollTo: data.scrollTo
+//     }
+// })
+
 ---
 
 <header>
@@ -12,7 +33,7 @@ import MainMenu from "@components/menu/MainMenu.tsx";
                 <NerdFontIcon icon="nf-md-developer_board" class="text-3xl text-primary dark:text-secondary mr-2" />
                 <h1 class="text-primary dark:text-secondary">justinlikescode</h1>
             </a>
-            <MainMenu client:only />
+            <MainMenu client:only menuItems={menu_items} />
         </div>
     </div>
 </header>

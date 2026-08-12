@@ -15,6 +15,41 @@ function preview(text: string, truncate: number = 0) {
     return cleaned_text
 }
 
+
+const menu_items = defineCollection({
+    loader: async (): Promise<any> => {
+
+        // const menuItemsJson: MenuItemType[] = [
+        const menuItemsJson = [
+            /*{
+                label: 'home',
+                href: '/',
+                icon: 'nf-custom-home',
+            },*/
+            {
+                id: "1",
+                label: 'about me',
+                href: '/about-me',
+                icon: 'nf-oct-person_fill',
+            },
+            {
+                id: "2",
+                label: 'portfolio',
+                href: '/portfolio',
+                icon: 'nf-dev-terminal'
+            },
+            {
+                id: "3",
+                label: 'contact me',
+                href: '/contact-me',
+                icon: 'nf-oct-mail',
+            }
+        ]
+
+        return menuItemsJson
+    }
+})
+
 const blog_posts = defineCollection({
     loader: async () => {
         const data = await getData('blog-posts').then(r => r.json())
@@ -67,5 +102,6 @@ const projects = defineCollection({
 
 export const collections = {
     "blog": blog_posts,
-    "projects": projects
+    "projects": projects,
+    "menuItems": menu_items
 };
