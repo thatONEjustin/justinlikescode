@@ -5,7 +5,7 @@ import ToggleMode from "@components/ToggleVisualTheme.tsx";
 
 import type { MenuItemType } from "@js/types";
 
-export default function MainMenu({ menuItems }: { menuItems: MenuItemType[] }): any {
+export default function MainMenu({ items }: { items: MenuItemType[] }): any {
 
     function isActive(href: string) {
         return window.location.pathname.includes(href)

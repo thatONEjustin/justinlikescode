@@ -14,16 +14,6 @@ const menu_items = menuItems.map(({ data }: any) => {
     }
 })
 
-// console.log(menu_items)
-// const menu_items = menuItems.map(({ data }: any) => {
-//     return {
-//         href: data.href,
-//         label: data.label,
-//         icon: data.icon,
-//         scrollTo: data.scrollTo
-//     }
-// })
-
 ---
 
 <header>
@@ -33,7 +23,7 @@ const menu_items = menuItems.map(({ data }: any) => {
                 <NerdFontIcon icon="nf-md-developer_board" class="text-3xl text-primary dark:text-secondary mr-2" />
                 <h1 class="text-primary dark:text-secondary">justinlikescode</h1>
             </a>
-            <MainMenu client:only menuItems={menu_items} />
+            <MainMenu client:only items={menu_items} />
         </div>
     </div>
 </header>
