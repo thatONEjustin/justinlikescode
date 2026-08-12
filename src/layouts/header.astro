@@ -3,7 +3,8 @@ import { getCollection } from 'astro:content';
 // import Menu from "@components/menu/Menu.astro";
 import NerdFontIcon from '@components/NerdFontIcon.astro'
 
-import MainMenu from "@components/menu/MainMenu.tsx";
+import MainMenu from "#components/menu/MainMenu.tsx";
+import MobileHamburger from "#components/menu/MobileHamburger.tsx";
 
 const menuItems = await getCollection('menuItems')
 
@@ -14,8 +15,6 @@ const menu_items = menuItems.map(({ data }: any) => {
     }
 })
 
-import MainMenu from "#components/menu/MainMenu.tsx";
-import MobileHamburger from "#components/menu/MobileHamburger.tsx";
 ---
 
 <header>
@@ -27,7 +26,6 @@ import MobileHamburger from "#components/menu/MobileHamburger.tsx";
             </a>
             <MainMenu client:only items={menu_items} />
             <MobileHamburger client:only />
-            <MainMenu client:only />
         </div>
     </div>
 </header>
