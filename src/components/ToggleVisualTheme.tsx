@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 
-export default function ToggleVisualTheme() {
+export default function ToggleVisualTheme({ className }: { className?: string }) {
     const [theme, setTheme] = useState(localStorage.getItem("theme"));
 
     function toggleTheme() {
@@ -21,8 +21,7 @@ export default function ToggleVisualTheme() {
     }, [theme])
 
     return (
-        <div className={`flex items-center justify-center`}>
-            {/* <input type="hidden" name="current_theme" value={theme} /> */}
+        <div className={`flex items-center justify-center ${className}`}>
             <label>
                 <span className="sr-only">Light/Dark Mode</span>
             </label>

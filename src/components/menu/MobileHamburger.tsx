@@ -1,33 +1,27 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-export default function MobileHamburger(): any {
-    let mediaQuery = window.matchMedia("(width <= 768px)")
+export default function MobileHamburger({ mobileMenu }: { mobileMenu: React.RefObject<HTMLUListElement> }) {
+    const mediaQuery = window.matchMedia("(width <= 768px)")
 
     const [isMobile, setIsMobile] = useState(mediaQuery.matches)
     const [active, setActive] = useState(false)
-    // const mainMenu = document.querySelector('.main-menu')
 
     mediaQuery.addEventListener('change', (e) => {
         setIsMobile(e.matches)
     })
 
-    useEffect(() => {
-        console.log(`isMobile: ${isMobile}`, `active: ${active}`)
-        if (isMobile) {
-            // mainMenu.classList.toggle('is-mobile')
-        }
-    }, [active, isMobile])
-
     function openMenu() {
-        // if (mainMenu == null) return
+        if (isMobile == false) return
+
         setActive(!active)
-        // mainMenu.classList.toggle('active')
+
+        mobileMenu.current.classList.toggle('active')
     }
 
     return (
-        <div className={`hamburger`} onClick={() => openMenu()}>
+        <div className={`hamburger ${active ? 'active' : ''}`} onClick={openMenu}>
             <span className="hamburger-bar"></span>
             <span className="hamburger-bar"></span>
             <span className="hamburger-bar"></span>

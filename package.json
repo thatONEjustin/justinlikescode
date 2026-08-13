@@ -48,6 +48,7 @@
     },
     "imports": {
         "#main.css": "./src/css/main.css",
-        "#components/*.tsx": "./src/components/*.tsx"
+        "#components/*.tsx": "./src/components/*.tsx",
+        "#layouts/*.astro": "./src/layouts/*.astro"
     }
 }

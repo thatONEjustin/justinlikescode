@@ -6,15 +6,20 @@ import ToggleMode from "@components/ToggleVisualTheme.tsx";
 import type { MenuItemType } from "@js/types";
 
 export default function MainMenu({ items }: { items: MenuItemType[] }): any {
-
-    function isActive(href: string) {
+    function isActive(href: string): boolean {
         return window.location.pathname.includes(href)
     }
 
     return (
         <ul className="main-menu">
-            {menuItems.map(({ href, label, icon, scrollTo = '' }: MenuItemType, index: number) =>
-                <MenuItem key={index} active={isActive(href)} label={label} href={href} icon={icon} scrollTo={scrollTo} />
+            {items.map(({ href, label, icon, scrollTo = '' }: MenuItemType, index: number) =>
+                <MenuItem
+                    key={index}
+                    active={isActive(href)}
+                    label={label}
+                    href={href}
+                    icon={icon}
+                    scrollTo={scrollTo} />
             )}
 
             <li className="border-0!">

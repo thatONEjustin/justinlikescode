@@ -25,7 +25,6 @@ export default function FormGridForm() {
             if (response.ok) {
                 setSuccess(true)
             }
-
         } catch (error) {
             console.log('Error submitting form')
             console.log(error)

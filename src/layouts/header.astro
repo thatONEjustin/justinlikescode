@@ -1,55 +1,19 @@
 ---
 import { getCollection } from 'astro:content';
 // import Menu from "@components/menu/Menu.astro";
-import NerdFontIcon from '@components/NerdFontIcon.astro'
+// import NerdFontIcon from '@components/NerdFontIcon.astro'
+// import MainMenu from "#components/menu/MainMenu.tsx";
+// import MobileHamburger from "#components/menu/MobileHamburger.tsx";
+// import MobileMenu from "#components/menu/MobileMenu.tsx";
 
-import MainMenu from "#components/menu/MainMenu.tsx";
-import MobileHamburger from "#components/menu/MobileHamburger.tsx";
+import Header from "@layouts/Header.tsx";
 
-const menuItems = await getCollection('menuItems')
-
-
-const menu_items = menuItems.map(({ data }: any) => {
+const menuItemCollection = await getCollection('menuItems')
+const menuItems = menuItemCollection.map(({data}) => {
     return {
         ...data
     }
 })
-
 ---
 
-<header>
-    <div class="transition-colors bg-white dark:bg-black border-b-2 border-b-primary dark:border-b-secondary">
-        <div class="px-8 xl:px-unset xl:container mx-auto w-full flex flex-row justify-between items-center py-3">
-            <a href="/" class="text-3xl flex items-center no-underline max-w-8/10">
-                <NerdFontIcon icon="nf-md-developer_board" class="text-3xl text-primary dark:text-secondary mr-2" />
-                <h1 class="text-primary dark:text-secondary">justinlikescode</h1>
-            </a>
-            <MainMenu client:only items={menu_items} />
-            <MobileHamburger client:only />
-        </div>
-    </div>
-</header>
-
-<style>
-@reference "#main.css";
-
-header {
-    @apply  z-100;
-
-    @variant xl {
-        @apply sticky top-0;
-    }
-
-    h1 {
-        @apply text-2xl;
-
-        @variant md {
-            @apply text-3xl;
-        }
-
-        @variant lg {
-            @apply text-4xl;
-        }
-    }
-}
-</style>
+<Header client:only items={menuItems} />

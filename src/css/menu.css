@@ -1,13 +1,33 @@
+header {
+    @apply  z-100;
+
+    @variant xl {
+        @apply sticky top-0;
+    }
+
+    h1 {
+        @apply text-2xl;
+
+        @variant md {
+            @apply text-3xl;
+        }
+
+        @variant lg {
+            @apply text-4xl;
+        }
+    }
+}
+
 .hamburger {
     @apply block relative;
-    @apply w-16 h-10;
+    @apply w-10 h-fit;
     @apply cursor-pointer;
 
     .hamburger-bar {
         @apply block 
             relative
             w-full
-            h-2
+            h-1
             bg-primary
             dark:bg-secondary
             rounded-md;
@@ -17,7 +37,7 @@
 
         content: ' ';
 
-        :last-of-type {
+        &:last-of-type {
             @apply mb-0;
         }
     }
@@ -88,3 +108,13 @@
     }
 }
 
+.mobile-menu {
+    @apply md:hidden absolute top-0 left-0 ;
+    @apply translate-x-0 w-full h-fit bg-white dark:bg-darker-900 top-full;
+    @apply transition-all z-50;
+    @apply rotate-x-90 origin-top;
+
+    &.active {
+        @apply rotate-x-0;
+    }
+}

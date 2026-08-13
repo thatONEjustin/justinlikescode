@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 
 import resume from "/justin-paelmo-resume.pdf";
-import me from "../assets/img/me.jpeg";
+import me from "@images/me.jpeg";
 
 import BaseLayout from "@layouts/base.astro";
 
@@ -11,18 +11,20 @@ import PillButton from "@components/PillButton.astro";
 import Services from "@components/services/Services.astro";
 import SectionHeader from "@components/SectionHeader.astro";
 import BlogPosts from "@components/blog/BlogPosts.astro";
-import SocialMediaList from "@components/SocialMediaList.astro";
 ---
 
 <BaseLayout>
     <section class="home-hero">
-        <div class="home-hero-container">
+        <div class="home-hero-container py-8 md:py-0">
             <div class="portrait">
                 <Image src={me} alt="Hi! I'm Justin Paelmo!" class="portrait-image"/>
             </div>
 
             <div class="intro">
-                <h2>Hi, I'm Justin</h2>
+                <h2 class="text-center md:text-left">Hi, I'm Justin</h2>
+
+                <Image src={me} alt="Hi! I'm Justin Paelmo!" class="md:hidden rounded-full w-full h-auto mx-auto mb-8"/>
+
                 <p>I’m a big enthusiast (aka a big nerd) about web development, productive tooling, Continuous Integration/Development, and server administration.</p>
 
                 <p>I’m committed to using 17 years of professional experience in these areas to helping businesses do what they love, and not worry about today’s technology.</p>
@@ -49,7 +51,6 @@ import SocialMediaList from "@components/SocialMediaList.astro";
             </PillButton>
         </div>
     </section>
-
 
     <!-- <section id="social" class="bg-primary dark:bg-darker-900 py-8"> 
         <SectionHeader class="mb-9">
@@ -118,24 +119,16 @@ import SocialMediaList from "@components/SocialMediaList.astro";
         flex
         flex-col
         items-center;
-
-    /* @variant md { */
-    /*     @apply w-1/3; */
-    /* } */
-    /**/
-    /* @variant lg { */
-    /*     @apply w-4/10 */
-    /*         mx-auto */
-    /*         mt-0; */
-    /* } */
 }
 
 .portrait-image {
     @apply z-40 mx-auto w-full h-auto;
     @apply mb-8;
 
-    @variant lg {
-        @apply mx-unset mb-0;
+    @apply hidden;
+
+    @variant md {
+        @apply mx-unset mb-0 py-0 block;
     }
 } 
 

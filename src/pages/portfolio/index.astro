@@ -7,15 +7,34 @@ import ProjectCard from "@components/projects/ProjectCard.astro";
 import { getCollection } from 'astro:content';
 
 const projects = await getCollection('projects');
-const newestProjectsFirst = projects.sort((a, b) => (a.data.updatedAt < b.data.updatedAt) ? 1 : -1)
+
+const sortedProjects = projects.sort((a, b) => a.data.category.localeCompare(b.data.category))
+
+// console.log(sortedProjects)
+
+let categories = projects.map((project: any) => project.data.category)
+categories = [...new Set(categories)]
+
+console.log(categories)
+// console.log(projects[0])
+
+// const newestProjectsFirst = projects.sort((a, b) => (a.data.updatedAt < b.data.updatedAt) ? 1 : -1)
+
+// const medicalProjects = projects.filter((project: any) => project.data.category == 'medical')
+// const ecommerceProjects = projects.filter((project: any) => project.data.category == 'ecommerce')
+// const businessToBussinessProjects = projects.filter((project: any) => project.data.category == 'b2b')
+// const bankingCreditProjects = projects.filter((project: any) => project.data.category == 'banking/credit')
+// const governmentProjects = projects.filter((project: any) => project.data.category == 'government')
 ---
 
 <BaseLayout>
-    <SectionHeader class="mb-9">
+    <!-- <SectionHeader class="mb-9">
         <h2 class="text-primary dark:text-cyan py-4!" slot="title">Previous Work</h2>
     </SectionHeader>
     <section class="project-cards">
         {newestProjectsFirst.map((project: any) => <ProjectCard data={project.data} />)}
+    </section> -->
+    <section>
     </section>
 </BaseLayout>
 

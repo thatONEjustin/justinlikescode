@@ -1,6 +1,6 @@
 ---
 import { marked } from 'marked'
-import { Image } from "astro:assets"
+// import { Image } from "astro:assets"
 
 const { title, slug, preview, screenshots } = Astro.props.data
 
@@ -8,7 +8,7 @@ const previewImage = screenshots
     .sort((a: any, b: any) => (a.width < b.width) ? 1 : -1)
     .slice(0,1)[0]
 
-console.log(screenshots)
+// console.log(screenshots)
 
 // const API_URL = import.meta.env.SECRET_API_URL;
 // const src = API_URL + previewImage.url
