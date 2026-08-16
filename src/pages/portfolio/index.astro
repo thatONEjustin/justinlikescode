@@ -1,40 +1,88 @@
 ---
 export const prerender = true
 
-import BaseLayout from "@layouts/base.astro";
-import SectionHeader from "@components/SectionHeader.astro";
-import ProjectCard from "@components/projects/ProjectCard.astro";
 import { getCollection } from 'astro:content';
+import { capitalizeString } from "@js/helpers";
+
+import BaseLayout from "@layouts/base.astro";
+import ProjectCard from "@components/projects/ProjectCard.astro";
+import NerdFontIcon from "@components/NerdFontIcon.astro";
 
 const projects = await getCollection('projects');
 
-const sortedProjects = projects.sort((a, b) => a.data.category.localeCompare(b.data.category))
 
-// console.log(sortedProjects)
+let sortedByCategory: any = []
 
-let categories = projects.map((project: any) => project.data.category)
-categories = [...new Set(categories)]
+projects.map((project: any) => {
+    if (sortedByCategory.find((categoryItem: any) => {
+        if (categoryItem.id === project.data.category) {
+            categoryItem.count++
+            categoryItem.projects = [...categoryItem.projects, project]
+            return true
+        } else {
+            return false
+        }
+    })) {
+        // technically this *is* what we did
+    } else {
+        sortedByCategory.push({
+            id: project.data.category,
+            count: 1,
+            projects: [project]
+        })
+    }
+})
 
-console.log(categories)
-// console.log(projects[0])
+const sortedByCount = await sortedByCategory.sort((a: any, b: any) => (a.count > b.count) ? -1 : 1)
 
-// const newestProjectsFirst = projects.sort((a, b) => (a.data.updatedAt < b.data.updatedAt) ? 1 : -1)
+const categoryIcon = (categoryId: string = ''): string => {
+    let icon = ""
+    switch (categoryId) {
+        case "ecommerce":
+            icon = "nf-fa-cart_shopping"
+        break;
+        case "b2b":
+            icon = "nf-md-handshake"
+        break;
+        case "medical":
+            icon = "nf-fa-laptop_medical"
+        break;
+        case "government":
+            icon = "nf-cod-law"
+        break;
+        case "banking/credit":
+            icon = "nf-fa-bank"
+        break;
+        default:
+            icon = "nf-md-developer_board"
+    }
 
-// const medicalProjects = projects.filter((project: any) => project.data.category == 'medical')
-// const ecommerceProjects = projects.filter((project: any) => project.data.category == 'ecommerce')
-// const businessToBussinessProjects = projects.filter((project: any) => project.data.category == 'b2b')
-// const bankingCreditProjects = projects.filter((project: any) => project.data.category == 'banking/credit')
-// const governmentProjects = projects.filter((project: any) => project.data.category == 'government')
+    return icon
+}
+
+
+const categoryTitle = (categoryId: string): string => {
+    if(categoryId.includes('2')) return categoryId.split('2').map(word => capitalizeString(word)).join('2')
+    if(!categoryId.includes('/')) return capitalizeString(categoryId)
+    return categoryId.split('/').map(word => capitalizeString(word)).join('/')
+}
+
+function logProject(project: any) {
+    console.log('project', project)
+}
 ---
 
 <BaseLayout>
-    <!-- <SectionHeader class="mb-9">
-        <h2 class="text-primary dark:text-cyan py-4!" slot="title">Previous Work</h2>
-    </SectionHeader>
-    <section class="project-cards">
-        {newestProjectsFirst.map((project: any) => <ProjectCard data={project.data} />)}
-    </section> -->
-    <section>
+    <section class="container mx-auto">
+        {sortedByCount.map(({id, projects}) => 
+        <div class="mb-24 first-of-type:mt-12">
+            <h2 class="text-4xl"><NerdFontIcon icon={categoryIcon(id)} /> {categoryTitle(id)}</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-[60px] mt-8">
+                {projects.map((project) => <ProjectCard project={project} icon={categoryIcon(id)} />)}
+            </div>
+        </div>
+        )}
     </section>
 </BaseLayout>
 

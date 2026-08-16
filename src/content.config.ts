@@ -74,14 +74,13 @@ const blog_posts = defineCollection({
 
 const projects = defineCollection({
     loader: async () => {
-        const data = await getData('projects?populate=screenshots').then(response => response.json())
+        const data = await getData('projects?populate=screenshots&sort=category').then(response => response.json())
+        // console.log(data)
         if (data.data == null) return {}
 
-        const projects = data.data
+        // console.log(sortedByCount)
 
-        // console.log(projects)
-
-        return projects.map(({ ...project }: any) => {
+        return data.data.map(({ ...project }: any) => {
             // NOTE: this will probably return weird data for now
             const { slug, preview, category, description, external_url, Title, updatedAt } = project
 

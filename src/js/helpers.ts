@@ -13,3 +13,7 @@ export async function getData(endpoint: string): Promise<Response> {
 export function blogDate(date: Date): string {
     return new Date(date).toLocaleDateString("en-US")
 }
+
+export function capitalizeString(stringInput: string) {
+    return stringInput.charAt(0).toUpperCase() + stringInput.slice(1)
+}

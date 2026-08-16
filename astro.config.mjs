@@ -19,7 +19,13 @@ export default defineConfig({
         remotePatterns: [{
             protocol: 'https',
             hostname: '**.justinlikescode.com',
-        }]
+        },
+        {
+            protocol: 'http',
+            hostname: 'localhost',
+            port: "1337",
+        }
+        ]
     },
     fonts: [
         {

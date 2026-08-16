@@ -1,12 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
-// import Menu from "@components/menu/Menu.astro";
-// import NerdFontIcon from '@components/NerdFontIcon.astro'
-// import MainMenu from "#components/menu/MainMenu.tsx";
-// import MobileHamburger from "#components/menu/MobileHamburger.tsx";
-// import MobileMenu from "#components/menu/MobileMenu.tsx";
 
-import Header from "@layouts/Header.tsx";
+import Header from "@components/menu/Header.tsx";
 
 const menuItemCollection = await getCollection('menuItems')
 const menuItems = menuItemCollection.map(({data}) => {

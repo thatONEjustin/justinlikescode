@@ -1,0 +1,86 @@
+---
+import { marked } from 'marked'
+// import { Image } from "astro:assets"
+
+const { title, slug, preview, screenshots } = Astro.props.data
+
+const previewImage = screenshots
+    .sort((a: any, b: any) => (a.width < b.width) ? 1 : -1)
+    .slice(0,1)[0]
+
+// console.log(screenshots)
+
+// const API_URL = import.meta.env.SECRET_API_URL;
+// const src = API_URL + previewImage.url
+---
+
+<a href={`/portfolio/${slug}`} class="project-card">
+    <h3 class="text-vanHelsing-500 z-20">{title}</h3>
+    <div class="text-vanHelsing-100 z-20">
+        <Fragment set:html={await marked.parse(preview)} />
+    </div>
+
+    <!-- {previewImage &&
+        <Image
+            {src}
+            inferSize={true}
+            class="project-banner-image"
+            alt={preview} />
+    } -->
+</a>
+
+<style>
+@reference "#main.css";
+
+.project-card {
+    @apply w-full
+        flex 
+        flex-col
+        px-16
+        py-16
+        bg-dark-50/5 
+        border-b
+        border-darker-800
+        relative
+        overflow-hidden;
+
+    @apply transition-all ease-in-out duration-400;
+    @apply origin-center scale-100;
+
+    @variant first-of-type {
+        @apply border-t;
+    }
+
+    &:after {
+        @apply absolute w-64 h-128 top-1/2 -translate-y-1/2 translate-x-[100vw];
+        @apply transition-all ease-in-out duration-400;
+        @apply bg-linear-to-r from-transparent via-white/10 to-transparent;
+        @apply blur-lg;
+        @apply rotate-33;
+        @apply pointer-events-none;
+        content: ' ';
+    }
+
+    > .project-banner-image {
+        @apply absolute
+            opacity-5
+            top-0
+            left-0
+            z-10
+            object-cover
+            w-full
+            transition-opacity;
+    }
+
+    @variant hover {
+        &:after {
+            @apply translate-x-[-200%];
+        }
+
+        > .project-banner-image {
+            @apply opacity-20;
+        }
+    }
+}
+
+</style>
