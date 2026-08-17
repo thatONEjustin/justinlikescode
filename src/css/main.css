@@ -1,7 +1,6 @@
 @import "https://www.nerdfonts.com/assets/css/webfont.css";
 @import './tailwind/tailwind.css';
 
-@import './menu.css';
-
-
+@import './site/menu.css';
+@import './site/pages.css';
 

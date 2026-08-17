@@ -12,19 +12,20 @@ import react from '@astrojs/react';
 export default defineConfig({
     output: 'static',
     prefetch: true,
-    site: 'https://staging-justinlikescode.netlify.app',
+    site: process.env.MODE == 'dev' ? 'https://localhost:4321' : 'https://staging-justinlikescode.netlify.app',
     trailingSlash: 'never',
     integrations: [mdx(), alpinejs({ entrypoint: './src/alpine-entry' }), react()],
     image: {
-        remotePatterns: [{
-            protocol: 'https',
-            hostname: '**.justinlikescode.com',
-        },
-        {
-            protocol: 'http',
-            hostname: 'localhost',
-            port: "1337",
-        }
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: '**.justinlikescode.com',
+            },
+            {
+                protofol: 'http',
+                hostname: 'localhost',
+                port: '1337'
+            }
         ]
     },
     fonts: [
@@ -34,6 +35,10 @@ export default defineConfig({
             cssVariable: "--font-roboto-slab",
         }
     ],
+    i18n: {
+        locales: ['en', 'es'],
+        defaultLocale: 'en',
+    },
     adapter: netlify(),
     vite: {
         plugins: [
