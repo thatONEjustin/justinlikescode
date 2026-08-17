@@ -4,10 +4,16 @@ import MainMenu from "@components/menu/MainMenu.tsx";
 import MobileHamburger from "@components/menu/MobileHamburger.tsx";
 import MobileMenu from "@components/menu/MobileMenu.tsx";
 
-import { useRef } from "react";
+import { useState, useRef } from "react";
 
 export default function Header({ items }: { items: MenuItemType[] }): any {
     const mobileMenuRef = useRef(null)
+    const mediaQuery = window.matchMedia("(width <= 768px)")
+
+    const [isMobile, setIsMobile] = useState(mediaQuery.matches)
+
+    mediaQuery.addEventListener('change', (e: MediaQueryListEvent): void => setIsMobile(e.matches))
+
     return (
         <header className="relative">
             <div className="z-30 transition-colors bg-white dark:bg-black border-b-2 border-b-primary dark:border-b-secondary">
@@ -16,11 +22,11 @@ export default function Header({ items }: { items: MenuItemType[] }): any {
                         <i className="nf nf-md-developer_board text-3xl text-primary dark:text-secondary mr-2"></i>
                         <h1 className="text-primary dark:text-secondary">justinlikescode</h1>
                     </a>
-                    <MainMenu items={items} />
-                    <MobileHamburger mobileMenu={mobileMenuRef as React.RefObject<any>} />
+                    {!isMobile && <MainMenu items={items} />}
+                    {isMobile && <MobileHamburger isMobile={isMobile} mobileMenu={mobileMenuRef as React.RefObject<any>} />}
                 </div>
             </div>
-            <MobileMenu items={items} mobileMenu={mobileMenuRef as React.RefObject<any>} />
+            {isMobile && <MobileMenu items={items} mobileMenu={mobileMenuRef as React.RefObject<any>} />}
         </header>
     )
 }

@@ -115,7 +115,8 @@ header {
 }
 
 .mobile-menu {
-    @apply md:hidden absolute top-0 left-0 ;
+    @apply md:hidden;
+    @apply absolute top-0 left-0 ;
     @apply translate-x-0 w-full h-fit bg-white dark:bg-darker-900 top-full;
     @apply transition-all z-50;
     @apply rotate-x-90 origin-top;

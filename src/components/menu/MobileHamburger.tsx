@@ -2,15 +2,9 @@
 
 import { useState } from "react";
 
-export default function MobileHamburger({ mobileMenu }: { mobileMenu: React.RefObject<HTMLUListElement> }) {
-    const mediaQuery = window.matchMedia("(width <= 768px)")
-
-    const [isMobile, setIsMobile] = useState(mediaQuery.matches)
+export default function MobileHamburger({ mobileMenu, isMobile }: { mobileMenu: React.RefObject<HTMLUListElement>, isMobile: boolean }) {
     const [active, setActive] = useState(false)
 
-    mediaQuery.addEventListener('change', (e) => {
-        setIsMobile(e.matches)
-    })
 
     function openMenu() {
         if (isMobile == false) return
