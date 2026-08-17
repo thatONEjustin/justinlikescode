@@ -1,5 +1,5 @@
 ---
-import { blogDate } from '@js/helpers'
+import { blogDate } from '@lib/helpers'
 import { truncateWords } from '@shahid19/stringjs'
 const { data } = Astro.props
 
@@ -17,6 +17,7 @@ const { slug, publishedAt, title, preview } = data
 
 <style>
 @reference "#main.css";
+/* @reference "@css/main.css"; */
 
 .recent-blog-post {
     @apply relative border-l-4 border-primary dark:border-secondary p-5 mb-10 last-of-type:mb-0 transition-all;

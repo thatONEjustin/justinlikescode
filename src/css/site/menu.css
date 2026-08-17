@@ -1,9 +1,9 @@
 header {
-    @apply  z-100;
+    /* @apply  z-100; */
 
-    @variant xl {
-        @apply sticky top-0;
-    }
+    /* @variant xl { */
+    /*     @apply sticky top-0; */
+    /* } */
 
     h1 {
         @apply text-2xl;
@@ -97,8 +97,14 @@ header {
             }
         }
 
-        &:nth-last-child(2) {
+        &.main-menu-modeToggle,
+        &.main-menu-language { 
+            @apply px-0!;
             @apply border-r-0!;
+        }
+
+        &.main-menu-language {
+            @apply mr-0!;
         }
     }
 

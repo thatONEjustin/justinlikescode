@@ -1,8 +1,8 @@
 "use client";
 
-import type { MenuItemType } from "@js/types";
+import type { MenuItemType } from "@lib/types";
 
-import ToggleMode from "#components/ToggleVisualTheme.tsx";
+import ToggleMode from "@components/ToggleVisualTheme.tsx";
 
 export default function MobileMenu({ items, mobileMenu }: { items: MenuItemType[], mobileMenu: React.RefObject<HTMLUListElement> }) {
     return (

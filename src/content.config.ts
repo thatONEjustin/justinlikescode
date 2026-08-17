@@ -1,7 +1,7 @@
 import { marked } from 'marked';
 import { truncateWords } from '@shahid19/stringjs'
 
-import { getData } from "@js/helpers";
+import { getData } from "@lib/helpers";
 import { defineCollection } from "astro:content";
 
 function preview(text: string, truncate: number = 0) {

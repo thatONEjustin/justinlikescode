@@ -13,7 +13,7 @@ export const prerender = true
 import { getCollection } from 'astro:content';
 import { marked } from 'marked';
 
-import { blogDate } from '@js/helpers'
+import { blogDate } from '@lib/helpers'
 import BaseLayout from "@layouts/base.astro"
 
 export async function getStaticPaths() {

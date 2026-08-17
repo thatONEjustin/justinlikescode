@@ -1,8 +1,8 @@
-import type { MenuItemType } from "@js/types";
+import type { MenuItemType } from "@lib/types";
 
-import MainMenu from "#components/menu/MainMenu.tsx";
-import MobileHamburger from "#components/menu/MobileHamburger.tsx";
-import MobileMenu from "#components/menu/MobileMenu.tsx";
+import MainMenu from "@components/menu/MainMenu.tsx";
+import MobileHamburger from "@components/menu/MobileHamburger.tsx";
+import MobileMenu from "@components/menu/MobileMenu.tsx";
 
 import { useRef } from "react";
 

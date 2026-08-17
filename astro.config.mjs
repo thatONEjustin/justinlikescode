@@ -13,7 +13,7 @@ export default defineConfig({
     output: 'static',
     prefetch: true,
     site: process.env.MODE == 'dev' ? 'https://localhost:4321' : 'https://staging-justinlikescode.netlify.app',
-    trailingSlash: 'never',
+    // trailingSlash: 'never',
     integrations: [mdx(), alpinejs({ entrypoint: './src/alpine-entry' }), react()],
     image: {
         remotePatterns: [

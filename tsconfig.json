@@ -16,8 +16,8 @@
             "@css/*": [
                 "./src/css/*"
             ],
-            "@js/*": [
-                "./src/js/*"
+            "@lib/*": [
+                "./src/lib/*"
             ],
             "@images/*": [
                 "./src/assets/img/*"
