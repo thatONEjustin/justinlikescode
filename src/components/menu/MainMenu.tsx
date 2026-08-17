@@ -14,12 +14,28 @@ export default function MainMenu({ items }: { items: MenuItemType[] }): any {
     }
 
     function getEnglishUrl(): string {
-        // return `${window.location.origin}${window.location.pathname}`
-        return window.location.origin + '/' + window.location.pathname.replace('/es/', '')
+        // 
+        if (!window.location.pathname.includes('/es')) return `${window.location.origin}${window.location.pathname}`
+
+        let pathname = window.location.pathname
+
+        pathname = pathname.replace('/es', '')
+
+        if (pathname.charAt(0) != '/') {
+            pathname = '/' + pathname
+        }
+
+        return window.location.origin + pathname
     }
 
     function getSpanishUrl(): string {
-        return `${window.location.origin}/es${window.location.pathname}`
+        let pathname = window.location.pathname
+
+        if (pathname.charAt(0) != '/') {
+            pathname = '/' + pathname
+        }
+
+        return `${window.location.origin}/es${pathname}`
     }
 
     function getCurrentLang(): string {
