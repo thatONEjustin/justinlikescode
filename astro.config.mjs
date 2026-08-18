@@ -8,11 +8,12 @@ import alpinejs from '@astrojs/alpinejs';
 
 import react from '@astrojs/react';
 
+const SITE_URL = process.env.NODE == 'dev' ? 'https://localhost:4321' : process.env.SITE_URL
 // https://astro.build/config
 export default defineConfig({
     output: 'static',
     prefetch: true,
-    site: process.env.MODE == 'dev' ? 'https://localhost:4321' : 'https://staging-justinlikescode.netlify.app',
+    site: SITE_URL,
     // trailingSlash: 'never',
     integrations: [mdx(), alpinejs({ entrypoint: './src/alpine-entry' }), react()],
     image: {
