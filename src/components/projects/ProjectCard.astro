@@ -29,13 +29,14 @@ const screenshotUrl = API_URL + previewImage.url
     {/* */}
     {screenshotUrl &&
     <div class="project-card-image">
-        <Image
-            src={screenshotUrl}
-            inferSize={true}
-            class="object-cover w-full h-full rounded-lg border border-primary dark:border-secondary"
-            alt={preview} />
-    </div>
-    }
+        <a href={`/portfolio/${slug}`}>
+            <Image
+                src={screenshotUrl}
+                inferSize={true}
+                class="object-cover w-full h-full rounded-lg border border-primary dark:border-secondary"
+                alt={preview} />
+        </a>
+    </div>}
     <div class="mt-8">
         <h3 class="text-primary dark:text-cyan">
             <NerdFontIcon icon={icon} class="text-primary dark:text-cyan mr-2" />
