@@ -3,11 +3,11 @@ import NerdFontIcon from '@components/NerdFontIcon.astro'
 
 import 'swiper/css/bundle' // @ts-nocheck
 
-const { class:classList = "", swiperOptions = {} } = Astro.props
+const { class:classList = "", swiperOptions = {}, arrows = true } = Astro.props
 
 const swiperDefaults = {
     navigation: {
-        enabled: true,
+        enabled: arrows,
         nextEl: '.justin-next',
         prevEl: '.justin-prev',
     }
@@ -16,20 +16,23 @@ const swiperConfig = { ...swiperDefaults, ...swiperOptions }
 ---
 
 <div
-    class={`swiper ${classList}`}
+    class={`swiper relative ${classList}`}
     x-data
-    x-swiper.cards=`${JSON.stringify(swiperConfig)}`>
-    <div class="swiper-wrapper">
+    x-swiper.controller=`${JSON.stringify(swiperConfig)}`>
+    <div class="swiper-wrapper relative">
         <slot name="slides"></slot>
     </div>
-    <div class="flex flex-row w-full justify-center">
-        <div class="justin-prev">
-            <NerdFontIcon icon="nf-cod-arrow_left" class="text-vanHelsing-500" />
+    {arrows &&
+    <slot name="arrows">
+        <div class="relative flex flex-row w-full justify-center -mt-4 -translate-y-full z-60">
+            <div class="justin-prev">
+                <NerdFontIcon icon="nf-fa-circle_chevron_left" class="text-secondary text-4xl" />
+            </div>
+            <div class="justin-next">
+                <NerdFontIcon icon="nf-fa-circle_chevron_right" class="text-secondary text-4xl" />
+            </div>
         </div>
-        <div class="justin-next">
-            <NerdFontIcon icon="nf-cod-arrow_right" class="text-vanHelsing-500" />
-        </div>
-    </div>
+    </slot>}
 </div>
 
 <style>
@@ -65,7 +68,7 @@ const swiperConfig = { ...swiperDefaults, ...swiperOptions }
     }
 
     .justin-next {
-        @apply ml-1;
+        @apply ml-2;
     }
 }
 </style>

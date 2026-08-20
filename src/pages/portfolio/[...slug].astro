@@ -24,10 +24,13 @@ export async function getStaticPaths() {
     return staticPaths
 }
 
-const { title, show_url = true, url, screenshots, description } = Astro.props
 
-const widestScreenshots = screenshots.sort((a: any, b: any) => (a.width < b.width) ? 1 : -1)
+const { title, show_url = true, url, screenshots, description, techStack } = Astro.props
 
+
+// const widestScreenshots = screenshots.sort((a: any, b: any) => (a.width < b.width) ? 1 : -1)
+
+    /*
 const swiperOptions = { 
     effect: 'cards',
     cardsEffect: {
@@ -35,47 +38,127 @@ const swiperOptions = {
     },
     autoHeight: false,
 }
+*/
+
+const swiperThumbs = {
+    autoHeight: false,
+    slidesPerView: 3,
+    navigation: false,
+}
+
+const swiperOptions = {
+    autoHeight: false,
+    thumbs: {
+        swiper: '.thumbnails'
+    }
+}
+
+
 
 const API_URL = import.meta.env.SECRET_API_URL;
+
+function getTechStackIcon(technology:string): string {
+    return (() => {
+        switch (technology.toLowerCase().replaceAll(' ', '').replaceAll('.', '')) {
+            case "tailwindcss":
+                return "nf-dev-tailwindcss"
+            case "wordpress":
+                return "nf-dev-wordpress"
+            case "woocommerce":
+                return  "nf-dev-woocommerce"
+            case "sass":
+                return  "nf-md-sass"
+            case "react":
+                return  "nf-md-react"
+            case "astro":
+                return  "nf-md-astro"
+            case "alpinejs":
+                return  "nf-dev-alpinejs"
+            case "jquery":
+                return  "nf-dev-jquery"
+            case "vuejs":
+                return  "nf-seti-vue"
+            case "nextjs":
+                return  "nf-dev-nextjs"
+            case "bootstrap":
+                return  "nf-dev-bootstrap"
+            case "laravel":
+                return  "nf-dev-laravel"
+            case "angular":
+                return  "nf-dev-angular"
+            case "iconicframework":
+                return  "nf-dev-ionic"
+            case "craftcms":
+                return  "nf-md-alpha_c_circle"
+            case "shopify":
+            case "craftcommerce":
+                return  "nf-md-alpha_s_circle"
+            default:
+                return "nf-dev-terminal"
+        }
+    })()
+}
 ---
 
 <BaseLayout>
     <section class="container mx-auto py-8 lg:py-16">
-        <div class="flex flex-col lg:flex-row justify-between items-center pb-8">
-            <h2 class="text-purple">{title}</h2>
-            {show_url &&
-                <PillButton
-                    class="cyan lg:py-3!"
-                    {url}
-                    target="_blank">
-                    <NerdFontIcon icon="nf-md-web mr-2!" />&nbsp;visit
-                </PillButton>
-            }
+        <h2 class="text-primary dark:text-cyan">{title}</h2>
+
+        <div class="flex flex-row">
+            <div class="flex flex-col w-full xl:w-2/3">
+                <div class="main-slide">
+                    <Slider class="overflow-hidden rounded-lg main-slideshow" swiperOptions={swiperOptions}>
+                        <Fragment slot="slides">
+                            {screenshots.map((screenshot: any) => 
+                            <Slide class="rounded-lg">
+                                <Image
+                                    src={API_URL + screenshot.url}
+                                    inferSize={true}
+                                    alt={screenshot.alternativeText ? screenshot.alternativeText : title}
+                                    class="mx-auto object-contain rounded-lg "
+                                    />
+                            </Slide>
+                            )}
+                        </Fragment>
+                    </Slider>
+                </div>
+
+                <div class="thumbnail-controls mt-8">
+                    <Slider class="overflow-hidden thumbnails" arrows={false} swiperOptions={swiperThumbs}>
+                        <Fragment slot="slides">
+                            {screenshots.map((screenshot: any) => 
+                            <Slide class="rounded-lg max-h-30 max-w-fit w-full">
+                                <Image
+                                    src={API_URL + screenshot.url}
+                                    width="221"
+                                    height="120"
+                                    alt={screenshot.alternativeText ? screenshot.alternativeText : title}
+                                    class="mx-auto object-cover rounded-lg"
+                                    />
+                            </Slide>
+                            )}
+                        </Fragment>
+                    </Slider>
+                </div>
+            </div>
         </div>
 
-        <div class="flex flex-col markdown-content mb-8 px-4 md:px-unset">
-            <Fragment set:html={await marked.parse(description)} />
-        </div>
-
-        {screenshots.length &&
-        <div class="container mx-auto px-4 lg:px-unset overflow-hidden">
-            <Slider
-                swiperOptions={swiperOptions}
-                class="md:my-8">
-                <Fragment slot="slides">
-                    {widestScreenshots.map((screenshot: any) => 
-                    <Slide class="">
-                        <Image
-                            src={API_URL + screenshot.url}
-                            inferSize={true}
-                            alt={screenshot.alternativeText ? screenshot.alternativeText : title}
-                            class="mx-auto object-contain rounded-lg"
-                            />
-                    </Slide>
-                    )}
-                </Fragment>
-            </Slider>
-        </div>
-        }
     </section>
 </BaseLayout>
+
+<style>
+@reference "#main.css";
+
+.main-slide {
+    @apply lg:px-unset max-h-137.5 w-full;
+    @apply relative;
+
+    &:after {
+        content: ' ';
+        @apply absolute w-full h-full top-3 left-3 -z-10 pointer-events-none;
+        @apply transition-colors;
+        @apply bg-primary;
+        @apply rounded-lg;
+    }
+}
+</style>

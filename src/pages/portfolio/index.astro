@@ -74,12 +74,12 @@ function logProject(project: any) {
 
 <BaseLayout>
     <section class="container mx-auto">
-        {sortedByCount.map(({id, projects}) => 
+        {sortedByCount.map(({id, projects}: {id:any, projects:any}) => 
         <div class="mb-24 first-of-type:mt-12">
             <h2 class="text-4xl"><NerdFontIcon icon={categoryIcon(id)} /> {categoryTitle(id)}</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-[60px] mt-8">
-                {projects.map((project) => <ProjectCard project={project} icon={categoryIcon(id)} />)}
+                {projects.map((project: any) => <ProjectCard project={project} icon={categoryIcon(id)} />)}
             </div>
         </div>
         )}
