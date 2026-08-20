@@ -19,7 +19,7 @@ const swiperConfig = { ...swiperDefaults, ...swiperOptions }
     class={`swiper relative ${classList}`}
     x-data
     x-swiper.controller=`${JSON.stringify(swiperConfig)}`>
-    <div class="swiper-wrapper relative">
+    <div class="swiper-wrapper relative rounded-lg">
         <slot name="slides"></slot>
     </div>
     {arrows &&

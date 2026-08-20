@@ -28,7 +28,7 @@ export async function getStaticPaths() {
 const { title, show_url = true, url, screenshots, description, techStack } = Astro.props
 
 
-// const widestScreenshots = screenshots.sort((a: any, b: any) => (a.width < b.width) ? 1 : -1)
+const screenshotsSorted = screenshots.sort((a: any, b: any) => (a.width < b.width) ? 1 : -1)
 
     /*
 const swiperOptions = { 
@@ -39,23 +39,6 @@ const swiperOptions = {
     autoHeight: false,
 }
 */
-
-const swiperThumbs = {
-    autoHeight: false,
-    slidesPerView: 3,
-    navigation: false,
-}
-
-const swiperOptions = {
-    autoHeight: false,
-    thumbs: {
-        swiper: '.thumbnails'
-    }
-}
-
-
-
-const API_URL = import.meta.env.SECRET_API_URL;
 
 function getTechStackIcon(technology:string): string {
     return (() => {
@@ -98,6 +81,21 @@ function getTechStackIcon(technology:string): string {
         }
     })()
 }
+
+const swiperThumbs = {
+    autoHeight: false,
+    slidesPerView: 3,
+    navigation: false,
+}
+
+const swiperOptions = {
+    autoHeight: false,
+    thumbs: {
+        swiper: '.thumbnails'
+    }
+}
+
+const API_URL = import.meta.env.SECRET_API_URL;
 ---
 
 <BaseLayout>
@@ -107,15 +105,15 @@ function getTechStackIcon(technology:string): string {
         <div class="flex flex-row">
             <div class="flex flex-col w-full xl:w-2/3">
                 <div class="main-slide">
-                    <Slider class="overflow-hidden rounded-lg main-slideshow" swiperOptions={swiperOptions}>
+                    <Slider class="overflow-hidden rounded-lg main-slideshow max-h-137.5" swiperOptions={swiperOptions}>
                         <Fragment slot="slides">
-                            {screenshots.map((screenshot: any) => 
-                            <Slide class="rounded-lg">
+                            {screenshotsSorted.map((screenshot: any) =>
+                            <Slide class="rounded-lg max-h-137.5 w-full h-full overflow-hidden">
                                 <Image
                                     src={API_URL + screenshot.url}
                                     inferSize={true}
                                     alt={screenshot.alternativeText ? screenshot.alternativeText : title}
-                                    class="mx-auto object-contain rounded-lg "
+                                    class="object-cover w-full h-137.5!"
                                     />
                             </Slide>
                             )}
@@ -123,10 +121,10 @@ function getTechStackIcon(technology:string): string {
                     </Slider>
                 </div>
 
-                <div class="thumbnail-controls mt-8">
+                <div class="mt-8">
                     <Slider class="overflow-hidden thumbnails" arrows={false} swiperOptions={swiperThumbs}>
                         <Fragment slot="slides">
-                            {screenshots.map((screenshot: any) => 
+                            {screenshotsSorted.map((screenshot: any) => 
                             <Slide class="rounded-lg max-h-30 max-w-fit w-full">
                                 <Image
                                     src={API_URL + screenshot.url}
@@ -150,7 +148,7 @@ function getTechStackIcon(technology:string): string {
 @reference "#main.css";
 
 .main-slide {
-    @apply lg:px-unset max-h-137.5 w-full;
+    @apply lg:px-unset h-137.5 w-full;
     @apply relative;
 
     &:after {
@@ -161,4 +159,19 @@ function getTechStackIcon(technology:string): string {
         @apply rounded-lg;
     }
 }
+
+.thumbnails {
+    .swiper-slide.swiper-slide-active {
+        @apply relative;
+
+        &:after {
+            content: ' ';
+            @apply absolute w-full h-full top-3 left-3 -z-10 pointer-events-none;
+            @apply transition-colors;
+            @apply bg-secondary;
+            @apply rounded-lg;
+        }
+    }
+}
+
 </style>
