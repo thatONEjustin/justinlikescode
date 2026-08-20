@@ -2,7 +2,7 @@
 export const prerender = true
 
 import { getCollection } from 'astro:content';
-import { capitalizeString } from "@lib/helpers";
+import { capitalizeString, categoryIcon } from "@lib/helpers";
 
 import BaseLayout from "@layouts/base.astro";
 import ProjectCard from "@components/projects/ProjectCard.astro";
@@ -35,30 +35,6 @@ projects.map((project: any) => {
 
 const sortedByCount = await sortedByCategory.sort((a: any, b: any) => (a.count > b.count) ? -1 : 1)
 
-const categoryIcon = (categoryId: string = ''): string => {
-    let icon = ""
-    switch (categoryId) {
-        case "ecommerce":
-            icon = "nf-fa-cart_shopping"
-        break;
-        case "b2b":
-            icon = "nf-md-handshake"
-        break;
-        case "medical":
-            icon = "nf-fa-laptop_medical"
-        break;
-        case "government":
-            icon = "nf-cod-law"
-        break;
-        case "banking/credit":
-            icon = "nf-fa-bank"
-        break;
-        default:
-            icon = "nf-md-developer_board"
-    }
-
-    return icon
-}
 
 
 const categoryTitle = (categoryId: string): string => {
@@ -67,9 +43,6 @@ const categoryTitle = (categoryId: string): string => {
     return categoryId.split('/').map(word => capitalizeString(word)).join('/')
 }
 
-function logProject(project: any) {
-    console.log('project', project)
-}
 ---
 
 <BaseLayout>

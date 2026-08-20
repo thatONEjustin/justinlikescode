@@ -78,3 +78,15 @@
             opacity-100;
     }
 }
+
+/* 
+* INFO: Project Details
+* */
+.project-summary,
+.project-description {
+    @apply w-full;
+    > p {
+        @apply font-roboto-slab text-[20px] font-light;
+    }
+}
+

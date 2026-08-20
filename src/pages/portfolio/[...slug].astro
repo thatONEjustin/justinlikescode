@@ -4,6 +4,8 @@ export const prerender = true
 import { getCollection } from 'astro:content'
 import { marked } from 'marked'
 
+import { getTechStackIcon } from "@lib/helpers";
+
 import BaseLayout from "@layouts/base.astro"
 import PillButton from '@components/PillButton.astro'
 import NerdFontIcon from '@components/NerdFontIcon.astro'
@@ -25,62 +27,17 @@ export async function getStaticPaths() {
 }
 
 
-const { title, show_url = true, url, screenshots, description, techStack } = Astro.props
+const { title, show_url = true, url: external_url, screenshots, description, techStack, category, preview } = Astro.props
 
-
-const screenshotsSorted = screenshots.sort((a: any, b: any) => (a.width < b.width) ? 1 : -1)
-
-    /*
-const swiperOptions = { 
-    effect: 'cards',
-    cardsEffect: {
-        centeredSlides: true,
-    },
-    autoHeight: false,
+type TechStackType = {
+    id: number,
+    frameworks: string
 }
-*/
 
-function getTechStackIcon(technology:string): string {
-    return (() => {
-        switch (technology.toLowerCase().replaceAll(' ', '').replaceAll('.', '')) {
-            case "tailwindcss":
-                return "nf-dev-tailwindcss"
-            case "wordpress":
-                return "nf-dev-wordpress"
-            case "woocommerce":
-                return  "nf-dev-woocommerce"
-            case "sass":
-                return  "nf-md-sass"
-            case "react":
-                return  "nf-md-react"
-            case "astro":
-                return  "nf-md-astro"
-            case "alpinejs":
-                return  "nf-dev-alpinejs"
-            case "jquery":
-                return  "nf-dev-jquery"
-            case "vuejs":
-                return  "nf-seti-vue"
-            case "nextjs":
-                return  "nf-dev-nextjs"
-            case "bootstrap":
-                return  "nf-dev-bootstrap"
-            case "laravel":
-                return  "nf-dev-laravel"
-            case "angular":
-                return  "nf-dev-angular"
-            case "iconicframework":
-                return  "nf-dev-ionic"
-            case "craftcms":
-                return  "nf-md-alpha_c_circle"
-            case "shopify":
-            case "craftcommerce":
-                return  "nf-md-alpha_s_circle"
-            default:
-                return "nf-dev-terminal"
-        }
-    })()
-}
+const stacks = techStack.filter((stack: TechStackType) => {
+    if(stack.frameworks == null) return false
+    return stack.frameworks
+})
 
 const swiperThumbs = {
     autoHeight: false,
@@ -91,7 +48,7 @@ const swiperThumbs = {
 const swiperOptions = {
     autoHeight: false,
     thumbs: {
-        swiper: '.thumbnails'
+        swiper: '.thumbnails-swiper'
     }
 }
 
@@ -100,20 +57,20 @@ const API_URL = import.meta.env.SECRET_API_URL;
 
 <BaseLayout>
     <section class="container mx-auto py-8 lg:py-16">
-        <h2 class="text-primary dark:text-cyan">{title}</h2>
+        <h2 class="text-primary dark:text-cyan pb-10">{title}</h2>
 
         <div class="flex flex-row">
             <div class="flex flex-col w-full xl:w-2/3">
-                <div class="main-slide">
-                    <Slider class="overflow-hidden rounded-lg main-slideshow max-h-137.5" swiperOptions={swiperOptions}>
+                <div class="project-slideshow">
+                    <Slider class="main-swiper" swiperOptions={swiperOptions}>
                         <Fragment slot="slides">
-                            {screenshotsSorted.map((screenshot: any) =>
-                            <Slide class="rounded-lg max-h-137.5 w-full h-full overflow-hidden">
+                            {screenshots.map((screenshot: any) => 
+                            <Slide class="main-swiper-slide">
                                 <Image
                                     src={API_URL + screenshot.url}
                                     inferSize={true}
                                     alt={screenshot.alternativeText ? screenshot.alternativeText : title}
-                                    class="object-cover w-full h-137.5!"
+                                    class="main-swiper-image"
                                     />
                             </Slide>
                             )}
@@ -121,17 +78,17 @@ const API_URL = import.meta.env.SECRET_API_URL;
                     </Slider>
                 </div>
 
-                <div class="mt-8">
-                    <Slider class="thumbnails" arrows={false} swiperOptions={swiperThumbs}>
+                <div class="project-thumbnails">
+                    <Slider class="thumbnails-swiper" arrows={false} swiperOptions={swiperThumbs}>
                         <Fragment slot="slides">
-                            {screenshotsSorted.map((screenshot: any) => 
-                            <Slide class="rounded-lg max-h-30 max-w-fit w-full relative">
+                            {screenshots.map((screenshot: any) => 
+                            <Slide class="thumbnails-swiper-slide">
                                 <Image
                                     src={API_URL + screenshot.url}
                                     width="221"
                                     height="120"
                                     alt={screenshot.alternativeText ? screenshot.alternativeText : title}
-                                    class="mx-auto object-cover rounded-lg"
+                                    class="thumbnails-swiper-image"
                                     />
                             </Slide>
                             )}
@@ -139,42 +96,57 @@ const API_URL = import.meta.env.SECRET_API_URL;
                     </Slider>
                 </div>
             </div>
+
+            <div class="w-full xl:w-1/3 ml-8 table-auto">
+                <div class="table-row">
+                    <div class="table-cell">
+                        <h3 class="text-black dark:text-secondary">Project Category:</h3>
+                    </div>
+                    <div class="table-cell pl-4">
+                        <h3 class="text-primary dark:text-cyan items-center mb-6">
+                            <NerdFontIcon icon={getTechStackIcon(category)} /> {category}
+                        </h3>
+                    </div>
+                </div>
+                {stacks.length > 0 &&
+                <div class="table-row">
+                    <div class="table-cell">
+                        <h3 class="text-black dark:text-secondary">Tech Stack:</h3>
+                    </div>
+                    <div class="table-cell pl-4">
+                        {stacks.map(({frameworks:framework}: {frameworks: string}) =>
+                        <h3 class="text-primary dark:text-cyan items-center mb-4 last-of-type:mb-0">
+                            <NerdFontIcon icon={getTechStackIcon(framework)} /> {framework}
+                        </h3>
+                        )}
+                    </div>
+                </div>}
+                <div class="table-row">
+                    <div class="table-cell">
+                        <h3 class="text-black dark:text-secondary pt-6">Summary:</h3>
+                    </div>
+                </div>
+                <div>
+                    <div class="project-summary py-6">
+                        <Fragment set:html={marked.parse(preview)} />
+                    </div>
+                </div>
+                {show_url &&
+                <div class="flex flex-row items-center justify-center">
+                    <div class=" table-cell col-span-full">
+                        <PillButton class="flex flex-row text-2xl justify-center items-center mt-8 mx-auto lg:mx-unset w-fit" url={external_url} target="_blank">
+                            Visit Site
+                        </PillButton>
+                    </div>
+                </div>
+                }
+            </div>
+
+        </div>
+
+        <div class="pt-8 project-description">
+            <Fragment set:html={marked.parse(description)} />
         </div>
 
     </section>
 </BaseLayout>
-
-<style>
-@reference "#main.css";
-
-.main-slide {
-    @apply lg:px-unset h-137.5 w-full;
-    @apply relative;
-
-    &:after {
-        content: ' ';
-        @apply absolute w-full h-full top-3 left-3 -z-10 pointer-events-none;
-        @apply transition-colors;
-        @apply bg-primary;
-        @apply rounded-lg;
-    }
-}
-
-.thumbnails {
-    .swiper-slide {
-        @apply relative;
-
-        &.swiper-slide-active {
-
-            &:after {
-                content: ' ';
-                @apply absolute w-full h-full top-3 left-3 -z-10 pointer-events-none;
-                @apply transition-colors;
-                @apply bg-secondary;
-                @apply rounded-lg;
-            }
-        }
-    }
-}
-
-</style>

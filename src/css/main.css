@@ -2,5 +2,6 @@
 @import './tailwind/tailwind.css';
 
 @import './site/menu.css';
+@import './site/swiper.css';
 @import './site/pages.css';
 

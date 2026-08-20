@@ -18,57 +18,19 @@ const swiperConfig = { ...swiperDefaults, ...swiperOptions }
 <div
     class={`swiper relative ${classList}`}
     x-data
-    x-swiper.controller=`${JSON.stringify(swiperConfig)}`>
-    <div class="swiper-wrapper relative rounded-lg">
+    x-swiper.thumbs=`${JSON.stringify(swiperConfig)}`>
+    <div class="swiper-wrapper relative">
         <slot name="slides"></slot>
     </div>
     {arrows &&
     <slot name="arrows">
         <div class="relative flex flex-row w-full justify-center -mt-4 -translate-y-full z-60">
             <div class="justin-prev">
-                <NerdFontIcon icon="nf-fa-circle_chevron_left" class="text-secondary text-4xl" />
+                <NerdFontIcon icon="nf-fa-circle_chevron_left" class="text-4xl" />
             </div>
             <div class="justin-next">
-                <NerdFontIcon icon="nf-fa-circle_chevron_right" class="text-secondary text-4xl" />
+                <NerdFontIcon icon="nf-fa-circle_chevron_right" class="text-4xl" />
             </div>
         </div>
     </slot>}
 </div>
-
-<style>
-@reference "#main.css";
-
-.swiper {
-    .swiper-wrapper {
-        @apply cursor-grab;
-
-        .is-dragging {
-            @apply cursor-grabbing;
-        }
-    }
-
-    .justin-prev, .justin-next {
-        @apply max-w-fit min-w-fit w-fit;
-        @apply cursor-pointer;
-        @apply origin-center transition-all;
-        @apply text-vanHelsing-500 
-            text-2xl;
-
-        &:hover {
-            @apply scale-125;
-        }
-
-        &.swiper-button-disabled {
-            @apply text-vanHelsing-900/60 pointer-events-none;
-        }
-    }
-
-    .justin-prev {
-        @apply mr-1;
-    }
-
-    .justin-next {
-        @apply ml-2;
-    }
-}
-</style>

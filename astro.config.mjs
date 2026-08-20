@@ -34,6 +34,7 @@ export default defineConfig({
             provider: fontProviders.fontsource(),
             name: "Roboto Slab",
             cssVariable: "--font-roboto-slab",
+            weights: ["100 900"]
         }
     ],
     i18n: {
