@@ -85,8 +85,9 @@
 .project-summary,
 .project-description {
     @apply w-full;
+    @apply font-roboto-slab text-[20px] font-light;
     > p {
-        @apply font-roboto-slab text-[20px] font-light;
+        @apply text-[20px];
     }
 }
 

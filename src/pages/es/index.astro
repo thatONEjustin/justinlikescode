@@ -1,44 +1,12 @@
 ---
 import { getData } from "@lib/helpers";
-import { Image } from "astro:assets";
-
-import { marked } from 'marked';
-
-import resume from "/justin-paelmo-resume.pdf";
-// import me from "@images/me.jpeg";
 
 import BaseLayout from "@layouts/base.astro";
+import Intro from "@components/Intro.astro";
 
-import PillButton from "@components/PillButton.astro";
-
-// import Services from "@components/services/Services.astro";
-// import SectionHeader from "@components/SectionHeader.astro";
-// import BlogPosts from "@components/blog/BlogPosts.astro";
 const spanishLocalization =  await getData('home-page?locale=es&populate=buttons&populate=introImage').then(r => r.json())
-
-const { introImage, Content:introText, Greeting:greetingText, buttons } = spanishLocalization.data
-
-const API_URL = import.meta.env.SECRET_API_URL;
-const me = API_URL + introImage.url
 ---
 
 <BaseLayout>
-    <section class="home-hero">
-        <div class="home-hero-container py-8 md:py-0">
-            <div class="portrait">
-                <Image src={me} inferSize={true} alt={greetingText} class="portrait-image"/>
-            </div>
-
-            <div class="intro">
-                <h2 class="text-center md:text-left">{greetingText}</h2>
-
-                <Image src={me} inferSize={true} alt={greetingText} class="md:hidden rounded-full w-full h-auto mx-auto mb-8"/>
-
-                <Fragment set:html={marked.parse(introText)} />
-
-                {buttons.length && buttons.map((button: any) => <PillButton class="flex flex-row text-2xl justify-center items-center mt-8 mx-auto lg:mx-unset" url={button.URL} target="_blank">{button.Label}</PillButton>)}
-            </div>
-        </div>
-    </section>
-
+    <Intro data={spanishLocalization} />
 </BaseLayout>

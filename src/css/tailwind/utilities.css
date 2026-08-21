@@ -98,23 +98,28 @@
 
 @utility markdown-content {
     h2 {
-        @apply text-pink;
+        @apply text-primary;
+        @apply text-4xl;
     }
 
     h3 {
         @apply text-cyan;
+        @apply text-3xl;
     }
 
     h4 {
-        @apply text-green;
+        @apply text-green-700;
+        @apply text-2xl;
     }
 
     h5 {
-        @apply text-yellow;
+        @apply text-yellow-700;
+        @apply text-xl;
     }
 
     h6 {
         @apply text-orange;
+        @apply text-lg;
     }
 
     h1,
@@ -141,13 +146,13 @@
     }
 
     strong {
-        @apply text-orange;
+        @apply text-orange-700;
     }
 
     &.italic,
     em,
     strong>em {
-        @apply text-yellow;
+        @apply text-orange-700;
     }
 
     blockquote {
@@ -162,7 +167,7 @@
     }
 
     ul {
-        @apply text-darker-100;
+        @apply text-darker-500;
         @apply list-disc;
         @apply pl-4;
         @apply py-2;

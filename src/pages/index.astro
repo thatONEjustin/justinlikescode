@@ -1,40 +1,26 @@
 ---
-import { Image } from "astro:assets";
+import { Image } from "astro:assets"
+import { getData } from "@lib/helpers";
 
-import resume from "/justin-paelmo-resume.pdf";
-import me from "@images/me.jpeg";
+import resume from "/justin-paelmo-resume.pdf"
+import offlinePortfolio from "/justin-paelmo-offline-portfolio.pdf"
+import me from "@images/me.jpeg"
 
-import BaseLayout from "@layouts/base.astro";
+import BaseLayout from "@layouts/base.astro"
 
-import PillButton from "@components/PillButton.astro";
+import PillButton from "@components/PillButton.astro"
 
-import Services from "@components/services/Services.astro";
-import SectionHeader from "@components/SectionHeader.astro";
-import BlogPosts from "@components/blog/BlogPosts.astro";
+import Intro from "@components/Intro.astro"
+import Services from "@components/services/Services.astro"
+import SectionHeader from "@components/SectionHeader.astro"
+import BlogPosts from "@components/blog/BlogPosts.astro"
+import SocialMediaList from "@components/SocialMediaList.astro"
+
+const englishLocalization =  await getData('home-page?populate=buttons&populate=introImage').then(r => r.json())
 ---
 
 <BaseLayout>
-    <section class="home-hero">
-        <div class="home-hero-container py-8 md:py-0">
-            <div class="portrait">
-                <Image src={me} alt="Hi! I'm Justin Paelmo!" class="portrait-image"/>
-            </div>
-
-            <div class="intro">
-                <h2 class="text-center md:text-left">Hi, I'm Justin</h2>
-
-                <Image src={me} alt="Hi! I'm Justin Paelmo!" class="md:hidden rounded-full w-full h-auto mx-auto mb-8"/>
-
-                <p>I’m a big enthusiast (aka a big nerd) about web development, productive tooling, Continuous Integration/Development, and server administration.</p>
-
-                <p>I’m committed to using 17 years of professional experience in these areas to helping businesses do what they love, and not worry about today’s technology.</p>
-
-                <PillButton class="flex flex-row text-2xl justify-center items-center mt-8 mx-auto lg:mx-unset" url={resume} target="_blank">
-                    Learn More
-                </PillButton>
-            </div>
-        </div>
-    </section>
+    <Intro data={englishLocalization} />
 
     <Services />
 
@@ -46,21 +32,22 @@ import BlogPosts from "@components/blog/BlogPosts.astro";
             <PillButton href={`/portfolio`} class="inverse text-3xl border-white after:bg-white! hover:text-primary dark:hover:text-cyan-900" target="_blank">
                 Online Portfolio
             </PillButton>
-            <PillButton href={`/portfolio`} class="inverse text-3xl border-white after:bg-white! hover:text-primary dark:hover:text-cyan-900" target="_blank">
+            <PillButton href={offlinePortfolio} class="inverse text-3xl border-white after:bg-white! hover:text-primary dark:hover:text-cyan-900" target="_blank">
                 Download a PDF
             </PillButton>
         </div>
     </section>
 
-    <!-- <section id="social" class="bg-primary dark:bg-darker-900 py-8"> 
+
+    <BlogPosts />
+
+    <section id="social" class="bg-primary dark:bg-darker-900 py-8"> 
         <SectionHeader class="mb-9">
             <h2 class="text-white dark:text-cyan pb-4!" slot="title">Social Media</h2>
         </SectionHeader>
         <div class="justin-container flex flex-col items-center justify-center">
             <SocialMediaList />
         </div>
-    </section>-->
-
-    <BlogPosts />
+    </section>
 
 </BaseLayout>

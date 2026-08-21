@@ -28,7 +28,7 @@
     }
 
     h2 {
-        @apply pb-4 text-primary dark:text-secondary text-5xl;
+        @apply text-primary dark:text-secondary text-5xl;
 
         @variant xl {
             @apply text-6xl;

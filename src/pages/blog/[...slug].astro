@@ -31,16 +31,15 @@ export async function getStaticPaths() {
 }
 
 const { title, publishedAt, content } = Astro.props
-// console.log(content)
 ---
 <BaseLayout>
     <article class="min-h-screen relative" itemscope itemtype="https://schema.org/BlogPosting">
         <section class="blog-post-title">
             <div class="container mx-auto relative z-50">
-                <h2 class="text-7xl text-purple text-left" itemprop="headline">{title}</h2>
+                <h2 class="text-7xl text-purple-900 text-left pb-2" itemprop="headline">{title}</h2>
                 <div class="author-and-date">
-                    <p itemprop="author" itemscope itemtype="https://schema.org/Person" class="text-purple-300 mr-2"><em>written by</em> <span class="text-cyan" itemprop="givenName">Justin</span> <span class="text-cyan" itemprop="familyName">Paelmo</span></p>
-                    <p class="text-purple-300">published <em itemprop="datePublished" class="text-cyan">{blogDate(publishedAt)}</em></p>
+                    <p itemprop="author" itemscope itemtype="https://schema.org/Person" class="text-purple-900 mr-2"><em>written by</em> <span class="text-primary" itemprop="givenName">Justin</span> <span class="text-primary" itemprop="familyName">Paelmo</span></p>
+                    <p class="text-purple-900">published <em itemprop="datePublished" class="text-primary">{blogDate(publishedAt)}</em></p>
                 </div>
             </div>
         </section>
