@@ -5,7 +5,7 @@ import { getCollection } from 'astro:content'
 // import BlogCard from './BlogCard.astro'
 import RecentBlogPost from './RecentBlogPost.astro'
 
-const blog_posts = (await getCollection('blog'))
+const blog_posts = await getCollection('blog')
 
 const latestBlogPosts = blog_posts
     .sort((a, b) => (a.data.publishedAt < b.data.publishedAt) ? 1 : -1)

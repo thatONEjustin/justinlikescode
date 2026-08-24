@@ -2,7 +2,7 @@
 import NerdFontIcon from '@components/NerdFontIcon.astro'
 
 const { data } = Astro.props
-const { icon, title, description, href } = data
+const { icon, title, description, href, buttonText } = data
 ---
 
 <div class="service-card">
@@ -14,7 +14,7 @@ const { icon, title, description, href } = data
         <p class="text-xl pt-8.5 leading-[150%]">{description}</p>
     </div>
 
-    <a href={href} class="learn-more">Learn More</a>
+    <a href={href} class="learn-more">{buttonText}</a>
 </div>
 
 <style>

@@ -25,8 +25,7 @@ const previewImage = screenshots
 const API_URL = import.meta.env.SECRET_API_URL;
 const screenshotUrl = API_URL + previewImage.url
 ---
-<div class="project-card relative">
-    {/* */}
+<div class="project-card">
     {screenshotUrl &&
     <div class="project-card-image">
         <a href={`/portfolio/${slug}`}>
@@ -39,44 +38,49 @@ const screenshotUrl = API_URL + previewImage.url
     </div>}
     <div class="mt-8">
         <h3 class="text-primary dark:text-cyan">
-            <NerdFontIcon icon={icon} class="text-primary dark:text-cyan mr-2" />
-            {title}
+            <a href={`/portfolio/${slug}`}>
+                {/* <NerdFontIcon icon={icon} class="text-primary dark:text-cyan mr-2" /> */}
+                {title}
+            </a>
         </h3>
-        <p class="text-xl pt-8.5 leading-[150%]">{truncateWords(preview, 30)}</p>
+        <p class="text-xl py-8.5 leading-[150%]">{truncateWords(preview, 30)}</p>
 
-        <a href={`/portfolio/${slug}`} class="learn-more">Learn More</a>
     </div>
 
+    <a href={`/portfolio/${slug}`} class="learn-more">Learn More</a>
 </div>
 <style>
-    @reference "#main.css";
-    .project-card-image {
-        @apply max-h-68.5 w-full h-full relative mb-3;
+@reference "#main.css";
+.project-card {
+    @apply relative flex flex-col;
+}
+.project-card-image {
+    @apply h-68.5 w-full relative mb-3;
+    @apply rounded-lg;
+
+    &:after {
+        content: ' ';
+        @apply absolute w-full h-full top-3 left-3 -z-10 pointer-events-none;
+        @apply transition-colors;
+        @apply bg-primary;
         @apply rounded-lg;
+    }
+}
 
-        &:after {
-            content: ' ';
-            @apply absolute w-full h-full top-3 left-3 -z-10 pointer-events-none;
-            @apply transition-colors;
-            @apply bg-primary;
-            @apply rounded-lg;
-        }
+.learn-more {
+    @apply text-secondary dark:text-cyan justify-self-end relative font-bold mt-auto w-fit;
+
+    &:after {
+        content: ' ';
+        @apply absolute w-full h-0.5 transition-all;
+        @apply left-0 bottom-0;
+        @apply bg-secondary;
     }
 
-    .learn-more {
-        @apply text-secondary dark:text-cyan justify-self-end relative font-bold mt-auto;
-
+    @variant dark { 
         &:after {
-            content: ' ';
-            @apply absolute w-full h-0.5 transition-all;
-            @apply left-0 bottom-0;
-            @apply bg-secondary;
-        }
-
-        @variant dark { 
-            &:after {
-                @apply bg-cyan;
-            }
+            @apply bg-cyan;
         }
     }
+}
 </style>

@@ -51,7 +51,6 @@ export default function FormGridForm() {
                             ref={contactForm}
                             action={submit}
                         >
-                            <h2 className="text-4xl font-bold">Contact Me</h2>
 
                             <fieldset>
                                 <InputField name="name" placeholder="Your Name">

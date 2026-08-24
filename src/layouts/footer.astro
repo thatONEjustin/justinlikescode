@@ -26,10 +26,8 @@ const techStacks = [
     },
 ]
 ---
-
-
 <footer class="bg-lightGray dark:bg-darker-800 mt-8 lg:mt-0 relative lg:fixed lg:top-full lg:-translate-y-full w-full py-2 lg:py-0">
-    <div class="relative w-full mx-auto flex flex-row items-center justify-between px-8">
+    <div class="relative w-full mx-auto flex flex-row items-center justify-between container">
         <ul class="flex flex-col md:flex-row py-1">
             {techStacks.map((technology: any) => (
             <li class="mr-2 last:mr-0">
@@ -37,7 +35,7 @@ const techStacks = [
                 <span class="font-normal text-black dark:text-yellow">{technology.tagline}</span>
                 )}
                 <a href={technology.url} target="_blank" class=`${technology.text_color} font-semibold no-underline`>
-                    {technology.icon && <NerdFontIcon icon={technology.icon} class=`${technology.text_color} font-semibold no-underline` />}
+                    {technology.icon && <NerdFontIcon icon={technology.icon} class=`${technology.text_color} font-semibold no-underline ml-1 mr-1` />}
                     {technology.label}
                 </a>
             </li>
