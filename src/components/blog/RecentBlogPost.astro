@@ -7,7 +7,7 @@ const { slug, publishedAt, title, preview } = data
 
 // console.log(truncateWords(content, 20))
 ---
-<article class="w-full recent-blog-post cursor-pointer annotateUnderline">
+<article class="w-full recent-blog-post cursor-pointer annotateUnderline" data-annotate-options={`{ "color": "var(--color-secondary)" }`}>
     <div class="mb-5">
         <h3 class="title" set:html={truncateWords(title, 20)}></h3>
         <h5 class="date"><em>{blogDate(publishedAt)}</em></h5>

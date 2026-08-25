@@ -15,7 +15,7 @@ const { icon, title, description, href, buttonText } = data
     </div>
 
     <a href={href} class="learn-more">
-        <span class="annotateCircle text-secondary dark:text-cyan">
+        <span class="text-secondary dark:text-cyan annotateUnderline">
             {buttonText}
         </span>
     </a>
@@ -53,17 +53,17 @@ const { icon, title, description, href, buttonText } = data
     .learn-more {
         @apply text-secondary dark:text-cyan justify-self-end relative font-bold mt-auto;
 
-        &:after {
-            content: ' ';
-            @apply absolute w-full h-0.5 transition-all;
-            @apply left-0 bottom-0;
-            @apply bg-secondary;
-        }
-
-        @variant dark { 
-            &:after {
-                @apply bg-cyan;
-            }
-        }
+        /* &:after { */
+        /*     content: ' '; */
+        /*     @apply absolute w-full h-0.5 transition-all; */
+        /*     @apply left-0 bottom-0; */
+        /*     @apply bg-secondary; */
+        /* } */
+        /**/
+        /* @variant dark {  */
+        /*     &:after { */
+        /*         @apply bg-cyan; */
+        /*     } */
+        /* } */
     }
 </style>

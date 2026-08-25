@@ -48,7 +48,11 @@ const screenshotUrl = API_URL + previewImage.url
 
     </div>
 
-    <a href={`/portfolio/${slug}`} class="learn-more annotateCircle">Learn More</a>
+    <a href={`/portfolio/${slug}`} class="learn-more text-secondary">
+        <span class="text-secondary annotateUnderline">
+            Learn More
+        </span>
+    </a>
 </div>
 <style>
 @reference "#main.css";
@@ -81,14 +85,14 @@ const screenshotUrl = API_URL + previewImage.url
 }
 
 .learn-more {
-    @apply text-secondary justify-self-end relative font-bold mt-auto w-fit;
+    @apply justify-self-end relative font-bold mt-auto w-fit;
 
-    &:after {
-        content: ' ';
-        @apply absolute w-full h-0.5 transition-all;
-        @apply left-0 bottom-0;
-        @apply bg-secondary;
-    }
+    /* &:after { */
+    /*     content: ' '; */
+    /*     @apply absolute w-full h-0.5 transition-all; */
+    /*     @apply left-0 bottom-0; */
+    /*     @apply bg-secondary; */
+    /* } */
 
     @variant dark { 
         &:after {

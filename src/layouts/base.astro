@@ -6,29 +6,32 @@ import favicon from '@images/favicon.ico';
 import "@css/main.css";
 
 import Header from "@layouts/header.astro";
-import Main from "@layouts/main.astro";
 import Footer from "@layouts/footer.astro";
 
 const { siteTitle = 'justin, a dev' } = Astro.props
 ---
-<script is:inline>
-  function applyTheme() {
-    localStorage.theme === "light"
-      ? document.documentElement.classList.remove("dark")
-      : document.documentElement.classList.add("dark")
-  }
+<script>
+    function applyTheme() {
+        localStorage.theme === "light"
+        ? document.documentElement.classList.remove("dark")
+        : document.documentElement.classList.add("dark")
+    }
 
-  // BUG: this still causes page flash, albeit it's faster now
-  document.addEventListener("astro:after-swap", applyTheme);
-  applyTheme();
+    // BUG: this still causes page flash, albeit it's faster now
+    document.addEventListener("astro:before-swap", applyTheme);
+    applyTheme();
 </script>
 
-<script is:inline data-astro-rerun type="module">
-    import { annotate } from "https://unpkg.com/rough-notation?module"
+<script is:inline type="module" data-astro-rerun>
+    import { annotate } from "../../node_modules/rough-notation"
 
     function processAnchors(anchorArray, anchorOptions) {
         anchorArray.forEach((anchor) => {
-            const annotation = annotate(anchor, anchorOptions)
+            const passedOptions = anchor.dataset.annotateOptions
+                ? JSON.parse(anchor.dataset.annotateOptions) 
+                : {}
+            const annotateOptions = Object.assign(anchorOptions, passedOptions)
+            const annotation = annotate(anchor, annotateOptions)
 
             anchor.addEventListener('mouseover', _event => {
                 annotation.show()
@@ -40,20 +43,16 @@ const { siteTitle = 'justin, a dev' } = Astro.props
         })
     }
 
-    const annotateCircleAnchors = document.querySelectorAll('.annotateCircle')
-    const annotateUnderlineAnchors = document.querySelectorAll('.annotateUnderline')
 
-    processAnchors(annotateUnderlineAnchors, { type: 'underline' })
-    processAnchors(annotateCircleAnchors, { type: 'circle' })
-    /*
     document.addEventListener('astro:page-load', function () {
         const annotateCircleAnchors = document.querySelectorAll('.annotateCircle')
         const annotateUnderlineAnchors = document.querySelectorAll('.annotateUnderline')
 
         processAnchors(annotateUnderlineAnchors, { type: 'underline' })
         processAnchors(annotateCircleAnchors, { type: 'circle' })
-    }) */
+    })
 </script>
+
 <html lang="en" data-theme="light">
     <head>
         <meta charset="utf-8" />
@@ -72,9 +71,6 @@ const { siteTitle = 'justin, a dev' } = Astro.props
     <body>
         <span id="top"></span>
         <Header transition:persist />
-        <!-- <Main transition:animate="slide"> -->
-        <!--     <slot /> -->
-        <!-- </Main> -->
         <main transition:animate="slide">
             <slot />
         </main>
