@@ -19,8 +19,8 @@ export default function Header({ items }: { items: MenuItemType[] }): any {
             <div className="z-30 transition-colors bg-white dark:bg-black border-b-2 border-b-primary dark:border-b-secondary">
                 <div className="px-8 xl:px-unset xl:container mx-auto w-full flex flex-row justify-between items-center py-3">
                     <a href="/" className="text-3xl flex items-center no-underline max-w-8/10">
-                        <i className="nf nf-md-developer_board text-3xl text-primary dark:text-secondary mr-2"></i>
-                        <h1 className="text-primary dark:text-secondary">justinlikescode</h1>
+                        <i className="nf nf-md-developer_board text-3xl text-primary dark:text-cyan mr-2"></i>
+                        <h1 className="text-primary dark:text-cyan">justinlikescode</h1>
                     </a>
                     {!isMobile && <MainMenu items={items} />}
                     {isMobile && <MobileHamburger isMobile={isMobile} mobileMenu={mobileMenuRef as React.RefObject<any>} />}

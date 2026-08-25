@@ -1,0 +1,25 @@
+<script is:inline type="module">
+    import { annotate } from "https://unpkg.com/rough-notation?module"
+
+    function processAnchors(anchorArray, anchorOptions) {
+        anchorArray.forEach((anchor) => {
+            const annotation = annotate(anchor, anchorOptions)
+
+            anchor.addEventListener('mouseover', _event => {
+                annotation.show()
+            })
+
+            anchor.addEventListener('mouseout', _event => {
+                annotation.hide()
+            })
+        })
+    }
+    const annotateCircleAnchors = document.querySelectorAll('.annotateCircle')
+    const annotateUnderlineAnchors = document.querySelectorAll('.annotateUnderline')
+
+    processAnchors(annotateUnderlineAnchors, { type: 'underline' })
+    processAnchors(annotateCircleAnchors, { type: 'circle' })
+
+</script>
+
+<slot />

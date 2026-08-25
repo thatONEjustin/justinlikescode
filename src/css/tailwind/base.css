@@ -7,7 +7,7 @@
         @apply bg-white;
 
         @variant dark {
-            @apply bg-darker-900;
+            @apply bg-darker-800;
         }
     }
 
@@ -17,18 +17,20 @@
     h4,
     h5,
     h6 {
-        @apply text-darker-300 font-bold;
+        @apply font-bold;
         @apply font-roboto-slab;
     }
 
     h1 {
+        @apply text-4xl; 
+
         @variant xl  {
             @apply text-7xl;
         }
     }
 
     h2 {
-        @apply text-primary dark:text-secondary text-5xl;
+        @apply text-primary dark:text-cyan text-5xl;
 
         @variant xl {
             @apply text-6xl;
@@ -40,7 +42,7 @@
     }
 
     p {
-        @apply text-black dark:text-darker-300;
+        @apply text-black dark:text-darker-50;
         font-size: var(--text-base);
 
         + p {

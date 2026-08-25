@@ -36,14 +36,14 @@ const { title, publishedAt, content } = Astro.props
     <article class="min-h-screen relative" itemscope itemtype="https://schema.org/BlogPosting">
         <section class="blog-post-title">
             <div class="container mx-auto relative z-50">
-                <h2 class="text-7xl text-purple-900 text-left pb-2" itemprop="headline">{title}</h2>
+                <h2 class="text-purple-900 dark:text-purple-200 text-center pb-6" itemprop="headline">{title}</h2>
                 <div class="author-and-date">
-                    <p itemprop="author" itemscope itemtype="https://schema.org/Person" class="text-purple-900 mr-2"><em>written by</em> <span class="text-primary" itemprop="givenName">Justin</span> <span class="text-primary" itemprop="familyName">Paelmo</span></p>
-                    <p class="text-purple-900">published <em itemprop="datePublished" class="text-primary">{blogDate(publishedAt)}</em></p>
+                    <p itemprop="author" itemscope itemtype="https://schema.org/Person" class="text-purple-900 dark:text-purple-200 mr-2"><em>written by</em> <span class="text-primary dark:text-cyan" itemprop="givenName">Justin</span> <span class="text-primary dark:text-cyan" itemprop="familyName">Paelmo</span></p>
+                    <p class="text-purple-900 dark:text-purple-200">published <em itemprop="datePublished" class="text-primary dark:text-cyan">{blogDate(publishedAt)}</em></p>
                 </div>
             </div>
         </section>
-        <section class="markdown-content overflow-hidden pt-8 z-10">
+        <section class="markdown-content overflow-hidden pt-12 z-10">
             <div class="justin-container mx-auto" itemprop="articleBody">
                 <Fragment set:html={marked.parse(content)} />
             </div>
@@ -55,7 +55,8 @@ const { title, publishedAt, content } = Astro.props
 @reference "#main.css";
 
 .blog-post-title {
-    @apply px-8 py-6 grid-bg top-15 z-40 shadow-2xl;
+    @apply px-8 py-6 grid-bg top-15 z-40 shadow-xl/5;
+    @apply border-b border-primary dark:border-secondary;
 
     &:before {
         @apply opacity-85;

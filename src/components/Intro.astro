@@ -11,7 +11,7 @@ const API_URL = import.meta.env.SECRET_API_URL;
 const me = API_URL + introImage.url
 ---
 <section class="home-hero">
-    <div class="home-hero-container py-8 md:py-0">
+    <div class="home-hero-container py-8 md:py-0 z-20!">
         <div class="portrait">
             <Image src={me} inferSize={true} alt={greetingText} class="portrait-image"/>
         </div>

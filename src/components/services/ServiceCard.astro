@@ -14,14 +14,18 @@ const { icon, title, description, href, buttonText } = data
         <p class="text-xl pt-8.5 leading-[150%]">{description}</p>
     </div>
 
-    <a href={href} class="learn-more">{buttonText}</a>
+    <a href={href} class="learn-more">
+        <span class="annotateCircle text-secondary dark:text-cyan">
+            {buttonText}
+        </span>
+    </a>
 </div>
 
 <style>
     @reference "#main.css";
 
     .service-card {
-        @apply relative w-10/12 md:w-full flex flex-col items-start justify-center;
+        @apply relative mx-auto mb-8 lg:mb-0 w-10/12 md:w-full flex flex-col items-start justify-center;
         @apply border border-primary dark:border-secondary;
         @apply bg-offWhite dark:bg-darker-900;
         @apply p-6.5;

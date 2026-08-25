@@ -51,9 +51,7 @@
 }
 
 @utility read-more {
-    @apply text-secondary underline underline-offset-6 font-bold;
-    @apply underline underline-offset-6;
-    /* @apply decoration-wavy; */
+    @apply text-secondary font-bold;
 }
 
 @utility fancy-link {
@@ -62,12 +60,11 @@
 
 @utility grid-bg {
     @apply relative;
-    @apply border-b-2;
 
-    &:before {
+    &:after {
         --square-size: 16px;
         @apply absolute w-full h-full top-0 left-0 transition-all ease-linear;
-        @apply z-20;
+        /* @apply -z-20; */
         @apply pointer-events-none;
 
         content: ' ';
@@ -79,31 +76,22 @@
     }
 
     @variant dark {
-        &:before {
+        &:after {
             background-image:
                 linear-gradient(to right, --alpha(var(--color-darker-50) / 5%) 1px, transparent 1px),
                 linear-gradient(to bottom, --alpha(var(--color-darker-50) / 5%) 1px, transparent 1px);
         }
     }
-
-    /* &:after {
-        @apply absolute w-full h-full top-0 left-0;
-        @apply z-10;
-        @apply pointer-events-none;
-
-        content: ' ';
-        background: radial-gradient(circle, var(--color-darker-900), var(--color-black));
-    } */
 }
 
 @utility markdown-content {
     h2 {
-        @apply text-primary;
+        @apply text-primary dark:text-pink-400;
         @apply text-4xl;
     }
 
     h3 {
-        @apply text-cyan;
+        @apply text-cyan-800 dark:text-cyan-600;
         @apply text-3xl;
     }
 
@@ -120,6 +108,15 @@
     h6 {
         @apply text-orange;
         @apply text-lg;
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply mb-4;
     }
 
     h1,
@@ -141,7 +138,7 @@
         +h4,
         +h5,
         +h6 {
-            @apply my-4;
+            @apply mt-8 mb-4;
         }
     }
 
@@ -153,6 +150,14 @@
     em,
     strong>em {
         @apply text-orange-700;
+    }
+
+    code {
+        @apply p-1 mx-1;
+        @apply bg-darker-600 text-green-300;
+        @variant dark {
+            @apply bg-dark-50 text-pink-400;
+        }
     }
 
     blockquote {
@@ -185,12 +190,18 @@
     img {
         @apply my-8;
     }
+
+    a {
+        @apply text-secondary;
+        @apply font-bold;
+        @apply underline underline-offset-6;
+    }
 }
 
 @utility input-has-value {
     @apply text-xs;
     @apply top-0;
-    @apply bg-white dark:bg-darker-900;
+    @apply bg-white dark:bg-darker-800;
     @apply px-3;
 }
 
@@ -270,85 +281,4 @@
             }
         }
     }
-
-    /* &.default {
-        @apply text-darker;
-
-        &:hover {
-            @apply border-transparent text-light bg-darker;
-        }
-    }
-
-    &.green {
-        @apply text-green;
-
-        &:after {
-            @apply bg-green;
-        }
-
-        &:hover {
-            @apply text-darker;
-        }
-    }
-
-    &.cyan {
-        @apply text-cyan;
-
-        &:after {
-            @apply bg-cyan;
-        }
-
-        &:hover {
-            @apply text-darker bg-cyan;
-        }
-    }
-
-    &.red {
-        @apply text-red-600;
-
-        &:after {
-            @apply bg-red-600;
-        }
-
-        &:hover {
-            @apply text-darker bg-red-600;
-        }
-    }
-
-    &.pink {
-        @apply text-pink;
-
-        &:after {
-            @apply bg-pink;
-        }
-
-        &:hover {
-            @apply text-darker bg-pink;
-        }
-    }
-
-    &.purple {
-        @apply text-purple;
-
-        &:after {
-            @apply bg-purple;
-        }
-
-        &:hover {
-            @apply text-darker bg-purple;
-        }
-    }
-
-    &.yellow {
-        @apply text-yellow;
-
-        &:after {
-            @apply bg-yellow;
-        }
-
-        &:hover {
-            @apply text-darker bg-yellow;
-        }
-    }
-    */
 }

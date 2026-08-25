@@ -4,15 +4,14 @@ import { truncateWords } from '@shahid19/stringjs'
 
 import NerdFontIcon from '@components/NerdFontIcon.astro'
 
-const { icon } = Astro.props
+const { icon = '' } = Astro.props
 const { ...data } = Astro.props.project
 
 const { title, slug, preview, screenshots } = data.data
 
 /* BUG: for some reason one of the projects is returning
-*  an undefined set of screenshots. Also hitting up my 
-*  homeserver too often caused my ISP to shut down the
-*  internet /eyeroll
+*  an undefined set of screenshots. I think overloading 
+*  my homelab with too many requests will stall out strapi
 */
 if(screenshots[0] == undefined) {
     return
@@ -39,7 +38,9 @@ const screenshotUrl = API_URL + previewImage.url
     <div class="mt-8">
         <h3 class="text-primary dark:text-cyan">
             <a href={`/portfolio/${slug}`}>
-                {/* <NerdFontIcon icon={icon} class="text-primary dark:text-cyan mr-2" /> */}
+                {icon != '' &&
+                <NerdFontIcon icon={icon} class="text-primary dark:text-cyan mr-2" />
+                }
                 {title}
             </a>
         </h3>
@@ -47,7 +48,7 @@ const screenshotUrl = API_URL + previewImage.url
 
     </div>
 
-    <a href={`/portfolio/${slug}`} class="learn-more">Learn More</a>
+    <a href={`/portfolio/${slug}`} class="learn-more annotateCircle">Learn More</a>
 </div>
 <style>
 @reference "#main.css";
@@ -64,11 +65,23 @@ const screenshotUrl = API_URL + previewImage.url
         @apply transition-colors;
         @apply bg-primary;
         @apply rounded-lg;
+
+        @variant dark {
+            @apply bg-secondary;
+        }
+    }
+}
+
+@variant dark {
+    .project-card-image {
+        &:after {
+            @apply bg-secondary!;
+        }
     }
 }
 
 .learn-more {
-    @apply text-secondary dark:text-cyan justify-self-end relative font-bold mt-auto w-fit;
+    @apply text-secondary justify-self-end relative font-bold mt-auto w-fit;
 
     &:after {
         content: ' ';
@@ -79,7 +92,7 @@ const screenshotUrl = API_URL + previewImage.url
 
     @variant dark { 
         &:after {
-            @apply bg-cyan;
+            /* @apply bg-cyan; */
         }
     }
 }

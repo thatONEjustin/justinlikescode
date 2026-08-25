@@ -3,7 +3,6 @@
 * */
 .home-hero {
     @apply grid-bg border-b-2 border-b-primary dark:border-b-secondary;
-
     @apply bg-white;
 
     @variant dark {
