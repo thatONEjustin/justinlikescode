@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 
-
 export default function ToggleVisualTheme({ className }: { className?: string }) {
     const [theme, setTheme] = useState(localStorage.theme);
 
@@ -15,7 +14,6 @@ export default function ToggleVisualTheme({ className }: { className?: string })
     }
 
     useEffect((): void => {
-        // console.log(localStorage.theme, document.documentElement.dataset.theme)
         if (theme == undefined || theme == null) return
         localStorage.setItem("theme", theme)
         document.documentElement.dataset.theme = theme
