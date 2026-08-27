@@ -10,16 +10,22 @@ import Footer from "@layouts/footer.astro";
 
 const { siteTitle = 'justin, a dev' } = Astro.props
 ---
-<script>
-    function applyTheme() {
+<script is:inline>
+    function loadTheme() {
         localStorage.theme === "light"
         ? document.documentElement.classList.remove("dark")
         : document.documentElement.classList.add("dark")
     }
 
-    // BUG: this still causes page flash, albeit it's faster now
+    function applyTheme(event) {
+        event.newDocument.documentElement.dataset.theme = localStorage.theme
+    }
+
+    // FIXED: this does not flash bang the user! the old "applyTheme"
+    // code wasn't applying localStorage.theme to the *new* document 
+    // it was adding it to the old one and *then* updating the new one
+    document.addEventListener("astro:page-load", loadTheme);
     document.addEventListener("astro:before-swap", applyTheme);
-    applyTheme();
 </script>
 
 <script is:inline type="module" data-astro-rerun>
@@ -42,8 +48,6 @@ const { siteTitle = 'justin, a dev' } = Astro.props
             })
         })
     }
-
-
     document.addEventListener('astro:page-load', function () {
         const annotateCircleAnchors = document.querySelectorAll('.annotateCircle')
         const annotateUnderlineAnchors = document.querySelectorAll('.annotateUnderline')
@@ -53,7 +57,7 @@ const { siteTitle = 'justin, a dev' } = Astro.props
     })
 </script>
 
-<html lang="en" data-theme="light">
+<html lang="en" data-theme>
     <head>
         <meta charset="utf-8" />
 
@@ -71,7 +75,7 @@ const { siteTitle = 'justin, a dev' } = Astro.props
     <body>
         <span id="top"></span>
         <Header transition:persist />
-        <main transition:animate="slide">
+        <main transition:animate="slide" class="px-4 sm:px-0">
             <slot />
         </main>
         <Footer />
