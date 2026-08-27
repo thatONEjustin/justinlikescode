@@ -33,7 +33,7 @@ export async function getStaticPaths() {
 const { title, publishedAt, content } = Astro.props
 ---
 <BaseLayout>
-    <article class="min-h-screen relative" itemscope itemtype="https://schema.org/BlogPosting">
+    <article class="h-fit relative" itemscope itemtype="https://schema.org/BlogPosting">
         <section class="blog-post-title">
             <div class="container mx-auto relative z-50">
                 <h2 class="text-purple-900 dark:text-purple-200 text-center pb-6" itemprop="headline">{title}</h2>
@@ -43,7 +43,7 @@ const { title, publishedAt, content } = Astro.props
                 </div>
             </div>
         </section>
-        <section class="markdown-content overflow-hidden pt-12 z-10">
+        <section class="markdown-content pt-12 z-10">
             <div class="justin-container mx-auto" itemprop="articleBody">
                 <Fragment set:html={marked.parse(content)} />
             </div>
@@ -55,7 +55,7 @@ const { title, publishedAt, content } = Astro.props
 @reference "#main.css";
 
 .blog-post-title {
-    @apply px-8 py-6 grid-bg top-15 z-40 shadow-xl/5;
+    @apply px-8 py-6 grid-bg z-40 shadow-xl/5;
     @apply border-b border-primary dark:border-secondary;
 
     &:before {
