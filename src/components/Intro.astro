@@ -12,14 +12,16 @@ const me = API_URL + introImage.url
 ---
 <section class="home-hero">
     <div class="home-hero-container py-8 md:py-0 z-20!">
-        <div class="portrait">
+        <div class="desktop-portrait">
             <Image src={me} inferSize={true} alt={greetingText} class="portrait-image"/>
         </div>
 
         <div class="intro">
             <h2 class="text-center md:text-left pb-4">{greetingText}</h2>
 
-            <Image src={me} inferSize={true} alt={greetingText} class="md:hidden rounded-full w-full h-auto mx-auto mb-8"/>
+            <div class="mobile-portrait">
+                <Image src={me} inferSize={true} alt={greetingText} class=""/>
+            </div>
 
             <Fragment set:html={marked.parse(introText)} />
 
