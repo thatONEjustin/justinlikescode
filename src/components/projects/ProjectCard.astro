@@ -21,8 +21,10 @@ const previewImage = screenshots
     .sort((a: any, b: any) => (a.width < b.width) ? 1 : -1)
     .slice(0,1)[0]
 
+// console.log(previewImage.formats)
+
 const API_URL = import.meta.env.SECRET_API_URL;
-const screenshotUrl = API_URL + previewImage.url
+const screenshotUrl = API_URL + previewImage.formats.medium.url
 ---
 <div class="project-card">
     {screenshotUrl &&
