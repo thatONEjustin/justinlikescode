@@ -1,6 +1,14 @@
 @layer base {
+    html * {
+        @apply transition-colors;
+    }
+
     body {
-        @apply bg-black;
+        @apply bg-white;
+
+        @variant dark {
+            @apply bg-darker-800;
+        }
     }
 
     h1,
@@ -9,26 +17,32 @@
     h4,
     h5,
     h6 {
-        @apply text-darker-300 font-bold;
+        @apply font-bold;
+        @apply font-roboto-slab;
     }
 
     h1 {
-        /* @apply text-6xl; */
-        font-size: var(--text-6xl);
+        @apply text-4xl;
+
+        @variant xl  {
+            @apply text-7xl;
+        }
     }
 
     h2 {
-        @apply pb-4 text-darker-200;
-        font-size: var(--text-4xl);
+        @apply text-primary dark:text-cyan text-5xl;
+
+        @variant xl {
+            @apply text-6xl;
+        }
     }
 
     h3 {
         @apply text-2xl text-darker-500;
-        font-size: var(--text-2xl);
     }
 
     p {
-        @apply text-darker-100;
+        @apply text-black dark:text-darker-50;
         font-size: var(--text-base);
 
         + p {

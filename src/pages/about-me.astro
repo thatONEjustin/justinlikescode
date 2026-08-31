@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@layouts/base.astro";
+import SectionHeader from "@components/SectionHeader.astro";
 // import SkillsList from '@components/'
 
 import resume from "/justin-paelmo-resume.pdf"
@@ -170,22 +171,23 @@ export const skills_data: Skill[] = [
 ---
 
 <BaseLayout>
-    <section id="about-me" class="py-16">
+    <section id="about-me" class="py-16 grid-bg">
+        <SectionHeader class="mb-9">
+            <h2 slot="title">Work History</h2>
+        </SectionHeader>
         <div class="justin-container">
-            <h2 class="text-green text-center max-w-fit mx-auto border-b border-green lg:mb-2">work history</h2>
-
             <div class="about-timeframe">
-                <h3 class="text-pink">2009 - 2016</h3>
-                <h3><a class="previous-job" href="https://advantageservices.net" target="_blank">AdvantageServices</a></h3>
+                <h3 class="text-secondary">2009 - 2016</h3>
+                <h3><a class="previous-job annotateCircle" href="https://advantageservices.net" target="_blank">AdvantageServices</a></h3>
             </div>
 
             <p>I started professional web development in 2009 back in the SFTP, jQuery, and early PHP days. I worked at a small b2b agency that handled dozens of clients on a regular basis handling every portion of the stack.</p>
             <p>During this time I had already picked up working in a lot of LEGACY web technologies. My first few frameworks were Wordpress and Drupal respectively. Eventually I really got a taste of backend UI development through a combination of ColdFusion/ActionScript and XML parsing.</p>
-            <p>I built control panel UI/UX frameworks for every use case in several global scale niche hiring firms <a href={resume} class="fancy-link">(ask me about it!)</a>.</p>
+            <p>I built control panel UI/UX frameworks for every use case in several global scale niche hiring firms <a href={resume} class="fancy-link annotateCircle">(ask me about it!)</a>.</p>
 
             <div class="about-timeframe mt-8">
-                <h3 class="text-pink">2016 - 2026</h3>
-                <h3><a class="previous-job" href="https://wojodesign.com" target="_blank">WojoDesign</a></h3>
+                <h3 class="text-secondary">2016 - 2026</h3>
+                <h3><a class="previous-job annotateCircle" href="https://wojodesign.com" target="_blank">WojoDesign</a></h3>
             </div>
 
             <p>This was a big move for me both in going from Florida to Chicago, and finally moving towards more modern tech stacks in web development.</p>
@@ -200,7 +202,7 @@ export const skills_data: Skill[] = [
 </BaseLayout>
 
 <style>
-@reference '@css/main.css';
+@reference "#main.css";
 
 #about-me {
     .justin-container {
@@ -210,7 +212,7 @@ export const skills_data: Skill[] = [
     }
 
     .about-timeframe {
-        @apply fancy-border pb-1 mb-3 mt-12 text-pink;
+        @apply border-b-2 border-b-secondary pb-1 mb-3 mt-12 text-pink;
         @apply flex flex-col items-center justify-between;
 
         @variant md {
@@ -220,11 +222,11 @@ export const skills_data: Skill[] = [
 }
 
 .previous-job {
-    @apply text-cyan no-underline;
+    @apply text-secondary no-underline;
     @apply transition-all;
 
     @variant hover {
-        @apply text-pink;
+        @apply text-cyan-800;
     }
 }
 </style>

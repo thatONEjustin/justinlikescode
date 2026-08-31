@@ -25,7 +25,6 @@ export default function FormGridForm() {
             if (response.ok) {
                 setSuccess(true)
             }
-
         } catch (error) {
             console.log('Error submitting form')
             console.log(error)
@@ -52,7 +51,6 @@ export default function FormGridForm() {
                             ref={contactForm}
                             action={submit}
                         >
-                            <h2 className="text-4xl font-bold">Contact Me</h2>
 
                             <fieldset>
                                 <InputField name="name" placeholder="Your Name">
@@ -71,8 +69,11 @@ export default function FormGridForm() {
                             <input type="text" name="_gotcha" className="hidden" />
                             <div className="h-captcha" data-sitekey={RECAPTCHA_SITE_KEY}></div>
 
-                            <button type="submit" className="pill-button green mt-4">
-                                <i className="nf nf-md-send"></i>&nbsp;Contact Me!
+                            <button type="submit" className="pill-button text-white mt-4">
+                                <span className="pill-button-text">
+                                    <i className="nf nf-md-send"></i>&nbsp;Contact Me!
+                                </span>
+
                             </button>
                         </motion.form>
                     )}

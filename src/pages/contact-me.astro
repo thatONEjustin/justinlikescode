@@ -1,10 +1,14 @@
 ---
 import BaseLayout from "@layouts/base.astro"
+import SectionHeader from "@components/SectionHeader.astro"
 
 import ContactForm from "@components/forms/Form.tsx"
 ---
 <BaseLayout title="Contact Me">
     <section class="container mx-auto max-w-2xl py-16">
+        <SectionHeader class="mb-9">
+            <h2 slot="title" class="pb-4!">Contact Me</h2>
+        </SectionHeader>
         <ContactForm client:only="react" />
     </section>
 </BaseLayout>

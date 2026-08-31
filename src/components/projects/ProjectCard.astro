@@ -1,85 +1,105 @@
 ---
-import { marked } from 'marked'
 import { Image } from "astro:assets"
+import { truncateWords } from '@shahid19/stringjs'
 
-const { title, slug, preview, screenshots } = Astro.props.data
+import NerdFontIcon from '@components/NerdFontIcon.astro'
+
+const { icon = '' } = Astro.props
+const { ...data } = Astro.props.project
+
+const { title, slug, preview, screenshots } = data.data
+
+/* BUG: for some reason one of the projects is returning
+*  an undefined set of screenshots. I think overloading 
+*  my homelab with too many requests will stall out strapi
+*/
+if(screenshots[0] == undefined) {
+    return
+}
 
 const previewImage = screenshots
     .sort((a: any, b: any) => (a.width < b.width) ? 1 : -1)
     .slice(0,1)[0]
 
+// console.log(previewImage.formats)
 
 const API_URL = import.meta.env.SECRET_API_URL;
-const src = API_URL + previewImage.url
+const screenshotUrl = API_URL + previewImage.formats.medium.url
 ---
+<div class="project-card">
+    {screenshotUrl &&
+    <div class="project-card-image">
+        <a href={`/portfolio/${slug}`}>
+            <Image
+                src={screenshotUrl}
+                inferSize={true}
+                class="object-cover w-full h-full rounded-lg border border-primary dark:border-secondary"
+                alt={preview} />
+        </a>
+    </div>}
+    <div class="mt-8">
+        <h3 class="text-primary dark:text-cyan">
+            <a href={`/portfolio/${slug}`}>
+                {icon != '' &&
+                <NerdFontIcon icon={icon} class="text-primary dark:text-cyan mr-2" />
+                }
+                {title}
+            </a>
+        </h3>
+        <p class="text-xl pt-4 pb-8.5 leading-[150%]">{truncateWords(preview, 30)}</p>
 
-<a href={`/portfolio/${slug}`} class="project-card">
-    <h3 class="text-vanHelsing-500 z-20">{title}</h3>
-    <div class="text-vanHelsing-100 z-20">
-        <Fragment set:html={await marked.parse(preview)} />
     </div>
 
-    {previewImage &&
-        <Image
-            {src}
-            inferSize={true}
-            class="project-banner-image"
-            alt={preview} />
-    }
-</a>
-
+    <a href={`/portfolio/${slug}`} class="learn-more text-secondary">
+        <span class="text-secondary annotateUnderline">
+            Learn More
+        </span>
+    </a>
+</div>
 <style>
-@reference "@css/main.css";
-
+@reference "#main.css";
 .project-card {
-    @apply w-full
-        flex 
-        flex-col
-        px-16
-        py-16
-        bg-dark-50/5 
-        border-b
-        border-darker-800
-        relative
-        overflow-hidden;
-
-    @apply transition-all ease-in-out duration-400;
-    @apply origin-center scale-100;
-
-    @variant first-of-type {
-        @apply border-t;
-    }
+    @apply relative flex flex-col;
+}
+.project-card-image {
+    @apply h-68.5 w-full relative mb-3;
+    @apply rounded-lg;
 
     &:after {
-        @apply absolute w-64 h-128 top-1/2 -translate-y-1/2 translate-x-[100vw];
-        @apply transition-all ease-in-out duration-400;
-        @apply bg-linear-to-r from-transparent via-white/10 to-transparent;
-        @apply blur-lg;
-        @apply rotate-33;
-        @apply pointer-events-none;
         content: ' ';
-    }
+        @apply absolute w-full h-full top-3 left-3 -z-10 pointer-events-none;
+        @apply transition-colors;
+        @apply bg-primary;
+        @apply rounded-lg;
 
-    > .project-banner-image {
-        @apply absolute
-            opacity-5
-            top-0
-            left-0
-            z-10
-            object-cover
-            w-full
-            transition-opacity;
-    }
-
-    @variant hover {
-        &:after {
-            @apply translate-x-[-200%];
-        }
-
-        > .project-banner-image {
-            @apply opacity-20;
+        @variant dark {
+            @apply bg-secondary;
         }
     }
 }
 
+@variant dark {
+    .project-card-image {
+        &:after {
+            @apply bg-secondary!;
+        }
+    }
+}
+
+.learn-more {
+    @apply justify-self-end relative font-bold mt-auto w-fit;
+
+    /* &:after { */
+    /*     content: ' '; */
+    /*     @apply absolute w-full h-0.5 transition-all; */
+    /*     @apply left-0 bottom-0; */
+    /*     @apply bg-secondary; */
+    /* } */
+
+    @variant dark { 
+        &:after {
+            /* @apply bg-cyan; */
+        }
+    }
+}
 </style>

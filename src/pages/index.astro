@@ -1,140 +1,52 @@
 ---
 import { Image } from "astro:assets"
+import { getData } from "@lib/helpers";
 
 import resume from "/justin-paelmo-resume.pdf"
+import offlinePortfolio from "/justin-paelmo-offline-portfolio.pdf"
 import me from "@images/me.jpeg"
 
-import BaseLayout from "@layouts/base.astro";
+import BaseLayout from "@layouts/base.astro"
 
-import PillButton from "@components/PillButton.astro";
-import NerdFontIcon from "@components/NerdFontIcon.astro";
+import PillButton from "@components/PillButton.astro"
 
-import BlogPosts from "@components/blog/BlogPosts.astro";
-import SocialMediaList from "@components/SocialMediaList.astro";
+import Intro from "@components/Intro.astro"
+import Services from "@components/services/Services.astro"
+import SectionHeader from "@components/SectionHeader.astro"
+import BlogPosts from "@components/blog/BlogPosts.astro"
+import SocialMediaList from "@components/SocialMediaList.astro"
+
+const englishLocalization =  await getData('home-page?populate=buttons&populate=introImage').then(r => r.json())
 ---
+
 <BaseLayout>
-    <section class="home-hero">
-        <div class="home-hero-container">
-            <div class="intro">
-                <h2 class="">About Me</h2>
-                <p>I am a huge nerd about <NerdFontIcon class="text-cyan" icon="nf-md-web" /><span class="text-cyan">web development,</span> <NerdFontIcon class="text-cyan" icon="nf-dev-terminal"/><span class="text-cyan">tooling,</span> <NerdFontIcon class="text-cyan" icon="nf-md-git"/> <span class="text-cyan">CI/CD,</span> and <NerdFontIcon class="text-cyan" icon="nf-md-remote_desktop" /> <span class="text-cyan">server administration</span>.</p>
-                <p><span class="font-semibold fancy-border fancy-text">I do my best when working with tight knit teams</span> on finding elegant solutions for any full stack deployment.</p>
-                <PillButton class="flex flex-row text-3xl justify-center items-center green mt-8 mx-auto lg:mx-unset" url={resume} target="_blank">
-                   <NerdFontIcon icon="nf-md-file_document max-h-7.5" />&nbsp;Resume
-                </PillButton>
+    <Intro data={englishLocalization} />
 
-                <a href="https://archlinux.org" target="_blank" class="archlinux hidden lg:block">
-                    i use <NerdFontIcon icon="nf-md-arch" class="text-archlinux mr-px!" /><span class="relative -left-1.5 text-archlinux">rch</span>btw.
-                </a>
-            </div>
-
-            <div class="portrait">
-                <Image
-                    src={me}
-                    alt="Hi! I'm Justin Paelmo!"
-                    class="portrait-image"
-                    />
-            </div>
+    <Services />
+    <section id="resume" class="bg-primary dark:bg-cyan-900 py-14">
+        <SectionHeader class="mb-9">
+            <h2 class="text-white dark:text-cyan pb-4!" slot="title">See My Work</h2>
+        </SectionHeader>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-5 max-w-fit mx-auto">
+            <PillButton href={`/portfolio`} class="inverse mx-auto text-3xl border-white after:bg-white! hover:text-primary dark:hover:text-cyan-900 mb-8 md:mb-0" target="_blank">
+                Online Portfolio
+            </PillButton>
+            <PillButton href={offlinePortfolio} class="inverse mx-auto text-3xl border-white after:bg-white! hover:text-primary dark:hover:text-cyan-900" target="_blank">
+                Download a PDF
+            </PillButton>
         </div>
     </section>
+
 
     <BlogPosts />
 
-    <section id="social" class="bg-darker-900 py-8">
+    <section id="social" class="bg-primary dark:bg-darker-900 pt-8"> 
+        <SectionHeader class="mb-9">
+            <h2 class="text-white dark:text-cyan pb-4!" slot="title">Social Media</h2>
+        </SectionHeader>
         <div class="justin-container flex flex-col items-center justify-center">
-            <h2 class="text-darker-50">social media</h2>
             <SocialMediaList />
         </div>
     </section>
+
 </BaseLayout>
-
-<style>
-@reference '@css/main.css';
-
-.home-hero {
-    @apply py-5 grid-bg;
-}
-
-.home-hero-container {
-    @apply w-full
-        relative
-        flex
-        flex-col
-        z-50
-        p-8
-        items-center
-        mx-auto;
-
-    @variant lg {
-        @apply w-full
-            flex-row;
-    }
-
-    @variant xl {
-        @apply container px-0;
-    }
-}
-
-.intro {
-    @apply order-1 w-full;
-
-    @variant lg {
-        @apply w-1/2;
-    }
-
-    > h2 {
-        @apply text-green border-b border-green;
-
-        @variant lg {
-            @apply mb-2;
-        }
-    }
-
-    > p {
-        @apply text-dark-600 text-3xl leading-relaxed;
-    }
-}
-
-.portrait {
-    @apply w-full
-        mt-8
-        order-2
-        flex
-        flex-col
-        items-center;
-
-    @variant md {
-        @apply w-1/3;
-    }
-
-    @variant lg {
-        @apply w-4/10
-            mx-auto
-            mt-0;
-    }
-}
-
-.portrait-image {
-    @apply z-40 mx-auto w-full h-auto max-w-2xl;
-    @apply mb-8;
-    @apply rounded-full border-4 border-yellow;
-
-    @variant lg {
-        @apply mx-unset mb-0;
-    }
-} 
-
-.archlinux {
-    @apply text-dark-600 
-        mt-12
-        text-sm
-        leading-relaxed
-        opacity-60
-        w-fit;
-
-    @variant hover {
-        @apply text-archlinux
-            opacity-100;
-    }
-}
-</style>

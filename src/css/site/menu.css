@@ -1,0 +1,127 @@
+header {
+    /* @apply  z-100; */
+
+    /* @variant xl { */
+    /*     @apply sticky top-0; */
+    /* } */
+
+    h1 {
+        @apply text-2xl;
+
+        @variant md {
+            @apply text-3xl;
+        }
+
+        @variant lg {
+            @apply text-4xl;
+        }
+    }
+}
+
+.hamburger {
+    @apply block relative;
+    @apply w-10 h-fit;
+    @apply cursor-pointer;
+
+    .hamburger-bar {
+        @apply block 
+            relative
+            w-full
+            h-1
+            bg-primary
+            dark:bg-secondary
+            rounded-md;
+
+        @apply origin-center transition-[rotate];
+        @apply mb-2;
+
+        content: ' ';
+
+        &:last-of-type {
+            @apply mb-0;
+        }
+    }
+
+    &.active {
+        .hamburger-bar {
+            @apply absolute;
+            @apply top-1/2;
+
+            &:first-child {
+                @apply rotate-45;
+            }
+
+            &:last-child {
+                @apply rotate-135;
+            }
+
+            &:nth-child(2) {
+                @apply opacity-0;
+            }
+        }
+    }
+
+    @variant md {
+        @apply hidden;
+    }
+}
+
+.main-menu {
+    li {
+        @apply border-r border-darker-100 dark:border-darker-700 pr-3 mr-3 last:mr-0;
+
+        a.menu-item {
+            @apply relative text-primary dark:text-darker-300 transition-all;
+            @apply no-underline;
+
+            &::after {
+                @apply absolute -bottom-3 left-0;
+                content: '';
+                @apply h-0.5 w-0 bg-cyan-800 dark:bg-cyan origin-center transition-all;
+            }
+
+            &:hover {
+                @apply text-cyan-800 dark:text-cyan;
+
+                &::after {
+                    @apply w-full;
+                }
+            }
+
+            &.active {
+                @apply text-secondary dark:text-pink;
+
+                &::after {
+                    @apply bg-secondary dark:bg-pink w-full;
+                }
+            }
+        }
+
+        &.main-menu-modeToggle,
+        &.main-menu-language { 
+            @apply px-0!;
+            @apply border-r-0!;
+        }
+
+        &.main-menu-language {
+            @apply mr-0!;
+        }
+    }
+
+    @apply hidden;
+    @variant md {
+        @apply flex flex-row items-center py-4 md:py-0;
+    }
+}
+
+.mobile-menu {
+    @apply md:hidden;
+    @apply absolute top-0 left-0 ;
+    @apply translate-x-0 w-full h-fit bg-white dark:bg-darker-900 top-full;
+    @apply transition-all z-50;
+    @apply rotate-x-90 origin-top;
+
+    &.active {
+        @apply rotate-x-0;
+    }
+}

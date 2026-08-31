@@ -1,41 +1,14 @@
 ---
-import Menu from "@components/menu/Menu.astro";
-import NerdFontIcon from '@components/NerdFontIcon.astro'
+import { getCollection } from 'astro:content';
+
+import Header from "@components/menu/Header.tsx";
+
+const menuItemCollection = await getCollection('menuItems')
+const menuItems = menuItemCollection.map(({data}) => {
+    return {
+        ...data
+    }
+})
 ---
 
-<header>
-    <div class="fancy-border bg-black">
-        <div class="px-8 xl:px-unset xl:container mx-auto w-full flex flex-col sm:flex-row justify-between items-center py-3">
-            <a href="/" class="text-3xl flex items-center no-underline max-w-8/10">
-                <NerdFontIcon icon="nf-dev-terminal" class="text-2xl lg:text-3xl text-pink mr-2 hidden xl:block" />
-                <h1 class="text-cyan">I'm Justin, a <span class="text-green">full stack <NerdFontIcon icon="nf-oct-stack" class="inline" />developer</span></h1>
-                <span class="sr-only">I'm Justin Paelmo, a full stack developer</span>
-            </a>
-            <Menu transition:persist />
-        </div>
-    </div>
-</header>
-
-<style>
-@reference "../css/main.css";
-
-header {
-    @apply  z-100;
-
-    @variant xl {
-        @apply sticky top-0;
-    }
-
-    h1 {
-        @apply text-2xl;
-
-        @variant md {
-            @apply text-3xl;
-        }
-
-        @variant lg {
-            @apply text-4xl;
-        }
-    }
-}
-</style>
+<Header client:only items={menuItems} />

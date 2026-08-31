@@ -1,0 +1,45 @@
+---
+const { class:classes } = Astro.props
+---
+
+<header class={`section-header container mx-auto ${classes}`}>
+    <slot name="title"/>
+    {Astro.slots.has('description') &&
+    <div class="description">
+        <slot name="description"/>
+    </div>}
+</header>
+
+<style>
+@reference "#main.css";
+
+.section-header {
+    @apply flex flex-col items-center;
+
+    h2 {
+        @apply text-center;
+        @apply my-0 pt-0;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply pb-4;
+    }
+
+    .description {
+        @apply max-w-4xl mx-auto text-center ;
+
+        p {
+            @apply text-xl py-6;
+            @apply leading-[175%];
+        }
+    }
+
+    &:after {
+        content: ' ';
+        @apply block w-45 h-1  mx-auto;
+        @apply bg-secondary dark:bg-cyan-400;
+
+        @apply my-0 py-0;
+    }
+}
+</style>

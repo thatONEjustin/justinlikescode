@@ -3,11 +3,11 @@ import NerdFontIcon from '@components/NerdFontIcon.astro'
 
 import 'swiper/css/bundle' // @ts-nocheck
 
-const { class:classList = "", swiperOptions = {} } = Astro.props
+const { class:classList = "", swiperOptions = {}, arrows = true } = Astro.props
 
 const swiperDefaults = {
     navigation: {
-        enabled: true,
+        enabled: arrows,
         nextEl: '.justin-next',
         prevEl: '.justin-prev',
     }
@@ -16,56 +16,21 @@ const swiperConfig = { ...swiperDefaults, ...swiperOptions }
 ---
 
 <div
-    class={`swiper ${classList}`}
+    class={`swiper relative ${classList}`}
     x-data
-    x-swiper.cards=`${JSON.stringify(swiperConfig)}`>
-    <div class="swiper-wrapper">
+    x-swiper.thumbs=`${JSON.stringify(swiperConfig)}`>
+    <div class="swiper-wrapper relative">
         <slot name="slides"></slot>
     </div>
-    <div class="flex flex-row w-full justify-center">
-        <div class="justin-prev">
-            <NerdFontIcon icon="nf-cod-arrow_left" class="text-vanHelsing-500" />
+    {arrows &&
+    <slot name="arrows">
+        <div class="relative flex flex-row w-full justify-center -mt-4 -translate-y-full z-60">
+            <div class="justin-prev">
+                <NerdFontIcon icon="nf-fa-circle_chevron_left" class="text-4xl" />
+            </div>
+            <div class="justin-next">
+                <NerdFontIcon icon="nf-fa-circle_chevron_right" class="text-4xl" />
+            </div>
         </div>
-        <div class="justin-next">
-            <NerdFontIcon icon="nf-cod-arrow_right" class="text-vanHelsing-500" />
-        </div>
-    </div>
+    </slot>}
 </div>
-
-<style>
-@reference '@css/main.css';
-
-.swiper {
-    .swiper-wrapper {
-        @apply cursor-grab;
-
-        .is-dragging {
-            @apply cursor-grabbing;
-        }
-    }
-
-    .justin-prev, .justin-next {
-        @apply max-w-fit min-w-fit w-fit;
-        @apply cursor-pointer;
-        @apply origin-center transition-all;
-        @apply text-vanHelsing-500 
-            text-2xl;
-
-        &:hover {
-            @apply scale-125;
-        }
-
-        &.swiper-button-disabled {
-            @apply text-vanHelsing-900/60 pointer-events-none;
-        }
-    }
-
-    .justin-prev {
-        @apply mr-1;
-    }
-
-    .justin-next {
-        @apply ml-1;
-    }
-}
-</style>

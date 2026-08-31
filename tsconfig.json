@@ -16,11 +16,14 @@
             "@css/*": [
                 "./src/css/*"
             ],
-            "@js/*": [
-                "./src/js/*"
+            "@lib/*": [
+                "./src/lib/*"
             ],
             "@images/*": [
-                "./src/img/*"
+                "./src/assets/img/*"
+            ],
+            "@fonts/*": [
+                "./src/assets/fonts/*"
             ],
             "@node/*": [
                 "./node_modules/*"
