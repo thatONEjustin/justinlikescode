@@ -4,7 +4,7 @@ export const prerender = true
 import { getCollection } from 'astro:content'
 import { marked } from 'marked'
 
-import { getTechStackIcon } from "@lib/helpers";
+import { getTechStackIcon, getCategoryIcon } from "@lib/helpers";
 
 import BaseLayout from "@layouts/base.astro"
 import PillButton from '@components/PillButton.astro'
@@ -45,10 +45,17 @@ const swiperThumbs = {
     autoHeight: false,
     slidesPerView: 3,
     navigation: false,
+    centeredSlides: true,
+    centerInsufficientSlides: true,
+    breakpoints: {
+        411: {
+            slidesPerView: 1,
+        }
+    }
 }
 
 const swiperOptions = {
-    autoHeight: false,
+    autoHeight: true,
     thumbs: {
         swiper: '.thumbnails-swiper'
     }
@@ -56,12 +63,11 @@ const swiperOptions = {
 
 const API_URL = import.meta.env.SECRET_API_URL;
 ---
-
 <BaseLayout>
     <section class="container mx-auto py-8 lg:py-16">
         <h2 class="text-primary dark:text-cyan pb-10">{title}</h2>
 
-        <div class="flex flex-row">
+        <div class="flex flex-col lg:flex-row">
             <div class="flex flex-col w-full xl:w-2/3">
                 <div class="project-slideshow">
                     <Slider class="main-swiper" swiperOptions={swiperOptions}>
@@ -99,23 +105,23 @@ const API_URL = import.meta.env.SECRET_API_URL;
                 </div>
             </div>
 
-            <div class="w-full xl:w-1/3 ml-10 table-auto">
-                <div class="table-row">
+            <div class="w-full xl:w-1/3 lg:ml-10 mt-8 lg:mt-0 flex flex-col">
+                <div class="flex flex-row justify-between items-start">
                     <div class="table-cell">
-                        <h3 class="text-black dark:text-darker-200">Project Category:</h3>
+                        <h3 class="text-black dark:text-darker-200">Category:</h3>
                     </div>
-                    <div class="table-cell pl-4">
+                    <div class="table-cell pl-4 text-right">
                         <h3 class="text-primary dark:text-cyan items-center mb-6">
-                            <NerdFontIcon icon={getTechStackIcon(category)} /> {category}
+                            <NerdFontIcon icon={getCategoryIcon(category)} /> {category}
                         </h3>
                     </div>
                 </div>
                 {stacks.length > 0 &&
-                <div class="table-row">
+                <div class="flex flex-row justify-between items-start">
                     <div class="table-cell">
                         <h3 class="text-black dark:text-darker-200">Tech Stack:</h3>
                     </div>
-                    <div class="table-cell pl-4">
+                    <div class="table-cell pl-4 text-right">
                         {stacks.map(({frameworks:framework}: {frameworks: string}) =>
                         <h3 class="text-primary dark:text-cyan items-center mb-4 last-of-type:mb-0">
                             <NerdFontIcon icon={getTechStackIcon(framework)} /> {framework}
@@ -123,7 +129,7 @@ const API_URL = import.meta.env.SECRET_API_URL;
                         )}
                     </div>
                 </div>}
-                <div class="table-row">
+                <div class="flex flex-row justify-between items-start">
                     <div class="table-cell">
                         <h3 class="text-black dark:text-darker-200 pt-6">Summary:</h3>
                     </div>
@@ -135,7 +141,7 @@ const API_URL = import.meta.env.SECRET_API_URL;
                 </div>
                 {show_url &&
                 <div class="flex flex-row items-center justify-center">
-                    <div class=" table-cell col-span-full">
+                    <div class="table-cell col-span-full">
                         <PillButton class="flex flex-row text-2xl justify-center items-center mt-8 mx-auto lg:mx-unset w-fit" href={external_url} target="_blank">
                             <NerdFontIcon icon="nf-md-web mr-2" />Visit Site
                         </PillButton>
