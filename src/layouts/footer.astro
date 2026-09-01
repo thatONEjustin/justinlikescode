@@ -35,8 +35,10 @@ const techStacks = [
                 <span class="font-normal text-black dark:text-yellow">{technology.tagline}</span>
                 )}
                 <a href={technology.url} target="_blank" class=`${technology.text_color} font-semibold no-underline`>
-                    {technology.icon && <NerdFontIcon icon={technology.icon} class=`${technology.text_color} font-semibold no-underline ml-1 mr-1` />}
-                    {technology.label}
+                    <span class="annotateUnderline">
+                        {technology.icon && <NerdFontIcon icon={technology.icon} class=`${technology.text_color} font-semibold no-underline ml-1 mr-1` />}
+                        {technology.label}
+                    </span>
                 </a>
             </li>
             ))}

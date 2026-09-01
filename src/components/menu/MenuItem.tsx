@@ -1,12 +1,30 @@
 "use client";
 
-export default function MenuItem({ href, scrollTo = '', icon, label, active }: any): any {
+import { RoughNotation } from "react-rough-notation";
+
+import { useState } from "react";
+
+export default function MenuItem({ href, icon, label, active }: any): any {
+    const [isActive, setIsActive] = useState(active);
+    function checkActive() {
+        if (active) return;
+
+        setIsActive(false);
+    }
+
     return (
         <li>
-            <a href={href} className={`menu-item ${active ? 'active' : ''}`} data-scroll={scrollTo}>
-                <i className={`nf ${icon} mr-2`}></i>
-                {label}
-            </a>
+            <RoughNotation type="underline" show={isActive} color="var(--color-primary)" strokeWidth={2}>
+                <a
+                    href={href}
+                    className={`menu-item ${active ? "active" : ""}`}
+                    onMouseEnter={() => setIsActive(true)}
+                    onMouseLeave={() => checkActive()}
+                >
+                    <i className={`nf ${icon} mr-2`}></i>
+                    {label}
+                </a>
+            </RoughNotation>
         </li>
-    )
+    );
 }
