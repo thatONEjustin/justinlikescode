@@ -50,11 +50,13 @@ const { siteTitle = 'justin, a dev' } = Astro.props
         })
     }
     document.addEventListener('astro:page-load', function () {
+        const annotateGeneric = document.querySelectorAll('.annotateMe')
         const annotateCircleAnchors = document.querySelectorAll('.annotateCircle')
         const annotateUnderlineAnchors = document.querySelectorAll('.annotateUnderline')
 
         processAnchors(annotateUnderlineAnchors, { type: 'underline' })
         processAnchors(annotateCircleAnchors, { type: 'circle' })
+        processAnchors(annotateGeneric, {})
     })
 </script>
 
