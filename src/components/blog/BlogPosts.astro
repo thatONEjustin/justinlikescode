@@ -2,7 +2,7 @@
 export const prerender = true
 import { getCollection } from 'astro:content'
 
-// import BlogCard from './BlogCard.astro'
+import SectionHeader from '@components/SectionHeader.astro'
 import RecentBlogPost from './RecentBlogPost.astro'
 
 const blog_posts = await getCollection('blog')
@@ -10,12 +10,16 @@ const blog_posts = await getCollection('blog')
 
 
 const latestBlogPosts = blog_posts
-    .sort((a, b) => (a.data.createdAt < b.data.createdAt) ? 1 : -1)
+    .sort((a, b) => (a.data.publishDate < b.data.publishDate) ? 1 : -1)
     .slice(0,3)
 ---
 
 <section class="blog-posts">
-    <div class="blog-posts-container">
+    <SectionHeader>
+        <h2 slot="title">Blog</h2>
+        <p slot="description">A mix of tutorials, musings, rants, and opinions about web development</p>
+    </SectionHeader>
+    <div class="blog-posts-container grid grid-cols-1 lg:grid-cols-3 gap-x-16">
         {latestBlogPosts.map((post: any) => <RecentBlogPost data={post.data} />)}
     </div>
 </section>
