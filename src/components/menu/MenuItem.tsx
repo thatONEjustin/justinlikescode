@@ -2,22 +2,39 @@
 
 import { RoughNotation } from "react-rough-notation";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function MenuItem({ href, icon, label, active }: any): any {
     const [isActive, setIsActive] = useState(active);
-    function checkActive() {
+
+    const [theme, setTheme] = useState(localStorage.theme);
+
+    useEffect(() => {
+        setTheme(localStorage.theme);
+    });
+
+    function themeColor(): string {
+        return theme === "light" ? "var(--color-secondary)" : "var(--color-green)";
+    }
+
+    function checkActive(): void {
         if (active) return;
 
         setIsActive(false);
     }
 
     return (
-        <li>
-            <RoughNotation type="underline" show={isActive} color="var(--color-primary)" strokeWidth={2}>
+        <li className="cursor-pointer">
+            <RoughNotation
+                type="underline"
+                show={isActive}
+                animationDuration={350}
+                color={themeColor()}
+                strokeWidth={2}
+            >
                 <a
                     href={href}
-                    className={`menu-item ${active ? "active" : ""}`}
+                    className={`menu-item text-primary hover:text-secondary dark:text-darker-300 dark:hover:text-green ${active ? "active dark:text-green" : ""}`}
                     onMouseEnter={() => setIsActive(true)}
                     onMouseLeave={() => checkActive()}
                 >
