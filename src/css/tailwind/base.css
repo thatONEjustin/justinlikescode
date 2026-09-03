@@ -30,7 +30,7 @@
     }
 
     h2 {
-        @apply text-primary dark:text-cyan text-5xl;
+        @apply text-primary dark:text-green text-5xl;
 
         @variant xl {
             @apply text-6xl;
