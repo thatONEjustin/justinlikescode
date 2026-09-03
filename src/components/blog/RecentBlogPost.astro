@@ -7,14 +7,18 @@ const { slug, publishedAt, title, preview } = data
 
 // console.log(truncateWords(content, 20))
 ---
-<article class="w-full recent-blog-post cursor-pointer annotateUnderline" data-annotate-options={`{ "color": "var(--color-secondary)" }`}>
+<article class="w-full recent-blog-post annotateMe" data-annotate-options={`{ "type": "bracket", "color": "var(--color-secondary)", "brackets": [ "right" ] }`}>
     <div class="mb-5">
         <h3 class="title" set:html={truncateWords(title, 20)}></h3>
         <h5 class="date"><em>{blogDate(publishedAt)}</em></h5>
         <p class="preview" set:html={preview}></p>
     </div>
 
-    <a href={`/blog/${slug}`} class="read-more">Read More</a>
+    <a href={`/blog/${slug}`} class="read-more">
+        <span class=" annotateUnderline">
+            Read More
+        </span>
+    </a>
 </article>
 
 <style>
@@ -24,11 +28,12 @@ const { slug, publishedAt, title, preview } = data
 .recent-blog-post {
     @apply relative border-l-4 border-primary dark:border-secondary p-5 mb-10 last-of-type:mb-0 transition-all;
 
+    /* 
     @variant hover {
         @apply scale-105;
     }
 
-    /* &:after {
+    &:after {
         @apply absolute w-64 h-128 top-1/2 -translate-y-1/2 translate-x-[100vw];
         @apply transition-all ease-in-out duration-500;
         @apply bg-linear-to-r from-transparent via-white/10 to-transparent;
