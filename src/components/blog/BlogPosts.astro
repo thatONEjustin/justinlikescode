@@ -7,8 +7,10 @@ import RecentBlogPost from './RecentBlogPost.astro'
 
 const blog_posts = await getCollection('blog')
 
+
+
 const latestBlogPosts = blog_posts
-    .sort((a, b) => (a.data.publishedAt < b.data.publishedAt) ? 1 : -1)
+    .sort((a, b) => (a.data.createdAt < b.data.createdAt) ? 1 : -1)
     .slice(0,3)
 ---
 

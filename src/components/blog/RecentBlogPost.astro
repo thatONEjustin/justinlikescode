@@ -3,14 +3,14 @@ import { blogDate } from '@lib/helpers'
 import { truncateWords } from '@shahid19/stringjs'
 const { data } = Astro.props
 
-const { slug, publishedAt, title, preview } = data
+const { slug, createdAt, title, preview } = data
 
 // console.log(truncateWords(content, 20))
 ---
 <article class="w-full recent-blog-post annotateMe" data-annotate-options={`{ "type": "bracket", "color": "var(--color-secondary)", "brackets": [ "right" ] }`}>
     <div class="mb-5">
         <h3 class="title" set:html={truncateWords(title, 20)}></h3>
-        <h5 class="date"><em>{blogDate(publishedAt)}</em></h5>
+        <h5 class="date"><em>{blogDate(createdAt)}</em></h5>
         <p class="preview" set:html={preview}></p>
     </div>
 
