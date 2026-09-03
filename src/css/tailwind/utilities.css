@@ -96,7 +96,7 @@
     }
 
     h4 {
-        @apply text-green-700;
+        @apply text-purple-700 dark:text-green;
         @apply text-2xl;
     }
 
@@ -192,7 +192,7 @@
     }
 
     a {
-        @apply text-secondary;
+        @apply text-secondary dark:text-cyan;
         @apply font-bold;
         @apply underline underline-offset-6;
     }

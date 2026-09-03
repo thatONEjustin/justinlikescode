@@ -71,29 +71,11 @@ header {
         @apply border-r border-darker-100 dark:border-darker-700 pr-3 mr-3 last:mr-0;
 
         a.menu-item {
-            @apply relative text-primary dark:text-darker-300 transition-all;
+            @apply relative transition-all;
             @apply no-underline;
 
-            &::after {
-                @apply absolute -bottom-3 left-0;
-                content: '';
-                @apply h-0.5 w-0 bg-cyan-800 dark:bg-cyan origin-center transition-all;
-            }
-
-            &:hover {
-                @apply text-cyan-800 dark:text-cyan;
-
-                &::after {
-                    @apply w-full;
-                }
-            }
-
             &.active {
-                @apply text-secondary dark:text-pink;
-
-                &::after {
-                    @apply bg-secondary dark:bg-pink w-full;
-                }
+                @apply text-secondary!;
             }
         }
 
@@ -111,6 +93,20 @@ header {
     @apply hidden;
     @variant md {
         @apply flex flex-row items-center py-4 md:py-0;
+    }
+
+}
+
+@variant dark {
+    .main-menu {
+        li a.menu-item {
+            &.active {
+                @apply text-green;
+                &::hover {
+                    @apply text-cyan;
+                }
+            }
+        }
     }
 }
 
