@@ -20,10 +20,10 @@ const menu_items = defineCollection({
         // const menuItemsJson: MenuItemType[] = [
         const menuItemsJson = [
             /*{
-                                                          label: 'home',
-                                                          href: '/',
-                                                          icon: 'nf-custom-home',
-                                                      },*/
+                                                                      label: 'home',
+                                                                      href: '/',
+                                                                      icon: 'nf-custom-home',
+                                                                  },*/
             {
                 id: "1",
                 label: "about me",
@@ -56,7 +56,7 @@ const blog_posts = defineCollection({
 
         const posts = data.data;
 
-        console.log(posts);
+        // console.log(posts);
 
         return posts.map(({ ...post }: any) => {
             const { documentId, slug, Date: publishDate, Preview, Content, Title } = post;
@@ -82,10 +82,19 @@ const projects = defineCollection({
 
         return data.data.map(({ ...project }: any) => {
             // NOTE: this will probably return weird data for now
-            const { slug, preview, category, description, external_url, Title, updatedAt, Technology } =
-                project;
+            const {
+                slug,
+                preview,
+                category,
+                description,
+                external_url,
+                Title,
+                updatedAt,
+                Technology,
+                screenshots = [],
+            } = project;
 
-            let screenshots = project.screenshots != null ? project.screenshots : [];
+            // let screenshots = project.screenshots != null ? project.screenshots : [];
 
             return {
                 id: project.documentId,

@@ -5,7 +5,7 @@ import { marked } from 'marked'
 
 import PillButton from "@components/PillButton.astro"
 
-const { introImage, Content:introText, Greeting:greetingText, buttons } = Astro.props.data.data
+const { introImage, Content:introText, Greeting:greetingText, buttons } = Astro.props.data
 
 const API_URL = import.meta.env.SECRET_API_URL;
 const me = API_URL + introImage.url

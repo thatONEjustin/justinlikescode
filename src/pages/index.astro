@@ -16,7 +16,7 @@ import SectionHeader from "@components/SectionHeader.astro"
 import BlogPosts from "@components/blog/BlogPosts.astro"
 import SocialMediaList from "@components/SocialMediaList.astro"
 
-const englishLocalization =  await getData('home-page?populate=buttons&populate=introImage').then(r => r.json())
+const englishLocalization =  await getData('home-page?populate=buttons&populate=introImage').then(r => r.json()).then(data => data.data)
 ---
 
 <BaseLayout>
