@@ -22,7 +22,7 @@ export default defineConfig({
                 hostname: "**.justinlikescode.com",
             },
             {
-                protofol: "http",
+                protocol: "http",
                 hostname: "localhost",
                 port: "1337",
             },
