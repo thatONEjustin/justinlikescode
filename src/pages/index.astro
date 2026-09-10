@@ -19,10 +19,27 @@ import SocialMediaList from "@components/SocialMediaList.astro"
 const englishLocalization =  await getData('home-page?populate=buttons&populate=introImage').then(r => r.json()).then(data => data.data)
 ---
 
+<script is:inline type="module">
+import { createTimeline } from 'https://esm.sh/animejs';
+
+const timeline = createTimeline({
+        defaults: { duration: 1000 }
+})
+
+timeline
+    .add('.portrait-image-image', {
+        x: ["-100%", 0]
+    })
+    .add('.portrait-image-underlay', {
+        scaleY: [0, 1]
+    })
+</script>
+
 <BaseLayout>
     <Intro data={englishLocalization} />
 
     <Services />
+
     <section id="resume" class="bg-primary dark:bg-darker-900 py-14">
         <SectionHeader class="mb-4">
             <h2 class="text-white dark:text-cyan" slot="title">See My Work</h2>

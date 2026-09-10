@@ -8,12 +8,22 @@ import PillButton from "@components/PillButton.astro"
 const { introImage, Content:introText, Greeting:greetingText, buttons } = Astro.props.data
 
 const API_URL = import.meta.env.SECRET_API_URL;
-const me = API_URL + introImage.url
+const me = API_URL + introImage.formats.large.url
 ---
+
 <section class="home-hero">
-    <div class="home-hero-container py-8 md:py-0 z-20!">
+    <div class="home-hero-container py-8 md:py-0 z-20! overflow-hidden">
         <div class="desktop-portrait">
-            <Image src={me} inferSize={true} alt={greetingText} class="portrait-image"/>
+            <div class="portrait-image">
+                <Image
+                    src={me}
+                    inferSize={true}
+                    alt={greetingText}
+                    class="portrait-image-image"
+                    />
+
+                <div class="portrait-image-underlay"></div>
+            </div>
         </div>
 
         <div class="intro">
